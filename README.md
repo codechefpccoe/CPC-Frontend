@@ -6,9 +6,10 @@
 - Tailwind
 - Firebase
 
-## For Icons
+## Dev Dependencies
 - MUI Icons
-- Toastify
+- React-Toastify
+- Axios
 
 ## Path Name
 - / [Home Page]
@@ -18,6 +19,7 @@
 - /team [Team Page]
 - /about [About Page]
 - /Enliven [Enliven Page]
+- /user/__username__ [DashBoard Page]
 
 
 ## Git Commands
