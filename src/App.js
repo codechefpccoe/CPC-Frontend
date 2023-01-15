@@ -1,12 +1,14 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "./Pages/LoginSignUp/Login";
+import { SignUp } from "./Pages/LoginSignUp/SignUp";
 
 const App = () => {
   return (
-    <div className="flex flex-col h-screen relative">
-      <Navbar />
+    <div>
       <Routes>
-        <Route path="/" element={<> </>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
