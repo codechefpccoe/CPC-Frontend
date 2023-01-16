@@ -1,15 +1,19 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home";
 import { Login } from "./Pages/LoginSignUp/Login";
 import { SignUp } from "./Pages/LoginSignUp/SignUp";
 
-
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
+      <Navbar />
       <Routes>
+        <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   );
@@ -17,4 +21,4 @@ const App = () => {
 
 export default App;
 
-// PathName refer Readme.md 
+// PathName refer Readme.md
