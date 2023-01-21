@@ -14,7 +14,16 @@ export const Login = () => {
   const userLogin = async () => {
   
 
-    axios.post("")
+    const data = {
+      userName : username.current.value,
+      password : password.current.value,
+    }
+
+    console.log(data)
+
+    const resp = await axios.post("http://localhost:8000/api/v1.0/User/Login", data)
+
+    console.log(resp)
 
 
 
