@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
+import axios from "axios";
 
 
 export const SignUp = () => {
@@ -10,9 +11,14 @@ export const SignUp = () => {
   const email = useRef();
 
 
-  const userSignUp = () => {
-      // After Response
-      // Redirect to /login 
+  const userSignUp = async() => {
+    const userData = {
+      userName: username.current.value,
+      password: password.current.value,
+      email: email.current.value,
+    };
+    const res = await axios.post("http://localhost:8000/api/v1.0/User/Signup", userData);
+    console.log(res);
   }
 
 
@@ -21,7 +27,7 @@ export const SignUp = () => {
       <div className="p-10 flex flex-col w-2/6">
         <input ref = {email} className="border" placeholder="Email" />
         <input ref = {username}className="border" placeholder="Username" />
-        <input red = {password} className="border" placeholder="Password" />
+        <input ref = {password} className="border" placeholder="Password" />
         <div className="flex gap-5">
           <input type="checkbox" />
           <p>Remember me</p>
