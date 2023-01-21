@@ -4,7 +4,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import { useEffect } from "react";
-
 import { Login } from "./Pages/LoginSignUp/Login";
 import { SignUp } from "./Pages/LoginSignUp/SignUp";
 import { useCookies } from 'react-cookie';
