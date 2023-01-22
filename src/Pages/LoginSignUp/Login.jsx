@@ -3,13 +3,15 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { loginAction } from "../../Store/login-slice";
-import axios from "axios";
+import axios from "axios"
+import { useCookies } from "react-cookie";
 
 export const Login = () => {
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
   const dispatch = useDispatch();
   const username = useRef();
   const password = useRef();
+  const [cookies, setCookie, deleteCookie] = useCookies();
 
   const userLogin = async () => {
   
@@ -25,6 +27,7 @@ export const Login = () => {
 
     console.log(resp)
 
+    setCookie('token', resp.data.token)
 
 
     dispatch(
