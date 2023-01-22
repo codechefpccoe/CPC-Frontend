@@ -12,19 +12,27 @@ export const Login = () => {
   const password = useRef();
 
   const userLogin = async () => {
-    console.log("Adding");
+  
+
+    const data = {
+      userName : username.current.value,
+      password : password.current.value,
+    }
+
+    console.log(data)
+
+    const resp = await axios.post("http://localhost:8000/api/v1.0/User/Login", data)
+
+    console.log(resp)
+
+
+
     dispatch(
       loginAction.addLogin({
         name: "Dummy Name",
         username: username.current.value,
       })
     );
-    const userData = {
-      userName: username.current.value,
-      password: password.current.value,
-    }
-    const res = await axios.post("http://localhost:8000/api/v1.0/User/Login", userData);
-    console.log(res);
   };
 
 

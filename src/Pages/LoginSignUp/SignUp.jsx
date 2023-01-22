@@ -10,7 +10,6 @@ export const SignUp = () => {
   const password = useRef();
   const email = useRef();
 
-
   const userSignUp = async() => {
     const userData = {
       userName: username.current.value,
