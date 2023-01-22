@@ -8,6 +8,7 @@ import DarkGrid from "../../Assets/DarkGrid.mp4";
 import Logo from "../../Images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
+import { googleLoginWithPopup } from "../../Config/Firebase";
 
 export const Login = () => {
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
@@ -52,14 +53,6 @@ export const Login = () => {
   };
 
   const userLogin = async () => {
-    console.log("Adding");
-    dispatch(
-      loginAction.addLogin({
-        name: "Dummy Name",
-        username: enteredUsername.current.value,
-      })
-    );
-    setCookie("username", enteredPassword.current.value, { path: "/" });
   };
 
   return (
@@ -160,7 +153,10 @@ export const Login = () => {
                 </span>
               </div>
               <div className="w-full md:w-full px-3 mb-4 mt-2 ">
-                <button className="relative appearance-none w-full text-base flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-white cursor-pointer hover:bg-black hover:text-white hover:shadow-md duration-500 ease-in-out transition-all border border-black group-hover:text-gray-100">
+                <button
+                  onClick={() => googleLoginWithPopup()}
+                  className="relative appearance-none w-full text-base flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-white cursor-pointer hover:bg-black hover:text-white hover:shadow-md duration-500 ease-in-out transition-all border border-black group-hover:text-gray-100"
+                >
                   <FcGoogle className="h-6 w-6" />
                   Google
                 </button>
