@@ -2,11 +2,7 @@ import React from "react";
 import HomeContainer from "./HomeContainer";
 
 const HomePage = () => {
-  return (
-    <>
-      <HomeContainer />
-    </>
-  );
+  return <HomeContainer />;
 };
 
 export default HomePage;
