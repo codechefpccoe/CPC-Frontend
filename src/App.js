@@ -12,7 +12,7 @@ const App = () => {
   const [cookies, setCookie, deleteCookie] = useCookies(['user']);
 
   const cookieInitalCheck = () => {
-    if(cookies.username === undefined){
+    if(cookies.token === undefined){
       // No Username
     }
     else{
@@ -24,9 +24,9 @@ const App = () => {
 
 
 
-  // useEffect(() => {
-  //   cookieInitalCheck()
-  // }, [])
+  useEffect(() => {
+    cookieInitalCheck()
+  }, [])
 
 
 

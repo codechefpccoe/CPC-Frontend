@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import axios from "axios"
+import axios from "axios";
 
 
 export const SignUp = () => {
@@ -10,20 +10,14 @@ export const SignUp = () => {
   const password = useRef();
   const email = useRef();
 
-
-  const userSignUp = async () => {
-
-      const data = {
-        userName : username.current.value,
-        password : password.current.value,
-        email : email.current.value
-      }
-
-      console.log(data)
-
-      const resp = await axios.post("http://localhost:8000/api/v1.0/User/Signup", data)
-
-      console.log(resp)
+  const userSignUp = async() => {
+    const userData = {
+      userName: username.current.value,
+      password: password.current.value,
+      email: email.current.value,
+    };
+    const res = await axios.post("http://localhost:8000/api/v1.0/User/Signup", userData);
+    console.log(res);
   }
 
 
