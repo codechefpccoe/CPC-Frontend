@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
-import { useEffect } from "react";
 import { Login } from "./Pages/LoginSignUp/Login";
 import { SignUp } from "./Pages/LoginSignUp/SignUp";
 import { useCookies } from 'react-cookie';
@@ -13,7 +12,7 @@ const App = () => {
   const [cookies, setCookie, deleteCookie] = useCookies(['user']);
 
   const cookieInitalCheck = () => {
-    if(cookies.username === undefined){
+    if(cookies.token === undefined){
       // No Username
     }
     else{
@@ -25,9 +24,9 @@ const App = () => {
 
 
 
-  // useEffect(() => {
-  //   cookieInitalCheck()
-  // }, [])
+  useEffect(() => {
+    cookieInitalCheck()
+  }, [])
 
 
 
