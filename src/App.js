@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import { Login } from "./Pages/LoginSignUp/Login";
 import { SignUp } from "./Pages/LoginSignUp/SignUp";
 import { useCookies } from 'react-cookie';
+import { Admin } from "./Pages/Admin/Admin";
 
 const App = () => {
 
