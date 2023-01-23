@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
+import Dashboard from "./Pages/Dashboard";
 import { Login } from "./Pages/LoginSignUp/Login";
 import { SignUp } from "./Pages/LoginSignUp/SignUp";
 import { useCookies } from 'react-cookie';
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   );
