@@ -3,8 +3,8 @@ import { ImFacebook2, ImLinkedin } from "react-icons/im";
 import { FiInstagram } from "react-icons/fi";
 
 const Content = () => {
-  return ( 
-    <div className="w-1/2 justify-center flex flex-col gap-6 px-8 dark:text-white">
+  return (
+    <div className="w-1/2 justify-center flex flex-col gap-6 px-8 dark:text-white z-[100]">
       <div className="font-iceberg text-4xl">
         <h1>
           <span className="text-primary">CODE</span> CHEF
