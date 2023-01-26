@@ -71,8 +71,16 @@ const Navbar = () => {
           {darkTheme && <FiSun className="inline" />}
         </div>
         <p>|</p>
-        <button>Sign up</button>
-        <button>Log In</button>
+        {/* <button>Sign up</button>
+        <button>Log In</button> */}
+        <ul className="flex flex-row gap-12 font-medium">
+          <li>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Log In</NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );
