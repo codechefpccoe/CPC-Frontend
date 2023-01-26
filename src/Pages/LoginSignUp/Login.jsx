@@ -20,7 +20,7 @@ export const Login = () => {
         "http://localhost:8000/api/v1.0/User/GetUser"
       );
       if (resp.status === 200) {
-        Navigate("/dashboard");
+        Navigate("/home");
       }
     };
     getData();
@@ -41,7 +41,7 @@ export const Login = () => {
 
     console.log(resp);
     if (resp.status === 200) {
-      Navigate("/dashboard");
+      Navigate("/home");
     }
 
     // dispatch(
