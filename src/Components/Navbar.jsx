@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { BsSearch } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
 import { FiSun } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";

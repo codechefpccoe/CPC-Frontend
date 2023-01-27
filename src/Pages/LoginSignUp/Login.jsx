@@ -2,10 +2,20 @@ import React from "react";
 import Logo from "../../Images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
-import { googleLoginWithPopup } from "../../Config/Firebase";
 import { BiUserCircle } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { googleLoginUsingPopup } from "../../Config/Firebase";
+import { db } from "../../Config/Firebase";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 export const Login = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [email, setemail] = useState("");
+  const username = useRef();
+  const navigate = useNavigate()
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
   // const [cookies, setCookie] = useCookies();
@@ -47,12 +57,67 @@ export const Login = () => {
   };
 
   const userLoginWithGoogle = async () => {
-    const response = await googleLoginWithPopup()
-    console.log(response)
+    const response = await googleLoginUsingPopup();
+    db.collection("user")
+      .doc(response.email)
+      .get()
+      .then((snap) => {
+        if (!snap.exists) {
+          setShowPopUp(true);
+          setemail(response.email);
+        }
+        else{
+          db.collection("user").doc(response.email).get().then(resp => {
+            navigate("/user/" + resp.data().username)
+          })
+        }
+      });
+  };
+
+  const setInitailValue = async () => {
+    db.collection("user")
+      .where("username", "==", username.current.value)
+      .get()
+      .then((snap) => {
+        if (!snap.empty) {
+          alert("username already exists!!!!");
+        } else {
+          db.collection("user")
+            .doc(email)
+            .set({
+              coins: 10,
+              username: username.current.value,
+            })
+            .then(() => {
+              console.log("Data set success!!!");
+              setShowPopUp(false);
+            })
+            .catch((error) => {
+              console.error("Error writing document: ", error);
+            });
+        }
+      });
   };
 
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
+      <Popup open={showPopUp} closeOnDocumentClick>
+        <div className="p-4">
+          <p className="text-center">Enter an username for your account!!!</p>
+          <div className="w-full flex items-center flex-col gap-3">
+            <input
+              ref={username}
+              className="border-black border-[2px] rounded-md"
+            />
+            <button
+              onClick={() => setInitailValue()}
+              className="border-black border-[2px] px-3"
+            >
+              SET
+            </button>
+          </div>
+        </div>
+      </Popup>
       <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white border-[2px] shadow-[0px_22px_30px_4px_rgba(0,0,0,0.56)] border-black">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">

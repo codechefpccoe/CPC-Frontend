@@ -3,12 +3,13 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import { useSelector } from "react-redux";
-import { useCookies } from "react-cookie";
+import firebase from "firebase";
 import { Admin } from "./Pages/Admin/Admin";
 import Index from "./Pages/LoginSignUp/Index";
 
 const App = () => {
   const [animationClasses, setAnimationClasses] = useState("");
+  const [_user, setuser] = useState()
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
   const dark = useSelector((state) => state.theme.darkTheme);
 
@@ -26,20 +27,11 @@ const App = () => {
     }
   };
 
-  const [cookies, setCookie, deleteCookie] = useCookies(["user"]);
-
-  const cookieInitalCheck = () => {
-    if (cookies.token === undefined) {
-      // No Username
-    } else {
-      // username && get data from backend && set send data to redux
-    }
-    // console.log(cookies.username)
-    // deleteCookie('username')
-  };
 
   useEffect(() => {
-    cookieInitalCheck();
+    firebase.auth().onAuthStateChanged(user => {
+      setuser(user)
+    })
   }, []);
 
   return (
