@@ -12,7 +12,7 @@ import { Admin } from "./Pages/Admin/Admin";
 const App = () => {
   const [animationClasses, setAnimationClasses] = useState("");
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
-  const dark = useSelector((state) => state.theme.darkTheme)
+  const dark = useSelector((state) => state.theme.darkTheme);
 
   const themeChangeAnimationHandler = () => {
     if (animationClasses === "" && !dark) {
@@ -31,7 +31,7 @@ const App = () => {
   const [cookies, setCookie, deleteCookie] = useCookies(["user"]);
 
   const cookieInitalCheck = () => {
-    if(cookies.token === undefined){
+    if (cookies.token === undefined) {
       // No Username
     } else {
       // username && get data from backend && set send data to redux
@@ -41,8 +41,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    cookieInitalCheck()
-  }, [])
+    cookieInitalCheck();
+  }, []);
 
   return (
     <div className="flex flex-col h-screen relative">
