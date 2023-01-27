@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
-import { SignUp } from "./Pages/LoginSignUp/SignUp";
 import { useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { Admin } from "./Pages/Admin/Admin";
-import { Login } from "./Pages/LoginSignUp/Login";
+import Index from "./Pages/LoginSignUp/Index";
 
 const App = () => {
   const [animationClasses, setAnimationClasses] = useState("");
@@ -49,8 +48,8 @@ const App = () => {
       {/* <Navbar themeChangeAnimationHandler={themeChangeAnimationHandler} /> */}
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Index />} />
+        <Route path="/signup" element={<Index />} />
         <Route path="/home" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
