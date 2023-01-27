@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { loginAction } from "../../Store/login-slice";
 import { useCookies } from "react-cookie";
+import DarkGrid from "../../Assets/DarkGrid.mp4";
+import Logo from "../../Images/logo.png";
+import { FcGoogle } from "react-icons/fc";
+import useInput from "../../Hooks/use-input";
+import { googleLoginWithPopup } from "../../Config/Firebase";
+import { useSelector } from "react-redux";
+import { auth } from "../../Config/Firebase";
 import Logo from "../../Images/logo.png";
 import { BiUserCircle } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -11,7 +18,6 @@ import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
 import { googleLoginWithPopup } from "../../Config/Firebase";
 import LoginVdo from "../../Assets/1.mp4";
-
 export const Login = () => {
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
   const dispatch = useDispatch();
@@ -53,6 +59,43 @@ export const Login = () => {
     resetEnteredUsername();
     resetPasswordHandler();
   };
+
+  const userLoginWithGoogle = async () => {
+    
+    const response = await googleLoginWithPopup()
+    
+    
+     
+  };
+  console.log(auth.currentUser);
+  
+
+  return (
+    <div className="relative w-screen h-screen ">
+      <video
+        src={DarkGrid}
+        type="video/mp4"
+        autoPlay
+        loop
+        className="w-full h-full object-fill"
+      ></video>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className=" md:w-460 bg-white rounded-xl flex flex-col border-2 border-black shadow-2xl ">
+          <div className="text-center mt-4 p-2">
+            <div className="flex items-center justify-center">
+              <img src={Logo} alt="Logo" className="h-20 w-20" />
+            </div>
+            <h2 className="text-4xl tracking-tight">Login to CPC</h2>
+            <div className="p-1">
+              <span class="text-sm">or </span>
+              <span className="text-sm text-blue-500">
+                register a new account
+              </span>
+            </div>
+          </div>
+
+          <form
+            className="w-full max-w-xl bg-white rounded-lg shadow-md p-2"
 
   const userLogin = async () => {
     console.log("Adding");
