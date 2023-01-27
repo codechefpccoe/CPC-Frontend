@@ -1,28 +1,28 @@
 import React from "react";
 import { BiUserCircle } from "react-icons/bi";
-import { useRef } from "react";
-import axios from "axios";
+// import { useRef } from "react";
+// import axios from "axios";
 import Logo from "../../Images/logo.png";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 
 export const SignUp = () => {
-  const username = useRef();
-  const password = useRef();
-  const email = useRef();
+  // const username = useRef();
+  // const password = useRef();
+  // const email = useRef();
 
-  const userSignUp = async () => {
-    const userData = {
-      userName: username.current.value,
-      password: password.current.value,
-      email: email.current.value,
-    };
-    const res = await axios.post(
-      "http://localhost:8000/api/v1.0/User/Signup",
-      userData
-    );
-    console.log(res);
-  };
+  // const userSignUp = async () => {
+  //   const userData = {
+  //     userName: username.current.value,
+  //     password: password.current.value,
+  //     email: email.current.value,
+  //   };
+  //   const res = await axios.post(
+  //     "http://localhost:8000/api/v1.0/User/Signup",
+  //     userData
+  //   );
+  //   console.log(res);
+  // };
 
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">

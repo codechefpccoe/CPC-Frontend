@@ -81,5 +81,5 @@ export const googleLoginWithPopup = async () => {
 
 
 //  firebase deploy --only hosting:codechefpccoe
-export const db = firebase.firestore();
+// export const db = firebase.firestore();
 export { auth };

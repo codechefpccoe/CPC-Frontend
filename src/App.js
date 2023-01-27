@@ -45,7 +45,7 @@ const App = () => {
   return (
     <div className="flex flex-col h-screen relative">
       <div className={themeClasses}></div>
-      {/* <Navbar themeChangeAnimationHandler={themeChangeAnimationHandler} /> */}
+      <Navbar themeChangeAnimationHandler={themeChangeAnimationHandler} />
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/login" element={<Index />} />
