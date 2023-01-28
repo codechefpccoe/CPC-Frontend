@@ -46,6 +46,7 @@ module.exports = {
       },
       colors: {
         primary: "#1CB6D8",
+        secondary: "#181818",
       },
       fontFamily: {
         cairo: "'Cairo', serif",
