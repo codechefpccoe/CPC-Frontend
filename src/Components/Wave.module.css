@@ -42,3 +42,8 @@
     }
   }
   
+  @media (max-width:768px) {
+    .ocean {
+      display: none;
+    }
+  }
