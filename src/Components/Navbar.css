@@ -1,0 +1,88 @@
+.brand.active {
+  display: none;
+}
+
+.parentNavigator {
+  flex: 1;
+}
+
+.parentNavigator.active {
+  flex: 0;
+}
+
+.navigator.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.parentFormNavigator.active {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.themeToggler.active {
+  display: none;
+}
+
+.formNavigator.active {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toggle {
+  right: 5%;
+  top: 5.2%;
+  position: absolute;
+  z-index: 10;
+}
+
+.toggle.active {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .themeToggler {
+    position: absolute;
+    top: 3.8%;
+    right: 15%;
+  }
+
+  .mobileNav {
+    height: auto;
+    clip-path: circle(40% at 100% 0);
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+  }
+
+  .mobileNav.active {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    clip-path: circle(141.2% at 100% 0);
+    background-color: #d3edf3;
+  }
+
+  .navigator {
+    color: black;
+  }
+
+  .formNavigator {
+    color: black;
+  }
+}

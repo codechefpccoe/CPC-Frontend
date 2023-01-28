@@ -25,7 +25,7 @@ const Content = () => {
     }, 75);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [index]);
 
   return (
     <div className="w-1/2 justify-center flex flex-col gap-6 px-8 dark:text-white z-[100]">

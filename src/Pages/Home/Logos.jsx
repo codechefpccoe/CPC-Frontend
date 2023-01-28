@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../../Images/logo.png";
 import codechefLogo from "../../Images/codechef.png";
 
