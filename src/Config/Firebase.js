@@ -28,4 +28,18 @@ export const googleLoginUsingPopup = async () => {
     })
 }
 
+export const createUserWithUsernamePassword = async (email, password) => {
+  return await firebase.auth().createUserWithEmailAndPassword(email, password).then((userCred) => {
+    return userCred.user
+  })
+}
+
+export const loginUserWithUsernamePassword = async (email, password) => {
+  return firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    var user = userCredential.user;
+    return user
+  })
+}
+
 export const db = firebase.firestore();

@@ -10,12 +10,15 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUserWithUsernamePassword } from "../../Config/Firebase";
 
 export const Login = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [email, setemail] = useState("");
+  const _email = useRef();
+  const _password = useRef();
   const username = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
   // const [cookies, setCookie] = useCookies();
@@ -65,13 +68,24 @@ export const Login = () => {
         if (!snap.exists) {
           setShowPopUp(true);
           setemail(response.email);
-        }
-        else{
-          db.collection("user").doc(response.email).get().then(resp => {
-            navigate("/user/" + resp.data().username)
-          })
+        } else {
+          db.collection("user")
+            .doc(response.email)
+            .get()
+            .then((resp) => {
+              navigate("/user/" + resp.data().username);
+            });
         }
       });
+  };
+
+  const userLoginwithEmailPassword = async () => {
+    await loginUserWithUsernamePassword(
+      _email.current.value,
+      _password.current.value
+    ).then((user) => {
+      console.log(user);
+    });
   };
 
   const setInitailValue = async () => {
@@ -139,7 +153,7 @@ export const Login = () => {
                 />
 
                 <input
-                  id="username"
+                  id="email"
                   onChange={enteredUsernameChangeHandler}
                   onBlur={enteredUsernameBlurHandler}
                   value={enteredUsername}
@@ -154,7 +168,8 @@ export const Login = () => {
                     }
                     [ text-[#333] focus:text-black ]`}
                   type="text"
-                  placeholder="Username"
+                  placeholder="Email"
+                  ref={_email}
                 ></input>
               </label>
             </div>
@@ -184,6 +199,7 @@ export const Login = () => {
                     [ text-[#333] focus:text-black ]`}
                   type="password"
                   placeholder="Password"
+                  ref={_password}
                 />
               </label>
             </div>
@@ -209,12 +225,13 @@ export const Login = () => {
                 Sign up
               </button>
               <button
-                className={`appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition hover:-translate-y-1 ]  ${
+                className={` cursor-pointer appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition hover:-translate-y-1 ]  ${
                   formIsValid
                     ? "bg-black cursor-pointer hover:bg-white hover:border-black hover:text-black"
                     : "bg-gray-800"
                 }`}
-                disabled={!formIsValid}
+                // disabled={!formIsValid}
+                onClick={() => userLoginwithEmailPassword()}
               >
                 Login
               </button>

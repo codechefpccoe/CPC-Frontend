@@ -1,28 +1,25 @@
-import React from "react";
+import React, {useRef} from "react";
 import { BiUserCircle } from "react-icons/bi";
 // import { useRef } from "react";
 // import axios from "axios";
 import Logo from "../../Images/logo.png";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { createUserWithUsernamePassword } from "../../Config/Firebase";
 
 export const SignUp = () => {
   // const username = useRef();
-  // const password = useRef();
-  // const email = useRef();
+  const password = useRef();
+  const email = useRef();
 
-  // const userSignUp = async () => {
-  //   const userData = {
-  //     userName: username.current.value,
-  //     password: password.current.value,
-  //     email: email.current.value,
-  //   };
-  //   const res = await axios.post(
-  //     "http://localhost:8000/api/v1.0/User/Signup",
-  //     userData
-  //   );
-  //   console.log(res);
-  // };
+  const userSignUp = async () => {
+    console.log(
+      await createUserWithUsernamePassword(
+        email.current.value,
+        password.current.value
+      )
+    );
+  };
 
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
@@ -69,6 +66,7 @@ export const SignUp = () => {
 
                   type="text"
                   placeholder="Email"
+                  ref={email}
                 />
                 {/* {enteredUsernameHasError && (
                   <p className="text-red-500 text-xs italic">
@@ -141,6 +139,7 @@ export const SignUp = () => {
                   // }`}
                   type="password"
                   placeholder="Password"
+                  ref={password}
                 />
                 {/* {enteredPasswordHasError && (
                   <p className="text-red-500 text-xs italic">
@@ -160,7 +159,7 @@ export const SignUp = () => {
                 />
 
                 <input
-                  id="password"
+                  id="passwordc"
                   // onChange={enteredPasswordChangeHandler}
                   // onBlur={enteredPasswordBlurHandler}
                   // value={enteredPassword}
@@ -189,7 +188,7 @@ export const SignUp = () => {
             <div className="w-full md:w-full px-3 mb-2">
               <button
                 className="appearance-none block w-full bg-black text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-white hover:border-black hover:text-black cursor-pointer"
-                // disabled={!formIsValid}
+                onClick={() => userSignUp()}
               >
                 Sign Up
               </button>
