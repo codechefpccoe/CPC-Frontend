@@ -103,8 +103,17 @@ const Navbar = (props) => {
           <button onClick={signupHandler}>Sign up</button>
           <button onClick={loginHandler}>Log In</button>
         </div>
-      </nav>
-    </>
+        <p>|</p>
+        <ul className="flex flex-row gap-12 font-medium">
+          <li>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Log In</NavLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 
