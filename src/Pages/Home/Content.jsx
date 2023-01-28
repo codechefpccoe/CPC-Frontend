@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ImFacebook2, ImLinkedin } from "react-icons/im";
 import { FiInstagram } from "react-icons/fi";
 
+const contentData =
+  "CodeChef PCCOE Chapter is the community for the students of Pimpri Chinchwad College of Engineering, Pune. Our vision and goal is to create competitive coding culture in our campus and to inspire more people to participate in coding contest.";
+
 const Content = () => {
+  const [contentAnimationClasss, setContentAnimationClass] = useState("");
+
+  const contentRef = useRef();
+  var index = 0;
+
+  useEffect(() => {
+    setContentAnimationClass("content_animation");
+    contentRef.current.innerHTML = "";
+    const interval = setInterval(() => {
+      if (index >= contentData.length) {
+        setContentAnimationClass("");
+        return () => clearInterval(interval);
+      }
+      contentRef.current.innerHTML =
+        contentRef.current.innerHTML + contentData[index];
+      index++;
+    }, 75);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="w-1/2 justify-center flex flex-col gap-6 px-8 dark:text-white z-[100]">
       <div className="font-iceberg text-4xl">
@@ -14,12 +38,7 @@ const Content = () => {
         </h1>
       </div>
       <div className="font-cairo text-base leading-6 pr-8">
-        <p>
-          CodeChef PCCOE Chapter is the community for the students of Pimpri
-          Chinchwad College of Engineering, Pune. Our vision and goal is to
-          create competitive coding culture in our campus and to inspire more
-          people to participate in coding contest.
-        </p>
+        <p className={contentAnimationClasss} ref={contentRef}></p>
       </div>
       <div className="font-cairo text-primary text-2xl">
         <h1>Let Us Help You To get Started!</h1>
