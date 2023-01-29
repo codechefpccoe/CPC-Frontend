@@ -36,9 +36,15 @@ export const createUserWithUsernamePassword = async (email, password) => {
 
 export const loginUserWithUsernamePassword = async (email, password) => {
   return firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    var user = userCredential.user;
-    return user
+    .then((userCredential) => {
+      var user = userCredential.user;
+      return user
+    })
+}
+
+export const LogoutFromAccount = async () => {
+  await firebase.auth().signOut().then(d => {
+    console.log(d)
   })
 }
 

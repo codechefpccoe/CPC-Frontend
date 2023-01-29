@@ -11,14 +11,20 @@ import "reactjs-popup/dist/index.css";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUserWithUsernamePassword } from "../../Config/Firebase";
+import { useDispatch } from "react-redux";
+import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
+import { loginAction } from "../../Store/login-slice";
+import { errornotify, successnotify } from "../../Components/Notify";
 
 export const Login = () => {
   const [showPopUp, setShowPopUp] = useState(false);
-  const [email, setemail] = useState("");
   const _email = useRef();
   const _password = useRef();
   const username = useRef();
   const navigate = useNavigate();
+ const dispatch = useDispatch()
+  const [email, setemail] = useState()
+  const [name, setname] = useState()
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
   // const [cookies, setCookie] = useCookies();
@@ -67,12 +73,12 @@ export const Login = () => {
       .then((snap) => {
         if (!snap.exists) {
           setShowPopUp(true);
-          setemail(response.email);
         } else {
           db.collection("user")
             .doc(response.email)
             .get()
             .then((resp) => {
+              successnotify("Login Successfull")
               navigate("/user/" + resp.data().username);
             });
         }
@@ -84,33 +90,50 @@ export const Login = () => {
       _email.current.value,
       _password.current.value
     ).then((user) => {
-      console.log(user);
+      db.collection("user")
+        .doc(user.email)
+        .get()
+        .then((snap) => {
+          if (!snap.exists) {
+            setShowPopUp(true);
+            setemail(user.email)
+            setname(user.displayName)
+          } else {
+            db.collection("user")
+              .doc(user.email)
+              .get()
+              .then((resp) => {
+                successnotify("Login Success")
+                navigate("/user/" + resp.data().username);
+              });
+          }
+        });
+    }).catch(err => {
+      errornotify(err.message)
     });
   };
 
   const setInitailValue = async () => {
-    db.collection("user")
-      .where("username", "==", username.current.value)
-      .get()
-      .then((snap) => {
-        if (!snap.empty) {
-          alert("username already exists!!!!");
-        } else {
-          db.collection("user")
-            .doc(email)
-            .set({
-              coins: 10,
-              username: username.current.value,
-            })
-            .then(() => {
-              console.log("Data set success!!!");
-              setShowPopUp(false);
-            })
-            .catch((error) => {
-              console.error("Error writing document: ", error);
-            });
-        }
-      });
+    if (await IfUsernameAlreadyPresent(username.current.value)) {
+      alert("Username Already Present");
+    } else {
+      db.collection("user")
+        .doc(email)
+        .set({
+          coins: 10,
+          username: username.current.value,
+          email: email,
+          name: name,
+        })
+        .then(() => {
+          setShowPopUp(false);
+          dispatch(loginAction.addLogin({ name: name, email: email, username: username.current.value, coins: 10 }));
+          navigate("/user/" + username.current.value);
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+    }
   };
 
   return (

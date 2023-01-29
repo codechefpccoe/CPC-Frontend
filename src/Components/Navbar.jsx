@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
 import { MdDarkMode } from "react-icons/md";
 import { FiSun } from "react-icons/fi";
@@ -9,6 +9,8 @@ import { themeActions } from "../Store/theme-slice";
 const Navbar = (props) => {
   const dispatch = useDispatch();
   const darkTheme = useSelector((state) => state.theme.darkTheme);
+  const userData = useSelector((state) => state.login);
+  const navigate = useNavigate();
 
   const themeToggleHandler = () => {
     setTimeout(() => {
@@ -73,14 +75,20 @@ const Navbar = (props) => {
           {darkTheme && <FiSun className="inline" />}
         </div>
         <p>|</p>
-        <ul className="flex flex-row gap-12 font-medium">
-          <li>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Log In</NavLink>
-          </li>
-        </ul>
+        {userData.email === -1 ? (
+          <>
+            <ul className="flex flex-row gap-12 font-medium">
+              <li>
+                <NavLink to="/signup">Sign Up</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">Log In</NavLink>
+              </li>
+            </ul>
+          </>
+        ) : (
+          <div className="cursor-pointer" onClick={() =>  navigate("/user/" + userData.username)}>Hi {userData.name}</div>
+        )}
       </div>
     </nav>
   );
