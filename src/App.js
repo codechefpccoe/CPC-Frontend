@@ -3,13 +3,12 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Team from "./Pages/Team";
 import Event from "./Pages/Event";
-import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/LoginSignUp/Login";
 import SignUp from "./Pages/LoginSignUp/SignUp";
 import { useSelector } from "react-redux";
 import firebase from "firebase";
 import { Admin } from "./Pages/Admin/Admin";
-import LoginSignUp from "./Pages/LoginSignUp/Index";
+import LoginSignUp from "./Pages/LoginSignUp";
 import { Dashboard } from "./Pages/Dashboard";
 import { useDispatch } from "react-redux";
 import { loginAction } from "./Store/login-slice";
@@ -19,7 +18,7 @@ const App = () => {
   const [animationClasses, setAnimationClasses] = useState("");
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
   const dark = useSelector((state) => state.theme.darkTheme);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const themeChangeAnimationHandler = () => {
     if (animationClasses === "" && !dark) {
@@ -35,23 +34,14 @@ const App = () => {
     }
   };
 
+
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      db.collection("user")
-        .doc(user.email)
-        .get()
-        .then((data) => {
-          console.log(user);
-          dispatch(
-            loginAction.addLogin({
-              name: user.displayName,
-              email: user.email,
-              username: data.data().username,
-              coins: data.data().coins,
-            })
-          );
-        });
-    });
+    firebase.auth().onAuthStateChanged(user => {
+      db.collection("user").doc(user.email).get().then((data) => {
+        console.log(user)
+        dispatch(loginAction.addLogin({ name: user.displayName, email: user.email, username: data.data().username, coins: data.data().coins }));
+      })
+    })
   }, []);
 
   return (

@@ -50,8 +50,8 @@ export const SignUp = () => {
           <h2 className="font-bold text-3xl tracking-tight ">Sign Up to CPC</h2>
         </div>
 
-        <form
-          className="w-full max-w-xl   p-2 rounded-2xl"
+        <div
+          className="w-full max-w-xl bg-white  p-2 rounded-2xl"
           // onSubmit={formSubmissionHandler}
         >
           <div className="flex flex-wrap mx-3 mb-4">
@@ -176,7 +176,7 @@ export const SignUp = () => {
                   [ transform -translate-y-1/2 ]"
                 />
                 <input
-                  id="username"
+                  id="Name"
                   // onChange={enteredUsernameChangeHandler}
                   // onBlur={enteredUsernameBlurHandler}
                   // value={enteredUsername}
@@ -193,7 +193,8 @@ export const SignUp = () => {
                   // }`
 
                   type="text"
-                  placeholder="Username"
+                  placeholder="Name"
+                  ref={name}
                 />
                 {/* {enteredUsernameHasError && (
                   <p className="text-red-500 text-xs italic">
@@ -295,10 +296,11 @@ export const SignUp = () => {
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
+
 
 export default SignUp;

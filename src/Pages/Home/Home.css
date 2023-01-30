@@ -10,6 +10,22 @@
   /* left: ; */
 }
 
+@media (max-width: 768px) {
+  .rotate {
+    transform: none;
+    position: relative;
+    top: 0;
+    padding: 0;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .rotate {
+    padding-bottom: 0.5rem;
+  }
+}
+
 .rotate_animation {
   animation: rotate 50s linear infinite;
 }
@@ -77,6 +93,88 @@
   }
 }
 
+@media (max-width: 1280px) {
+  @keyframes rotate_circle1 {
+    from {
+      transform: rotate(0deg) translateX(-9rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(-9rem) rotate(-360deg);
+    }
+  }
+
+  @keyframes rotate_circle2 {
+    from {
+      transform: rotate(0deg) translateX(9rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(9rem) rotate(-360deg);
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  @keyframes rotate_circle1 {
+    from {
+      transform: rotate(0deg) translateX(-8rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(-8rem) rotate(-360deg);
+    }
+  }
+
+  @keyframes rotate_circle2 {
+    from {
+      transform: rotate(0deg) translateX(8rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(8rem) rotate(-360deg);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  @keyframes rotate_circle1 {
+    from {
+      transform: rotate(0deg) translateX(-6rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(-6rem) rotate(-360deg);
+    }
+  }
+
+  @keyframes rotate_circle2 {
+    from {
+      transform: rotate(0deg) translateX(6rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(6rem) rotate(-360deg);
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  @keyframes rotate_circle1 {
+    from {
+      transform: rotate(0deg) translateX(-5rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(-5rem) rotate(-360deg);
+    }
+  }
+
+  @keyframes rotate_circle2 {
+    from {
+      transform: rotate(0deg) translateX(5rem) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(5rem) rotate(-360deg);
+    }
+  }
+}
+
+
+
 .content_animation::after {
   content: "|";
   animation: blink 0.5s linear infinite;
@@ -85,5 +183,28 @@
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .backgroundContainer {
+    background-image: url("../../Images/logoContainer.png");
+    width: 100%;
+    height: 85vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .backgroundContainer {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 340px) {
+  .backgroundContainer {
+    height: 60vh;
   }
 }

@@ -23,9 +23,9 @@ export const Login = () => {
   const _password = useRef();
   const username = useRef();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [email, setemail] = useState();
-  const [name, setname] = useState();
+ const dispatch = useDispatch()
+  const [email, setemail] = useState()
+  const [name, setname] = useState()
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
   // const [cookies, setCookie] = useCookies();
@@ -79,7 +79,7 @@ export const Login = () => {
             .doc(response.email)
             .get()
             .then((resp) => {
-              successnotify("Login Successfull");
+              successnotify("Login Successfull")
               navigate("/user/" + resp.data().username);
             });
         }
@@ -90,30 +90,28 @@ export const Login = () => {
     await loginUserWithUsernamePassword(
       _email.current.value,
       _password.current.value
-    )
-      .then((user) => {
-        db.collection("user")
-          .doc(user.email)
-          .get()
-          .then((snap) => {
-            if (!snap.exists) {
-              setShowPopUp(true);
-              setemail(user.email);
-              setname(user.displayName);
-            } else {
-              db.collection("user")
-                .doc(user.email)
-                .get()
-                .then((resp) => {
-                  successnotify("Login Success");
-                  navigate("/user/" + resp.data().username);
-                });
-            }
-          });
-      })
-      .catch((err) => {
-        errornotify(err.message);
-      });
+    ).then((user) => {
+      db.collection("user")
+        .doc(user.email)
+        .get()
+        .then((snap) => {
+          if (!snap.exists) {
+            setShowPopUp(true);
+            setemail(user.email)
+            setname(user.displayName)
+          } else {
+            db.collection("user")
+              .doc(user.email)
+              .get()
+              .then((resp) => {
+                successnotify("Login Success")
+                navigate("/user/" + resp.data().username);
+              });
+          }
+        });
+    }).catch(err => {
+      errornotify(err.message)
+    });
   };
 
   const setInitailValue = async () => {
@@ -130,14 +128,7 @@ export const Login = () => {
         })
         .then(() => {
           setShowPopUp(false);
-          dispatch(
-            loginAction.addLogin({
-              name: name,
-              email: email,
-              username: username.current.value,
-              coins: 10,
-            })
-          );
+          dispatch(loginAction.addLogin({ name: name, email: email, username: username.current.value, coins: 10 }));
           navigate("/user/" + username.current.value);
         })
         .catch((error) => {
