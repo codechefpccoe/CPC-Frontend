@@ -47,7 +47,7 @@ export const Login = () => {
     valueChangeHandler: enteredPasswordChangeHandler,
     inputBlurHandler: enteredPasswordBlurHandler,
     reset: resetPasswordHandler,
-  } = useInput((value) => value.trim().length > 8);
+  } = useInput((value) => value.trim().length > 1);
 
   let formIsValid = false;
 

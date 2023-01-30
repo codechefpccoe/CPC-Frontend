@@ -10,8 +10,6 @@ import { RiTeamFill } from "react-icons/ri";
 import { FiSun } from "react-icons/fi";
 import { MdDarkMode, MdEventNote } from "react-icons/md";
 import { FaSitemap } from "react-icons/fa";
-import { TbLogin } from "react-icons/tb";
-import { BsCaretRight } from "react-icons/bs";
 import "./Navbar.css";
 
 const Navbar = (props) => {
@@ -21,6 +19,7 @@ const Navbar = (props) => {
   const navigate = useNavigate();
   const [animationClasses, setAnimationClasses] = useState("");
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
+  const [activeClass, setActiveClass] = useState("");
 
   const themeChangeAnimationHandler = () => {
     if (animationClasses === "" && !darkTheme) {
@@ -43,14 +42,6 @@ const Navbar = (props) => {
     themeChangeAnimationHandler();
   };
 
-  const signupHandler = () => {
-    navigate("/signup");
-  };
-
-  const loginHandler = () => {
-    navigate("/login");
-  };
-
   const navbarActiveHandler = () => {
     if (activeClass === "") {
       setActiveClass("active");
@@ -63,7 +54,7 @@ const Navbar = (props) => {
     <>
       <div className={themeClasses}></div>
       <nav
-        className={`w-full h-auto bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[105] dark:bg-black max-lg:px-6 navbar ${activeClass}`}
+        className={`w-full h-auto bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[45] dark:bg-black max-lg:px-6 navbar ${activeClass}`}
       >
         <div className={`flex flex-row items-center brand ${activeClass}`}>
           <div className="w-12">

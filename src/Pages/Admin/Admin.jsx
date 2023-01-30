@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../../Config/Firebase";
 // import { doc, deleteDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
-import { useInput } from "../../Hooks/use-input";
 import { IoChevronDown } from "react-icons/io5";
 
 export const Admin = () => {
@@ -21,9 +20,8 @@ export const Admin = () => {
     setId(e.id.toString());
     setName(e.name);
     setDescription(e.desc);
-    setUrl(e.url);
+    setUrl(e.posterid);
     setDate(e.date);
-    // console.log(data);
   };
 
   useEffect(() => {
@@ -37,7 +35,6 @@ export const Admin = () => {
       })
       .then(() => {
         setFilterData(e);
-        console.log(e);
       });
   }, []);
 
@@ -54,8 +51,8 @@ export const Admin = () => {
         id: id,
         name: name,
         desc: description,
-        date: url,
-        upcoming: date,
+        date: date,
+        posterid: url,
       };
       db.collection("events")
         .doc(id.toString())
@@ -112,7 +109,7 @@ export const Admin = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="bg-white w-48 z-50 backdrop-blur-sm max-h-44 overflow-y-scroll scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-400 py-2 flex flex-col items-center justify-center rounded-md shadow-md absolute mt-56"
+            className="bg-white w-48 z-50 backdrop-blur-sm max-h-44 overflow-y-scroll scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-400 py-2 flex flex-col items-center justify-center rounded-md shadow-md absolute mt-64"
           >
             {filterData?.map((data) => (
               <div

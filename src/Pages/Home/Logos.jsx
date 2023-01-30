@@ -1,11 +1,10 @@
 import React from "react";
 import logo from "../../Images/logo.png";
 import codechefLogo from "../../Images/codechef.png";
-import backgroundImg from "../../Images/logoContainer.png";
 
 const Logos = () => {
   return (
-    <div className="w-1/2 flex justify-center items-center relative z-[100] max-md:h-[90vh] backgroundContainer">
+    <div className="w-1/2 flex justify-center items-center relative z-[40] max-md:h-[90vh] backgroundContainer">
       <div className="absolute w-44 top-auto roatate_circle_animation1 max-xl:w-40 max-lg:w-36 max-sm:w-28 max-vs:w-24">
         <img src={codechefLogo} alt="codechef logo" className="w-full" />
       </div>
