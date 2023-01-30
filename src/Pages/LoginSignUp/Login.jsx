@@ -2,10 +2,29 @@
 import Logo from "../../Images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
-import { googleLoginWithPopup } from "../../Config/Firebase";
 import { BiUserCircle } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { googleLoginUsingPopup } from "../../Config/Firebase";
+import { db } from "../../Config/Firebase";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUserWithUsernamePassword } from "../../Config/Firebase";
+import { useDispatch } from "react-redux";
+import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
+import { loginAction } from "../../Store/login-slice";
+import { errornotify, successnotify } from "../../Components/Notify";
+
 export const Login = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const _email = useRef();
+  const _password = useRef();
+  const username = useRef();
+  const navigate = useNavigate();
+ const dispatch = useDispatch()
+  const [email, setemail] = useState()
+  const [name, setname] = useState()
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
   // const [cookies, setCookie] = useCookies();
@@ -47,12 +66,95 @@ export const Login = () => {
   };
 
   const userLoginWithGoogle = async () => {
-    const response = await googleLoginWithPopup()
-    console.log(response)
+    const response = await googleLoginUsingPopup();
+    db.collection("user")
+      .doc(response.email)
+      .get()
+      .then((snap) => {
+        if (!snap.exists) {
+          setShowPopUp(true);
+        } else {
+          db.collection("user")
+            .doc(response.email)
+            .get()
+            .then((resp) => {
+              successnotify("Login Successfull")
+              navigate("/user/" + resp.data().username);
+            });
+        }
+      });
+  };
+
+  const userLoginwithEmailPassword = async () => {
+    await loginUserWithUsernamePassword(
+      _email.current.value,
+      _password.current.value
+    ).then((user) => {
+      db.collection("user")
+        .doc(user.email)
+        .get()
+        .then((snap) => {
+          if (!snap.exists) {
+            setShowPopUp(true);
+            setemail(user.email)
+            setname(user.displayName)
+          } else {
+            db.collection("user")
+              .doc(user.email)
+              .get()
+              .then((resp) => {
+                successnotify("Login Success")
+                navigate("/user/" + resp.data().username);
+              });
+          }
+        });
+    }).catch(err => {
+      errornotify(err.message)
+    });
+  };
+
+  const setInitailValue = async () => {
+    if (await IfUsernameAlreadyPresent(username.current.value)) {
+      alert("Username Already Present");
+    } else {
+      db.collection("user")
+        .doc(email)
+        .set({
+          coins: 10,
+          username: username.current.value,
+          email: email,
+          name: name,
+        })
+        .then(() => {
+          setShowPopUp(false);
+          dispatch(loginAction.addLogin({ name: name, email: email, username: username.current.value, coins: 10 }));
+          navigate("/user/" + username.current.value);
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+    }
   };
 
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
+      <Popup open={showPopUp} closeOnDocumentClick>
+        <div className="p-4">
+          <p className="text-center">Enter an username for your account!!!</p>
+          <div className="w-full flex items-center flex-col gap-3">
+            <input
+              ref={username}
+              className="border-black border-[2px] rounded-md"
+            />
+            <button
+              onClick={() => setInitailValue()}
+              className="border-black border-[2px] px-3"
+            >
+              SET
+            </button>
+          </div>
+        </div>
+      </Popup>
       <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white border-[2px] shadow-[0px_22px_30px_4px_rgba(0,0,0,0.56)] border-black">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">
@@ -74,7 +176,7 @@ export const Login = () => {
                 />
 
                 <input
-                  id="username"
+                  id="email"
                   onChange={enteredUsernameChangeHandler}
                   onBlur={enteredUsernameBlurHandler}
                   value={enteredUsername}
@@ -89,7 +191,8 @@ export const Login = () => {
                     }
                     [ text-[#333] focus:text-black ]`}
                   type="text"
-                  placeholder="Username"
+                  placeholder="Email"
+                  ref={_email}
                 ></input>
               </label>
             </div>
@@ -119,6 +222,7 @@ export const Login = () => {
                     [ text-[#333] focus:text-black ]`}
                   type="password"
                   placeholder="Password"
+                  ref={_password}
                 />
               </label>
             </div>
@@ -144,12 +248,13 @@ export const Login = () => {
                 Sign up
               </button>
               <button
-                className={`appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition hover:-translate-y-1 ]  ${
+                className={` cursor-pointer appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition hover:-translate-y-1 ]  ${
                   formIsValid
                     ? "bg-black cursor-pointer hover:bg-white hover:border-black hover:text-black"
                     : "bg-gray-800"
                 }`}
-                disabled={!formIsValid}
+                // disabled={!formIsValid}
+                onClick={() => userLoginwithEmailPassword()}
               >
                 Login
               </button>

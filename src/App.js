@@ -7,14 +7,19 @@ import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/LoginSignUp/Login";
 import SignUp from "./Pages/LoginSignUp/SignUp";
 import { useSelector } from "react-redux";
-import { useCookies } from "react-cookie";
+import firebase from "firebase";
 import { Admin } from "./Pages/Admin/Admin";
-import Index from "./Pages/LoginSignUp/Index";
+import LoginSignUp from "./Pages/LoginSignUp";
+import { Dashboard } from "./Pages/Dashboard";
+import { useDispatch } from "react-redux";
+import { loginAction } from "./Store/login-slice";
+import { db } from "./Config/Firebase";
 
 const App = () => {
   const [animationClasses, setAnimationClasses] = useState("");
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
   const dark = useSelector((state) => state.theme.darkTheme);
+  const dispatch = useDispatch()
 
   const themeChangeAnimationHandler = () => {
     if (animationClasses === "" && !dark) {
@@ -29,32 +34,28 @@ const App = () => {
       }, 500);
     }
   };
-  const [cookies, setCookie, deleteCookie] = useCookies(["user"]);
 
-  const cookieInitalCheck = () => {
-    if (cookies.token === undefined) {
-      // No Username
-    } else {
-      // username && get data from backend && set send data to redux
-    }
-    // console.log(cookies.username)
-    // deleteCookie('username')
-  };
 
   useEffect(() => {
-    cookieInitalCheck();
+    firebase.auth().onAuthStateChanged(user => {
+      db.collection("user").doc(user.email).get().then((data) => {
+        console.log(user)
+        dispatch(loginAction.addLogin({ name: user.displayName, email: user.email, username: data.data().username, coins: data.data().coins }));
+      })
+    })
   }, []);
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/login" element={<Index />} />
-        <Route path="/signup" element={<Index />} />
+        <Route path="/login" element={<LoginSignUp />} />
+        <Route path="/signup" element={<LoginSignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/team" element={<Team />} />
         <Route path="/events" element={<Event />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/user/:id" element={<Dashboard />} />
       </Routes>
     </>
   );
