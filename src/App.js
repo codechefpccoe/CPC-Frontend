@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Team from "./Pages/Team";
 import Event from "./Pages/Event";
-import Dashboard from "./Pages/Dashboard";
 import Login from "./Pages/LoginSignUp/Login";
 import SignUp from "./Pages/LoginSignUp/SignUp";
 import { useSelector } from "react-redux";

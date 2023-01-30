@@ -178,59 +178,5 @@ export const SignUp = () => {
   );
 };
 
-// Confirm Password Code
-
-{
-  /* <div className="w-full md:w-full px-3 mb-3">
-              <label className="form-label relative block mb-4 text-black/50 focus-within:text-[#333]">
-                <RiLockPasswordLine
-                  className="label-icon 
-                  transition pointer-events-none
-                  [ w-6 h-6 ] 
-                  [ absolute top-1/2 left-3 ] 
-                  [ transform -translate-y-1/2 ]"
-                />
-
-                <input
-                  id="passwordc"
-                  onChange={enteredPasswordChangeHandler}
-                  onBlur={enteredPasswordBlurHandler}
-                  value={enteredPassword}
-                  className={`form-input 
-                    block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
-                    [ transition-colors duration-200 ] 
-                    [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
-                    [ bg-black/20 focus:bg-black/25 ]
-                    [ text-[#333] focus:text-black ]`}
-                  ${
-                    enteredPasswordHasError
-                      ? "border-red-600 bg-red-300"
-                      : "border-gray-400 bg-white"
-                  }`}
-                  type="password"
-                  placeholder="Confirm Password"
-                />
-                {enteredPasswordHasError && (
-                  <p className="text-red-500 text-xs italic">
-                    *Please Enter a valid Password.
-                  </p>
-                )}
-              </label>
-            </div>
-
-            <div className="w-full md:w-full px-3 mb-2">
-              <button
-                className="appearance-none block w-full bg-black text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-white hover:border-black hover:text-black cursor-pointer"
-                // disabled={!formIsValid}
-              >
-                Sign Up
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
 
 export default SignUp;

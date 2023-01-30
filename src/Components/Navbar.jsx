@@ -1,8 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { MdDarkMode } from "react-icons/md";
-import { FiSun } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "../Store/theme-slice";
 import { useState } from "react";
@@ -23,6 +21,7 @@ const Navbar = (props) => {
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
   const navigate = useNavigate();
   const [activeClass, setActiveClass] = useState("");
+  const userData = useSelector((state) => state.login);
 
   const themeChangeAnimationHandler = () => {
     if (animationClasses === "" && !darkTheme) {
@@ -150,31 +149,7 @@ const Navbar = (props) => {
               {darkTheme && <FiSun className="inline" />}
             </div>
             <p className="max-md:hidden">|</p>
-            <button
-              onClick={signupHandler}
-              className={`max-md:hidden formNavigator ${activeClass}`}
-            >
-              <BsCaretRight className="md:hidden" />
-              Sign up
-            </button>
-            <button
-              onClick={loginHandler}
-              className={`max-md:hidden formNavigator ${activeClass}`}
-            >
-              <TbLogin className="md:hidden" />
-              Login
-            </button>
-          </div>
-        </div>
-        <div
-          className={`dark:text-white items-center justify-center hidden max-md:flex toggle ${activeClass}`}
-          onClick={navbarActiveHandler}
-        >
-          {activeClass === "" && <RxHamburgerMenu />}
-          {activeClass === "active" && <RxCross2 />}
-        </div>
-        <p>|</p>
-        {userData.email === -1 ? (
+            {userData.email === -1 ? (
           <>
             <ul className="flex flex-row gap-12 font-medium">
               <li>
@@ -188,8 +163,17 @@ const Navbar = (props) => {
         ) : (
           <div className="cursor-pointer" onClick={() =>  navigate("/user/" + userData.username)}>Hi {userData.name}</div>
         )}
-      </div>
+          </div>
+        </div>
+        <div
+          className={`dark:text-white items-center justify-center hidden max-md:flex toggle ${activeClass}`}
+          onClick={navbarActiveHandler}
+        >
+          {activeClass === "" && <RxHamburgerMenu />}
+          {activeClass === "active" && <RxCross2 />}
+        </div>
     </nav>
+    </>
   );
 };
 
