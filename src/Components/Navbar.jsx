@@ -17,11 +17,10 @@ import "./Navbar.css";
 const Navbar = (props) => {
   const dispatch = useDispatch();
   const darkTheme = useSelector((state) => state.theme.darkTheme);
+  const userData = useSelector((state) => state.login);
+  const navigate = useNavigate();
   const [animationClasses, setAnimationClasses] = useState("");
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
-  const navigate = useNavigate();
-  const [activeClass, setActiveClass] = useState("");
-  const userData = useSelector((state) => state.login);
 
   const themeChangeAnimationHandler = () => {
     if (animationClasses === "" && !darkTheme) {
