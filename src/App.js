@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
+import Team from "./Pages/Team";
+import Event from "./Pages/Event";
+import Dashboard from "./Pages/Dashboard";
+import Login from "./Pages/LoginSignUp/Login";
+import SignUp from "./Pages/LoginSignUp/SignUp";
 import { useSelector } from "react-redux";
 import firebase from "firebase";
 import { Admin } from "./Pages/Admin/Admin";
@@ -42,18 +46,18 @@ const App = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen relative">
-      <div className={themeClasses}></div>
-      <Navbar themeChangeAnimationHandler={themeChangeAnimationHandler} />
+    <>
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/login" element={<LoginSignUp />} />
         <Route path="/signup" element={<LoginSignUp />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/events" element={<Event />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
       </Routes>
-    </div>
+    </>
   );
 };
 

@@ -49,3 +49,4 @@ export const LogoutFromAccount = async () => {
 }
 
 export const db = firebase.firestore();
+

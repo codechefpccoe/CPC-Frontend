@@ -216,5 +216,21 @@ export const SignUp = () => {
                   </p>
                 )}
               </label>
-            </div> */
-}
+            </div>
+
+            <div className="w-full md:w-full px-3 mb-2">
+              <button
+                className="appearance-none block w-full bg-black text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-white hover:border-black hover:text-black cursor-pointer"
+                // disabled={!formIsValid}
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default SignUp;
