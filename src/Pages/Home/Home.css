@@ -1,0 +1,89 @@
+.rotate {
+  transform: rotate(-90deg) translate(50%, -100%);
+  transform-origin: 100% 0;
+  padding: 2.5rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: auto;
+  height: 0rem;
+  /* left: ; */
+}
+
+.rotate_animation {
+  animation: rotate 50s linear infinite;
+}
+
+.rotate_animation {
+  animation: rotate 50s linear infinite;
+}
+
+.parent_logo1 {
+  animation: rotate 20s linear infinite;
+  /* animation-direction: reverse; */
+  animation-play-state: paused;
+}
+
+.parent_logo1.hover {
+  animation-play-state: running;
+}
+
+.roatate_circle_animation1 {
+  animation: rotate_circle1 50s linear infinite;
+}
+
+.parent_logo2 {
+  animation: rotate 20s linear infinite;
+  /* animation-direction: reverse; */
+  animation-play-state: paused;
+}
+
+.parent_logo2.hover {
+  animation-play-state: running;
+}
+
+.roatate_circle_animation2 {
+  animation: rotate_circle2 50s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    gap: 2rem;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate_circle1 {
+  from {
+    transform: rotate(0deg) translateX(-10rem) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(-10rem) rotate(-360deg);
+  }
+}
+
+@keyframes rotate_circle2 {
+  from {
+    transform: rotate(0deg) translateX(10rem) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(10rem) rotate(-360deg);
+  }
+}
+
+.content_animation::after {
+  content: "|";
+  animation: blink 0.5s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

@@ -4,11 +4,9 @@ import Logos from "./Logos";
 
 const HomeContainer = () => {
   return (
-    <div className="flex w-full flex-1 px-16 -mt-12 dark:bg-[#181818]">
+    <div className="flex w-full flex-1 px-16 -mt-8 dark:bg-[#181818]">
       <Content />
-      <div className="w-1/2 flex justify-center items-center relative z-[100]">
-        <Logos />
-      </div>
+      <Logos />
       <h4 className="rotate font-medium dark:text-white z-[100]">
         <span className="text-primary">Code</span> Eat{" "}
         <span className="text-primary">Sleep</span> Repeat
