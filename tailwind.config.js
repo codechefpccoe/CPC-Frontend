@@ -4,6 +4,7 @@ module.exports = {
   darkMode: "class",
   theme: {
     screens: {
+      vs: "340px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -46,6 +47,7 @@ module.exports = {
       },
       colors: {
         primary: "#1CB6D8",
+        secondary: "#181818",
       },
       fontFamily: {
         cairo: "'Cairo', serif",
