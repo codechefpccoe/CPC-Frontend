@@ -1,85 +1,56 @@
-// import { initializeApp } from "@firebase/app";
-// import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAbXohf0YEa6bBi4Xi68F8eHYb75ONI8Eo",
-//   authDomain: "pccoe-codechef-chapter.firebaseapp.com",
-//   projectId: "pccoe-codechef-chapter",
-//   storageBucket: "pccoe-codechef-chapter.appspot.com",
-//   messagingSenderId: "648270158934",
-//   appId: "1:648270158934:web:524a1b6d38cbee1baaeff7",
-//   measurementId: "G-5QX59XY2X7",
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyAbXohf0YEa6bBi4Xi68F8eHYb75ONI8Eo",
+  authDomain: "pccoe-codechef-chapter.firebaseapp.com",
+  projectId: "pccoe-codechef-chapter",
+  storageBucket: "pccoe-codechef-chapter.appspot.com",
+  messagingSenderId: "648270158934",
+  appId: "1:648270158934:web:524a1b6d38cbee1baaeff7",
+  measurementId: "G-5QX59XY2X7",
+};
 
-// initializeApp(firebaseConfig);
-// const provider = new GoogleAuthProvider();
-// const auth = getAuth();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}
 
-// export const googleLoginWithPopup = async () => {
-//   return await signInWithPopup(auth, provider)
-//     .then((result) => {
-//       // This gives you a Google Access Token. You can use it to access the Google API.
-//       const credential = GoogleAuthProvider.credentialFromResult(result);
-//       const token = credential.accessToken;
-//       // The signed-in user info.
-//       const user = result.user;
-//       return user;
-//       // ...
-//     })
-//     .catch((error) => {
-//       // Handle Errors here.
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       // The email of the user's account used.
-//       const email = error.customData.email;
-//       // The AuthCredential type that was used.
-//       const credential = GoogleAuthProvider.credentialFromError(error);
-//       // ...
-//     });
-// };
+const provider = new firebase.auth.GoogleAuthProvider();
 
-// // ajinkya.patil20@pccoepune.org
-// // codechef#78
+export const googleLoginUsingPopup = async () => {
+  return await firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      return result.user;
+    });
+};
 
-// // export const login = async (email, password, sl) => {
-// //     await firebase.auth().signInWithEmailAndPassword(email, password)
-// //         .then(() => {
-// //             sl("loggedin")
-// //         })
-// //         .catch((error) => {
-// //             sl("error")
-// //         });
-// // }
+export const createUserWithUsernamePassword = async (email, password) => {
+  return await firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((userCred) => {
+      return userCred.user;
+    });
+};
 
-// // export const logoutG = async (sl) => {
-// //     await firebase.auth().signOut().then(() => {
-// //         sl("logout")
-// //     })
-// // }
+export const loginUserWithUsernamePassword = async (email, password) => {
+  return firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      var user = userCredential.user;
+      return user
+    })
+}
 
-// // export const logout = async (sl) => {
-// //     await firebase.auth().signOut().then(() => {
-// //         sl("loggedout")
-// //     })
-// //     localStorage.removeItem("user")
-// // }
+export const LogoutFromAccount = async () => {
+  await firebase.auth().signOut().then(d => {
+    console.log(d)
+  })
+}
 
-// // const provider = new firebase.auth.GoogleAuthProvider();
+export const db = firebase.firestore();
 
-// // export const loginG = async (setuser) => {
-// //     await firebase.auth()
-// //         .signInWithPopup(provider)
-// //         .then((result) => {
-// //             setuser(result.user)
-// //             document.cookie = `email=${result.user.email}`;
-// //             document.cookie = `photoURL=${result.user.photoURL}`;
-// //             document.cookie = `displayName=${result.user.displayName}`;
-// //         })
-
-// // }
-
-
-
-// //  firebase deploy --only hosting:codechefpccoe
-// // export const db = firebase.firestore();
-// export { auth };

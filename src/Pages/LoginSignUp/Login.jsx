@@ -2,10 +2,30 @@
 import Logo from "../../Images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
-import { googleLoginWithPopup } from "../../Config/Firebase";
+import { NavLink } from "react-router-dom";
 import { BiUserCircle } from "react-icons/bi";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { googleLoginUsingPopup } from "../../Config/Firebase";
+import { db } from "../../Config/Firebase";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUserWithUsernamePassword } from "../../Config/Firebase";
+import { useDispatch } from "react-redux";
+import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
+import { loginAction } from "../../Store/login-slice";
+import { errornotify, successnotify } from "../../Components/Notify";
+
 export const Login = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const _email = useRef();
+  const _password = useRef();
+  const username = useRef();
+  const navigate = useNavigate();
+ const dispatch = useDispatch()
+  const [email, setemail] = useState()
+  const [name, setname] = useState()
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
   // const [cookies, setCookie] = useCookies();
@@ -27,7 +47,7 @@ export const Login = () => {
     valueChangeHandler: enteredPasswordChangeHandler,
     inputBlurHandler: enteredPasswordBlurHandler,
     reset: resetPasswordHandler,
-  } = useInput((value) => value.trim().length > 8);
+  } = useInput((value) => value.trim().length > 1);
 
   let formIsValid = false;
 
@@ -47,13 +67,96 @@ export const Login = () => {
   };
 
   const userLoginWithGoogle = async () => {
-    const response = await googleLoginWithPopup()
-    console.log(response)
+    const response = await googleLoginUsingPopup();
+    db.collection("user")
+      .doc(response.email)
+      .get()
+      .then((snap) => {
+        if (!snap.exists) {
+          setShowPopUp(true);
+        } else {
+          db.collection("user")
+            .doc(response.email)
+            .get()
+            .then((resp) => {
+              successnotify("Login Successfull")
+              navigate("/user/" + resp.data().username);
+            });
+        }
+      });
+  };
+
+  const userLoginwithEmailPassword = async () => {
+    await loginUserWithUsernamePassword(
+      _email.current.value,
+      _password.current.value
+    ).then((user) => {
+      db.collection("user")
+        .doc(user.email)
+        .get()
+        .then((snap) => {
+          if (!snap.exists) {
+            setShowPopUp(true);
+            setemail(user.email)
+            setname(user.displayName)
+          } else {
+            db.collection("user")
+              .doc(user.email)
+              .get()
+              .then((resp) => {
+                successnotify("Login Success")
+                navigate("/user/" + resp.data().username);
+              });
+          }
+        });
+    }).catch(err => {
+      errornotify(err.message)
+    });
+  };
+
+  const setInitailValue = async () => {
+    if (await IfUsernameAlreadyPresent(username.current.value)) {
+      alert("Username Already Present");
+    } else {
+      db.collection("user")
+        .doc(email)
+        .set({
+          coins: 10,
+          username: username.current.value,
+          email: email,
+          name: name,
+        })
+        .then(() => {
+          setShowPopUp(false);
+          dispatch(loginAction.addLogin({ name: name, email: email, username: username.current.value, coins: 10 }));
+          navigate("/user/" + username.current.value);
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+    }
   };
 
   return (
     <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
-      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white border-[2px] shadow-[0px_22px_30px_4px_rgba(0,0,0,0.56)] border-black">
+      <Popup open={showPopUp} closeOnDocumentClick>
+        <div className="p-4">
+          <p className="text-center">Enter an username for your account!!!</p>
+          <div className="w-full flex items-center flex-col gap-3">
+            <input
+              ref={username}
+              className="border-black border-[2px] rounded-md"
+            />
+            <button
+              onClick={() => setInitailValue()}
+              className="border-black border-[2px] px-3"
+            >
+              SET
+            </button>
+          </div>
+        </div>
+      </Popup>
+      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">
             <img src={Logo} alt="Logo" className="h-20 w-20" />
@@ -74,7 +177,7 @@ export const Login = () => {
                 />
 
                 <input
-                  id="username"
+                  id="email"
                   onChange={enteredUsernameChangeHandler}
                   onBlur={enteredUsernameBlurHandler}
                   value={enteredUsername}
@@ -89,7 +192,8 @@ export const Login = () => {
                     }
                     [ text-[#333] focus:text-black ]`}
                   type="text"
-                  placeholder="Username"
+                  placeholder="Email"
+                  ref={_email}
                 ></input>
               </label>
             </div>
@@ -119,6 +223,7 @@ export const Login = () => {
                     [ text-[#333] focus:text-black ]`}
                   type="password"
                   placeholder="Password"
+                  ref={_password}
                 />
               </label>
             </div>
@@ -126,9 +231,7 @@ export const Login = () => {
             <div className="w-full flex items-center justify-between px-3 mb-3 ">
               <label for="remember" className="flex items-center w-1/2">
                 <input type="checkbox" className="mr-1 bg-white shadow" />
-                <span className="text-sm text-gray-700 dark:text-white">
-                  Remember Me
-                </span>
+                <span className="text-sm text-gray-700 ">Remember Me</span>
               </label>
               <div className="w-1/2 text-right">
                 <p className="text-blue-500 font-bold text-sm tracking-tight hover:text-blue-300 cursor-pointer">
@@ -137,19 +240,20 @@ export const Login = () => {
               </div>
             </div>
             <div className="w-full md:w-full px-3 mb-2 flex flex-row gap-1">
-              <button
-                className="appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight   [ transform transition hover:-translate-y-1 ]
-                     bg-black cursor-pointer hover:bg-white hover:border-black hover:text-black"
+              <NavLink
+                className="flex justify-center items-center appearance-none w-full text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition hover:-translate-y-1 ] active:bg-blue-200 bg-black cursor-pointer hover:bg-white hover:border-black hover:text-black"
+                to="/signup"
               >
                 Sign up
-              </button>
+              </NavLink>
               <button
-                className={`appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition hover:-translate-y-1 ]  ${
+                className={` appearance-none block w-full  text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition  ]  ${
                   formIsValid
-                    ? "bg-black cursor-pointer hover:bg-white hover:border-black hover:text-black"
+                    ? "bg-black cursor-pointer hover:-translate-y-1 hover:bg-white hover:border-black hover:text-black"
                     : "bg-gray-800"
                 }`}
                 disabled={!formIsValid}
+                onClick={() => userLoginwithEmailPassword()}
               >
                 Login
               </button>
@@ -162,10 +266,10 @@ export const Login = () => {
               </span>
             </div>
 
-            <div className="w-full md:w-full px-3 mb-4 mt-1 [ w-10 h-10 ] [ flex flex-row justify-center items-center ]">
+            <div className="w-full md:w-full px-3 mb-6 mt-6  [ flex flex-row justify-center items-center ]">
               <button
                 onClick={() => userLoginWithGoogle()}
-                className="relative appearance-none w-auto text-base flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-white cursor-pointer hover:bg-blue-400 hover:border-white hover:text-white hover:shadow-md duration-500 ease-in-out transition-all border border-black group-hover:text-gray-100 [ transform transition hover:-translate-y-1 ]"
+                className="absolute appearance-none w-auto text-base flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-white cursor-pointer hover:bg-blue-400 hover:border-white hover:text-white hover:shadow-md duration-500 ease-in-out transition-all border border-black group-hover:text-gray-100 [ transform transition hover:-translate-y-1 ]"
               >
                 <FcGoogle className="h-6 w-6" /> Sign in with Google
               </button>
