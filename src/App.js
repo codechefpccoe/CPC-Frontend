@@ -11,16 +11,27 @@ import { useDispatch } from "react-redux";
 import { loginAction } from "./Store/login-slice";
 import { db } from "./Config/Firebase";
 import { Loader } from "./Components/Loader";
+import Enliven from "./Pages/Enliven";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      db.collection("user").doc(user.email).get().then((data) => {
-        dispatch(loginAction.addLogin({ name: user.displayName, email: user.email, username: data?.data()?.username, coins: data?.data()?.coins }));
-      })
-    })
+    firebase.auth().onAuthStateChanged((user) => {
+      db.collection("user")
+        .doc(user.email)
+        .get()
+        .then((data) => {
+          dispatch(
+            loginAction.addLogin({
+              name: user.displayName,
+              email: user.email,
+              username: data?.data()?.username,
+              coins: data?.data()?.coins,
+            })
+          );
+        });
+    });
   }, [dispatch]);
 
   return (
@@ -34,6 +45,7 @@ const App = () => {
         <Route path="/events" element={<Event />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
+        <Route path="/enliven" element={<Enliven />} />
       </Routes>
       <Loader />
     </>
