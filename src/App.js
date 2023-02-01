@@ -13,14 +13,26 @@ import { db } from "./Config/Firebase";
 import { Loader } from "./Components/Loader";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      db.collection("user").doc(user.email).get().then((data) => {
-        dispatch(loginAction.addLogin({ name: user.displayName, email: user.email, username: data?.data()?.username, coins: data?.data()?.coins }));
-      })
-    })
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user)
+        db.collection("user")
+          .doc(user.email)
+          .get()
+          .then((data) => {
+            if (data.data())
+              dispatch(
+                loginAction.addLogin({
+                  name: user.displayName,
+                  email: user.email,
+                  username: data?.data()?.username,
+                  coins: data?.data()?.coins,
+                })
+              );
+          });
+    });
   }, [dispatch]);
 
   return (

@@ -1,13 +1,11 @@
 import React, { useRef } from "react";
-import { BiUserCircle } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa";
-import { createUserWithUsernamePassword} from "../../Config/Firebase";
+import { createUserWithUsernamePassword } from "../../Config/Firebase";
 import { useNavigate } from "react-router-dom";
 import firebase from "firebase";
 import { errornotify } from "../../Components/Notify";
@@ -28,7 +26,7 @@ export const SignUp = () => {
       .then(() => {
         firebase.auth().currentUser.updateProfile({
           displayName: name.current.value + " " + lname.current.value,
-        }); 
+        });
         naviagte("/login");
       })
       .catch((err) => {
@@ -43,7 +41,7 @@ export const SignUp = () => {
     >
       <div className="md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md">
         <div className="text-center mt-4 p-2">
-        <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center ">
             <img src={Logo} alt="Logo" className="h-20 w-20" />
           </div>
           <h2 className="font-bold text-3xl tracking-tight ">Sign Up to CPC</h2>
@@ -83,7 +81,7 @@ export const SignUp = () => {
 
                     type="text"
                     placeholder="Firstname"
-                    ref = {name}
+                    ref={name}
                   />
                   {/* {enteredUsernameHasError && (
                     <p className="text-red-500 text-xs italic">
@@ -118,7 +116,7 @@ export const SignUp = () => {
 
                     type="text"
                     placeholder="Lastname"
-                    ref = {lname}
+                    ref={lname}
                   />
                   {/* {enteredUsernameHasError && (
                     <p className="text-red-500 text-xs italic">
@@ -252,8 +250,7 @@ export const SignUp = () => {
                   to="/login"
                   className="appearance-none flex items-center justify-center w-full bg-black text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-white hover:border-black hover:text-black cursor-pointer"
                 >
-                  Back
-                  <FaArrowRight className="w-6 l-4 " />
+                  Login
                 </NavLink>
               </div>
             </div>
@@ -263,6 +260,5 @@ export const SignUp = () => {
     </div>
   );
 };
-
 
 export default SignUp;
