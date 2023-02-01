@@ -18,19 +18,20 @@ const App = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      db.collection("user")
-        .doc(user.email)
-        .get()
-        .then((data) => {
-          dispatch(
-            loginAction.addLogin({
-              name: user.displayName,
-              email: user.email,
-              username: data?.data()?.username,
-              coins: data?.data()?.coins,
-            })
-          );
-        });
+      if (user)
+        db.collection("user")
+          .doc(user.email)
+          .get()
+          .then((data) => {
+            dispatch(
+              loginAction.addLogin({
+                name: user.displayName,
+                email: user.email,
+                username: data?.data()?.username,
+                coins: data?.data()?.coins,
+              })
+            );
+          });
     });
   }, [dispatch]);
 

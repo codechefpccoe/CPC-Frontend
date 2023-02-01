@@ -141,20 +141,25 @@ const Navbar = (props) => {
               {darkTheme && <FiSun className="inline" />}
             </div>
             <p className="max-md:hidden">|</p>
-            {userData.email === -1 ? (
-          <>
-            <ul className="flex flex-row gap-12 font-medium">
-              <li>
-                <NavLink to="/signup">Sign Up</NavLink>
-              </li>
-              <li>
-                <NavLink to="/login">Log In</NavLink>
-              </li>
-            </ul>
-          </>
-        ) : (
-          <div className="cursor-pointer" onClick={() =>  navigate("/user/" + userData.username)}>Hi {userData.name}</div>
-        )}
+
+            {!userData.isLogin && (
+              <ul className="flex flex-row gap-12 font-medium">
+                <li>
+                  <NavLink to="/signup">Sign Up</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/login">Log In</NavLink>
+                </li>
+              </ul>
+            )}
+            {userData.isLogin && (
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/user/" + userData.username)}
+              >
+                Hi {userData.name}
+              </div>
+            )}
           </div>
         </div>
         <div
@@ -164,7 +169,7 @@ const Navbar = (props) => {
           {activeClass === "" && <RxHamburgerMenu />}
           {activeClass === "active" && <RxCross2 />}
         </div>
-    </nav>
+      </nav>
     </>
   );
 };

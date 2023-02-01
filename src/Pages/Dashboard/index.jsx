@@ -42,15 +42,8 @@ export const Dashboard = () => {
               <button
                 onClick={async () =>
                   await LogoutFromAccount().then(() => {
-                    dispatch(
-                      loginAction.addLogin({
-                        name: -1,
-                        email: -1,
-                        username: -1,
-                        coins: -1,
-                      })
-                    );
-                    successnotify("Logout Success")
+                    dispatch(loginAction.logout());
+                    successnotify("Logout Success");
                     navigate("/");
                   })
                 }
