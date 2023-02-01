@@ -1,9 +1,8 @@
-
 import React,{useEffect} from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
-
+import { Event } from "./Pages/Event";
 import { Login } from "./Pages/LoginSignUp/Login";
 import { SignUp } from "./Pages/LoginSignUp/SignUp";
 import { useCookies } from 'react-cookie';
@@ -43,6 +42,7 @@ const App = () => {
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/event" element={ <Event/> } />
         <Route path="/home" element={<Home />} />
       </Routes>
     </div>
