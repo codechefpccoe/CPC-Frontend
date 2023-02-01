@@ -1,8 +1,6 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
-import { MdDarkMode } from "react-icons/md";
-import { FiSun } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "../Store/theme-slice";
 import { useState } from "react";
@@ -12,16 +10,15 @@ import { RiTeamFill } from "react-icons/ri";
 import { FiSun } from "react-icons/fi";
 import { MdDarkMode, MdEventNote } from "react-icons/md";
 import { FaSitemap } from "react-icons/fa";
-import { TbLogin } from "react-icons/tb";
-import { BsCaretRight } from "react-icons/bs";
 import "./Navbar.css";
 
 const Navbar = (props) => {
   const dispatch = useDispatch();
   const darkTheme = useSelector((state) => state.theme.darkTheme);
+  const userData = useSelector((state) => state.login);
+  const navigate = useNavigate();
   const [animationClasses, setAnimationClasses] = useState("");
   const themeClasses = `absolute left-0 dark_theme ${animationClasses}`;
-  const navigate = useNavigate();
   const [activeClass, setActiveClass] = useState("");
 
   const themeChangeAnimationHandler = () => {
@@ -45,14 +42,6 @@ const Navbar = (props) => {
     themeChangeAnimationHandler();
   };
 
-  const signupHandler = () => {
-    navigate("/signup");
-  };
-
-  const loginHandler = () => {
-    navigate("/login");
-  };
-
   const navbarActiveHandler = () => {
     if (activeClass === "") {
       setActiveClass("active");
@@ -65,19 +54,21 @@ const Navbar = (props) => {
     <>
       <div className={themeClasses}></div>
       <nav
-        className={`w-full h-auto bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[105] dark:bg-black max-lg:px-6 navbar ${activeClass}`}
+        className={`w-full h-auto bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[45] dark:bg-black max-lg:px-6 navbar ${activeClass}`}
       >
-        <div className={`flex flex-row items-center brand ${activeClass}`}>
-          <div className="w-12">
-            <img src={logo} alt="CPC Logo" className="w-full" />
-          </div>
-          <div className="flex flex-col justify-center">
-            <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl">
-              CPC
+        <Link to="/home">
+          <div className={`flex flex-row items-center brand ${activeClass}`}>
+            <div className="w-12">
+              <img src={logo} alt="CPC Logo" className="w-full" />
             </div>
-            <div className="text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
+            <div className="flex flex-col justify-center">
+              <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl max-sm:leading-3">
+                CPC
+              </div>
+              <div className="text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className={`flex flex-1 items-center mobileNav ${activeClass}`}>
           <div
             className={`flex justify-center items-center dark:text-white parentNavigator ${activeClass}`}
@@ -87,7 +78,7 @@ const Navbar = (props) => {
             >
               <li>
                 <NavLink
-                  to="/home"
+                  to="/enliven"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary flex gap-2 items-center"
@@ -95,7 +86,7 @@ const Navbar = (props) => {
                   }
                 >
                   <IoHome className="md:hidden" />
-                  Home
+                  Enliven
                 </NavLink>
               </li>
               <li>
@@ -126,7 +117,7 @@ const Navbar = (props) => {
               </li>
               <li>
                 <NavLink
-                  to="/map"
+                  to="/about"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary flex gap-2 items-center"
@@ -134,7 +125,7 @@ const Navbar = (props) => {
                   }
                 >
                   <FaSitemap className="md:hidden" />
-                  Roadmap to CP
+                  About
                 </NavLink>
               </li>
             </ul>
@@ -150,31 +141,7 @@ const Navbar = (props) => {
               {darkTheme && <FiSun className="inline" />}
             </div>
             <p className="max-md:hidden">|</p>
-            <button
-              onClick={signupHandler}
-              className={`max-md:hidden formNavigator ${activeClass}`}
-            >
-              <BsCaretRight className="md:hidden" />
-              Sign up
-            </button>
-            <button
-              onClick={loginHandler}
-              className={`max-md:hidden formNavigator ${activeClass}`}
-            >
-              <TbLogin className="md:hidden" />
-              Login
-            </button>
-          </div>
-        </div>
-        <div
-          className={`dark:text-white items-center justify-center hidden max-md:flex toggle ${activeClass}`}
-          onClick={navbarActiveHandler}
-        >
-          {activeClass === "" && <RxHamburgerMenu />}
-          {activeClass === "active" && <RxCross2 />}
-        </div>
-        <p>|</p>
-        {userData.email === -1 ? (
+            {userData.email === -1 ? (
           <>
             <ul className="flex flex-row gap-12 font-medium">
               <li>
@@ -188,8 +155,17 @@ const Navbar = (props) => {
         ) : (
           <div className="cursor-pointer" onClick={() =>  navigate("/user/" + userData.username)}>Hi {userData.name}</div>
         )}
-      </div>
+          </div>
+        </div>
+        <div
+          className={`dark:text-white items-center justify-center hidden max-md:flex toggle ${activeClass}`}
+          onClick={navbarActiveHandler}
+        >
+          {activeClass === "" && <RxHamburgerMenu />}
+          {activeClass === "active" && <RxCross2 />}
+        </div>
     </nav>
+    </>
   );
 };
 
