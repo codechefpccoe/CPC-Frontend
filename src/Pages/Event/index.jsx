@@ -1,7 +1,7 @@
 import React from "react";
 import { UpcomingEvent } from "./UpcomingEvent";
 import PastEvent from "./PastEvent";
-// import { Card, CardBody, CardFooter,Typography,Tooltip, } from "@material-tailwind/react";
+
 export const Event = () => {
   return (
     <div className="pt-5 text-center">

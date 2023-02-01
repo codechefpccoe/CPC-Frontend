@@ -1,26 +1,48 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import EventCard from "./EventCard";
 import PastEventData from "./PastEventData";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const PastEvent = () => {
-  const slideLeft = () => {
-    var slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft - 500;
+  const [toShow, settoShow] = useState(0);
+  const [sl, ssl] = useState(true);
+
+  const nextEvent = () => {
+    ssl(false);
+    setTimeout(() => {
+      settoShow(toShow + 1);
+      setTimeout(() => {
+        ssl(true);
+      }, 500);
+    }, 1200);
   };
 
-  const slideRight = () => {
-    var slider = document.getElementById("slider");
-    slider.scrollRight = slider.scrollRight - 500;
+  const prevEvent = () => {
+    ssl(false);
+    setTimeout(() => {
+      settoShow(toShow - 1);
+      setTimeout(() => {
+        ssl(true);
+      }, 500);
+    }, 0);
   };
 
   return (
-    <div className="mt-5 w-3/5 flex justify-between overflow-y-hidden overflow-x-scroll scroll-mx-10 whitespace-nowrap scroll-smooth">
-      <MdChevronLeft onClick={slideLeft} size={40} />
+    <div id="event-cards" className="relative mt-5 flex whitespace-nowrap ">
+      {toShow === 0 ? <></> : <button onClick={() => prevEvent()}>BACK</button>}
       {PastEventData.map((val, ind) => {
-        return <EventCard key={ind} Name={val.Name} Date={val.Date} />;
+        if (ind < toShow + 4 && ind >= toShow)
+          return (
+            <EventCard sl={sl} key={ind} Name={val.Name} Date={val.Date} />
+          );
+        else return <></>;
       })}
-      <MdChevronRight onClick={slideRight} size={40} />
+      {toShow === PastEventData.length - 4 ? (
+        <></>
+      ) : (
+        <button onClick={() => nextEvent()}>NEXT</button>
+      )}
     </div>
   );
 };

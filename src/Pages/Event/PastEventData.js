@@ -1,31 +1,26 @@
 const PastEventData = [
   {
-    Name: "Enigma Wars",
+    Name: "IDK1",
     Date: "10-Dec-2022",
   },
   {
-    Name: "ICPC Guidance",
-    Date: "22-Dec-2022",
-  },
-  {
-    Name: "Talk with SY",
-    Date: "30-Dec-2022",
-  },
-  {
-    Name: "Talk with FY",
-    Date: "01-Jan-2023",
-  },
-  {
-    Name: "ICPC Guidance",
-    Date: "22-Dec-2022",
-  },
-  {
-    Name: "Talk with SY",
-    Date: "30-Dec-2022",
-  },
-  {
-    Name: "Talk with FY",
-    Date: "01-Jan-2023",
+    Name: "IDK2",
+    Date: "10-Dec-2022",
+  }, {
+    Name: "IDK3",
+    Date: "10-Dec-2022",
+  }, {
+    Name: "IDK4",
+    Date: "10-Dec-2022",
+  }, {
+    Name: "IDK5",
+    Date: "10-Dec-2022",
+  }, {
+    Name: "IDK6",
+    Date: "10-Dec-2022",
+  }, {
+    Name: "IDK7",
+    Date: "10-Dec-2022",
   },
 ];
 
