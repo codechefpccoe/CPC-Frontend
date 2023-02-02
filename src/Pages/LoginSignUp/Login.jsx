@@ -14,7 +14,8 @@ import { loginUserWithUsernamePassword } from "../../Config/Firebase";
 import { useDispatch } from "react-redux";
 import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
 import { loginAction } from "../../Store/login-slice";
-import { errornotify, successnotify } from "../../Components/Notify";
+import { message } from "antd";
+
 
 export const Login = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -34,7 +35,8 @@ export const Login = () => {
     hasError: enteredEmailHasError,
     valueChangeHandler: enteredEmailChangeHandler,
     inputBlurHandler: enteredEmailBlurHandler,
-  } = useInput((value) => value.trim().length > 1);
+  } = useInput((value) => value.trim().length > 6 && value.includes("@") &&
+  value.includes(".") );
 
   const {
     value: enteredPassword,
@@ -52,6 +54,7 @@ export const Login = () => {
     inputBlurHandler: enteredUsernameBlurHandler,
   } = useInput(
     (value) =>
+    value.trim().length <= 15 &&
       value.trim().length >= 3 &&
       !value.includes(" ") &&
       !value.includes(".") &&
@@ -78,7 +81,7 @@ export const Login = () => {
               .doc(response.email)
               .get()
               .then((resp) => {
-                successnotify("Login Successfull");
+                message.success("Login Successfull");
                 navigate("/user/" + resp.data().username);
               });
           }
@@ -102,14 +105,14 @@ export const Login = () => {
                 .doc(user.email)
                 .get()
                 .then((resp) => {
-                  successnotify("Login Success");
+                  message.success("Login Successfull");
                   navigate("/user/" + resp.data().username);
                 });
             }
           });
       })
       .catch((err) => {
-        errornotify(err.message);
+        message.error(err.message);
       });
   };
 
