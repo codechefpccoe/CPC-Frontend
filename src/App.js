@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React,{useEffect} from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Team from "./Pages/Team";
@@ -40,11 +40,11 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/login" element={<LoginSignUp />} />
-        <Route path="/signup" element={<LoginSignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/events" element={ <Event/> } />
         <Route path="/home" element={<Home />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/events" element={<Event />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
         <Route path="/enliven" element={<Enliven />} />
