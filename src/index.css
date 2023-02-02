@@ -12,16 +12,16 @@ body {
   background-color: aqua;
 } */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   html {
     overflow: hidden;
   }
   body {
     overflow: hidden;
-    /* overflow-x: hidden;
-    background-color: aqua; */
+    overflow-x: hidden;
+    background-color: aqua;
   }
-}
+} */
 
 * {
   margin: 0;

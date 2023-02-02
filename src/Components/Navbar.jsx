@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../Images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "../Store/theme-slice";
@@ -56,17 +56,19 @@ const Navbar = (props) => {
       <nav
         className={`w-full h-auto bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[45] dark:bg-black max-lg:px-6 navbar ${activeClass}`}
       >
-        <div className={`flex flex-row items-center brand ${activeClass}`}>
-          <div className="w-12">
-            <img src={logo} alt="CPC Logo" className="w-full" />
-          </div>
-          <div className="flex flex-col justify-center">
-            <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl">
-              CPC
+        <Link to="/home">
+          <div className={`flex flex-row items-center brand ${activeClass}`}>
+            <div className="w-12">
+              <img src={logo} alt="CPC Logo" className="w-full" />
             </div>
-            <div className="text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
+            <div className="flex flex-col justify-center">
+              <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl max-sm:leading-3">
+                CPC
+              </div>
+              <div className="text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className={`flex flex-1 items-center mobileNav ${activeClass}`}>
           <div
             className={`flex justify-center items-center dark:text-white parentNavigator ${activeClass}`}
@@ -76,7 +78,7 @@ const Navbar = (props) => {
             >
               <li>
                 <NavLink
-                  to="/home"
+                  to="/enliven"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary flex gap-2 items-center"
@@ -84,7 +86,7 @@ const Navbar = (props) => {
                   }
                 >
                   <IoHome className="md:hidden" />
-                  Home
+                  Enliven
                 </NavLink>
               </li>
               <li>
@@ -115,7 +117,7 @@ const Navbar = (props) => {
               </li>
               <li>
                 <NavLink
-                  to="/map"
+                  to="/about"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary flex gap-2 items-center"
@@ -123,7 +125,7 @@ const Navbar = (props) => {
                   }
                 >
                   <FaSitemap className="md:hidden" />
-                  Roadmap to CP
+                  About
                 </NavLink>
               </li>
             </ul>

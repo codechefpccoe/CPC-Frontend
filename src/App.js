@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { loginAction } from "./Store/login-slice";
 import { db } from "./Config/Firebase";
 import { Loader } from "./Components/Loader";
+import Enliven from "./Pages/Enliven";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/events" element={<Event />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
+        <Route path="/enliven" element={<Enliven />} />
       </Routes>
       <Loader />
     </>
