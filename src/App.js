@@ -1,51 +1,54 @@
 import React,{useEffect} from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
-import { Event } from "./Pages/Event";
-import { Login } from "./Pages/LoginSignUp/Login";
-import { SignUp } from "./Pages/LoginSignUp/SignUp";
-import { useCookies } from 'react-cookie';
+import Team from "./Pages/Team";
+import Event from "./Pages/Event";
+import firebase from "firebase";
+import { Admin } from "./Pages/Admin/Admin";
+import LoginSignUp from "./Pages/LoginSignUp";
+import { Dashboard } from "./Pages/Dashboard";
+import { useDispatch } from "react-redux";
+import { loginAction } from "./Store/login-slice";
+import { db } from "./Config/Firebase";
+import { Loader } from "./Components/Loader";
+import Enliven from "./Pages/Enliven";
 
 const App = () => {
-
-  const [cookies, setCookie, deleteCookie] = useCookies(['user']);
-
-  const cookieInitalCheck = () => {
-    if(cookies.username === undefined){
-      // No Username
-    }
-    else{
-      // username && get data from backend && set send data to redux
-    }
-    // console.log(cookies.username)
-    // deleteCookie('username')
-  }
-
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    cookieInitalCheck()
-  }, [])
-
-
-
-
-
-
-
+    firebase.auth().onAuthStateChanged((user) => {
+      db.collection("user")
+        .doc(user.email)
+        .get()
+        .then((data) => {
+          dispatch(
+            loginAction.addLogin({
+              name: user.displayName,
+              email: user.email,
+              username: data?.data()?.username,
+              coins: data?.data()?.coins,
+            })
+          );
+        });
+    });
+  }, [dispatch]);
 
   return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
+    <>
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/events" element={ <Event/> } />
         <Route path="/home" element={<Home />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/user/:id" element={<Dashboard />} />
+        <Route path="/enliven" element={<Enliven />} />
       </Routes>
-    </div>
+      <Loader />
+    </>
   );
 };
 
