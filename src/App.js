@@ -1,17 +1,17 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Team from "./Pages/Team";
-import Event from "./Pages/Event";
+import { Event } from "./Pages/Event";
 import firebase from "firebase";
 import { Admin } from "./Pages/Admin/Admin";
-import LoginSignUp from "./Pages/LoginSignUp";
 import { Dashboard } from "./Pages/Dashboard";
 import { useDispatch } from "react-redux";
 import { loginAction } from "./Store/login-slice";
 import { db } from "./Config/Firebase";
 import { Loader } from "./Components/Loader";
 import Enliven from "./Pages/Enliven";
+import LoginSignUp from "./Pages/LoginSignUp";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,9 +40,9 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/events" element={ <Event/> } />
+        <Route path="/login" element={<LoginSignUp />} />
+        <Route path="/signup" element={<LoginSignUp />} />
+        <Route path="/events" element={<Event />} />
         <Route path="/home" element={<Home />} />
         <Route path="/team" element={<Team />} />
         <Route path="/admin" element={<Admin />} />
