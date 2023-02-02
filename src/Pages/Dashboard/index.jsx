@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import { loginAction } from "../../Store/login-slice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { successnotify } from "../../Components/Notify";
 import Navbar from "../../Components/Navbar";
+import { message } from "antd";
 
 export const Dashboard = () => {
   const { id } = useParams();
@@ -50,7 +50,7 @@ export const Dashboard = () => {
                         coins: -1,
                       })
                     );
-                    successnotify("Logout Success")
+                    message.success("Logged out successfully");
                     navigate("/");
                   })
                 }
