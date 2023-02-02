@@ -1,12 +1,7 @@
 import logo from "../Images/Luffy.jpg";
 
 // React-icons
-import {
-  FaGlobe,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaGlobe, FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Profile_card = ({
   image,
@@ -28,9 +23,7 @@ const Profile_card = ({
       />
       <div className="flex flex-col">
         <h1 className="text-center text-2xl font-bold ">{Name}</h1>
-        <h2 className="text-center text-sm font-bold text-[#301E67]">
-          {Role}
-        </h2>
+        <h2 className="text-center text-sm font-bold text-[#301E67]">{Role}</h2>
       </div>
       <a
         href={`mailto:${email}`}

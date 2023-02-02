@@ -4,13 +4,17 @@ import { useSelector } from "react-redux";
 
 export const Loader = () => {
   const loader = useSelector((state) => state.loader.loader);
-  console.log(loader);
+
   return (
     <>
       {loader && (
         <div className="absolute top-0 z-50 bg-white w-screen h-screen flex items-center justify-center">
           <div className="flex flex-col justify-center items-center">
-            <img className="animate-bounce h-[100px]" src={masscot}></img>
+            <img
+              className="animate-bounce h-[100px]"
+              src={masscot}
+              alt="LoaderImg"
+            ></img>
             <p className="font-bold ">Loading...</p>
           </div>
         </div>

@@ -39,6 +39,16 @@ export const createUserWithUsernamePassword = async (email, password) => {
     });
 };
 
+export const forgetPasswordWithEmail = async (email) => {
+  return firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      return true;
+    })
+    .catch((e) => console.log(e));
+};
+
 export const loginUserWithUsernamePassword = async (email, password) => {
   return firebase
     .auth()

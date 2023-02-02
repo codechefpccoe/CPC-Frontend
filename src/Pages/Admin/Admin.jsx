@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../Config/Firebase";
 // import { doc, deleteDoc } from "firebase/firestore";
-import { motion } from "framer-motion";
 import { IoChevronDown } from "react-icons/io5";
 
 export const Admin = () => {
@@ -105,11 +104,11 @@ export const Admin = () => {
           </p>
         </div>
         {filterData && filterMenu && (
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="bg-white w-48 z-50 backdrop-blur-sm max-h-44 overflow-y-scroll scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-400 py-2 flex flex-col items-center justify-center rounded-md shadow-md absolute mt-64"
+            className="bg-white w-48 z-50 backdrop-blur-sm max-h-[150px] overflow-y-scroll scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-400 py-2 flex flex-col items-center justify-center rounded-md shadow-md absolute mt-48"
           >
             {filterData?.map((data) => (
               <div
@@ -124,7 +123,7 @@ export const Admin = () => {
                 </p>
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
       </div>
       <form className="w-full max-w-lg p-8">
@@ -193,7 +192,7 @@ export const Admin = () => {
           </div>
         </div>
         <div className="md:flex md:items-center flex-col mb-6">
-          <div class="md:w-1/3"></div>
+          <div className="md:w-1/3"></div>
           <div className="flex flex-row gap-3 md:w-2/3">
             <button
               className="shadow-md border bg-black rounded-md px-8 py-2 text-white hover:text-black hover:bg-white hover:border-black font-medium active:bg-blue-200"
