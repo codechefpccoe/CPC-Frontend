@@ -1,17 +1,16 @@
 import React, { useRef } from "react";
-import { BiUserCircle } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa";
-import { createUserWithUsernamePassword} from "../../Config/Firebase";
+import { createUserWithUsernamePassword } from "../../Config/Firebase";
 import { useNavigate } from "react-router-dom";
+import useInput from "../../Hooks/use-input";
 import firebase from "firebase";
-import { errornotify } from "../../Components/Notify";
 import Logo from "../../Images/logo.png";
+import { message } from "antd";
 
 export const SignUp = () => {
   const password = useRef();
@@ -19,6 +18,49 @@ export const SignUp = () => {
   const name = useRef();
   const lname = useRef();
   const naviagte = useNavigate();
+
+  const {
+    value: enteredEmail,
+    isValid: enteredEmailIsValid,
+    hasError: enteredEmailHasError,
+    valueChangeHandler: enteredEmailChangeHandler,
+    inputBlurHandler: enteredEmailBlurHandler,
+  } = useInput(
+    (value) =>
+      value.trim().length > 6 && value.includes("@") && value.includes(".")
+  );
+
+  const {
+    value: enteredFirstName,
+    isValid: enteredFirstNameIsValid,
+    hasError: enteredFirstNameHasError,
+    valueChangeHandler: enteredFirstNameChangeHandler,
+    inputBlurHandler: enteredFirstNameBlurHandler,
+  } = useInput((value) => value.trim().length > 2);
+
+  const {
+    value: enteredLastName,
+    isValid: enteredLastNameIsValid,
+    hasError: enteredLastNameHasError,
+    valueChangeHandler: enteredLastNameChangeHandler,
+    inputBlurHandler: enteredLastNameBlurHandler,
+  } = useInput((value) => value.trim().length > 2);
+
+  const {
+    value: enteredPassword,
+    isValid: enteredPasswordIsValid,
+    hasError: enteredPasswordHasError,
+    valueChangeHandler: enteredPasswordChangeHandler,
+    inputBlurHandler: enteredPasswordBlurHandler,
+  } = useInput((value) => value.trim().length > 6);
+
+  const {
+    value: enteredCPassword,
+    isValid: enteredCPasswordIsValid,
+    hasError: enteredCPasswordHasError,
+    valueChangeHandler: enteredCPasswordChangeHandler,
+    inputBlurHandler: enteredCPasswordBlurHandler,
+  } = useInput((value) => value.trim().length > 6);
 
   const userSignUp = async () => {
     await createUserWithUsernamePassword(
@@ -28,31 +70,25 @@ export const SignUp = () => {
       .then(() => {
         firebase.auth().currentUser.updateProfile({
           displayName: name.current.value + " " + lname.current.value,
-        }); 
+        });
         naviagte("/login");
       })
       .catch((err) => {
-        errornotify(err.message);
+        message.error(err.message);
       });
   };
 
   return (
-    <div
-      className="absolute inset-0 flex items-center justify-center p-4 form-wrapper "
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
       <div className="md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md">
         <div className="text-center mt-4 p-2">
-        <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center ">
             <img src={Logo} alt="Logo" className="h-20 w-20" />
           </div>
           <h2 className="font-bold text-3xl tracking-tight ">Sign Up to CPC</h2>
         </div>
 
-        <div
-          className="w-full max-w-xl p-2"
-          // onSubmit={formSubmissionHandler}
-        >
+        <div className="w-full max-w-xl p-2">
           <div className="flex flex-wrap mx-3 mb-4">
             <div className="w-full md:w-full px-3 mb-3">
               <div className="flex flex-row gap-2">
@@ -66,26 +102,22 @@ export const SignUp = () => {
                   />
                   <input
                     id="firstname"
-                    // onChange={enteredUsernameChangeHandler}
-                    // onBlur={enteredUsernameBlurHandler}
-                    // value={enteredUsername}
+                    // onChange={enteredFirstnameChangeHandler}
+                    // onBlur={enteredFirstnameBlurHandler}
+                    // value={enteredFirstname}
                     className={`form-input 
                       block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
                       [ transition-colors duration-200 ] 
                       [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
                       [ bg-black/20 focus:bg-black/25 ]
-                      [ text-[#333]  focus:text-black ]`}
-                    // ${
-                    //   enteredUsernameHasError
-                    //     ? "border-red-600 bg-red-300"
-                    //     : "border-gray-400 bg-white"
-                    // }`
-
+                      [ text-[#333]  focus:text-black ]
+                    
+                    `}
                     type="text"
                     placeholder="Firstname"
-                    ref = {name}
+                    ref={name}
                   />
-                  {/* {enteredUsernameHasError && (
+                  {/* {enteredFirstnameHasError && (
                     <p className="text-red-500 text-xs italic">
                       *Please Enter a valid Username.
                     </p>
@@ -101,26 +133,21 @@ export const SignUp = () => {
                   />
                   <input
                     id="lastname"
-                    // onChange={enteredUsernameChangeHandler}
-                    // onBlur={enteredUsernameBlurHandler}
-                    // value={enteredUsername}
+                    // onChange={enteredLastnameChangeHandler}
+                    // onBlur={enteredLastnameBlurHandler}
+                    // value={enteredLastname}
                     className={`form-input 
                       block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
                       [ transition-colors duration-200 ] 
                       [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
                       [ bg-black/20 focus:bg-black/25 ]
-                      [ text-[#333]  focus:text-black ]`}
-                    // ${
-                    //   enteredUsernameHasError
-                    //     ? "border-red-600 bg-red-300"
-                    //     : "border-gray-400 bg-white"
-                    // }`
-
+                      [ text-[#333]  focus:text-black ]
+                   `}
                     type="text"
                     placeholder="Lastname"
-                    ref = {lname}
+                    ref={lname}
                   />
-                  {/* {enteredUsernameHasError && (
+                  {/* {enteredLastnameHasError && (
                     <p className="text-red-500 text-xs italic">
                       *Please Enter a valid Username.
                     </p>
@@ -139,28 +166,23 @@ export const SignUp = () => {
                 />
                 <input
                   id="email"
-                  // onChange={enteredUsernameChangeHandler}
-                  // onBlur={enteredUsernameBlurHandler}
-                  // value={enteredUsername}
+                  // onChange={enteredEmailChangeHandler}
+                  // onBlur={enteredEmailBlurHandler}
+                  // value={enteredEmail}
                   className={`form-input 
                     block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
                     [ transition-colors duration-200 ] 
                     [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
                     [ bg-black/20 focus:bg-black/25 ]
-                    [ text-[#333]  focus:text-black ]`}
-                  // ${
-                  //   enteredUsernameHasError
-                  //     ? "border-red-600 bg-red-300"
-                  //     : "border-gray-400 bg-white"
-                  // }`
-
+                    [ text-[#333]  focus:text-black ]
+                  `}
                   type="text"
                   placeholder="Email"
                   ref={email}
                 />
-                {/* {enteredUsernameHasError && (
+                {/* {enteredEmailHasError && (
                   <p className="text-red-500 text-xs italic">
-                    *Please Enter a valid Username.
+                    *Please Enter a valid Email.
                   </p>
                 )} */}
               </label>
@@ -185,12 +207,8 @@ export const SignUp = () => {
                     [ transition-colors duration-200 ] 
                     [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
                     [ bg-black/20 focus:bg-black/25 ]
-                    [ text-[#333]  focus:text-black ]`}
-                  // ${
-                  //   enteredPasswordHasError
-                  //     ? "border-red-600 bg-red-300"
-                  //     : "border-gray-400 bg-white"
-                  // }`}
+                    [ text-[#333]  focus:text-black ]
+                  `}
                   type="password"
                   placeholder="Password"
                   ref={password}
@@ -214,24 +232,20 @@ export const SignUp = () => {
 
                 <input
                   id="password"
-                  // onChange={enteredPasswordChangeHandler}
-                  // onBlur={enteredPasswordBlurHandler}
-                  // value={enteredPassword}
+                  // onChange={enteredCPasswordChangeHandler}
+                  // onBlur={enteredCPasswordBlurHandler}
+                  // value={enteredCPassword}
                   className={`form-input 
                     block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
                     [ transition-colors duration-200 ] 
                     [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
                     [ bg-black/20 focus:bg-black/25 ]
-                    [ text-[#333]  focus:text-black ]`}
-                  // ${
-                  //   enteredPasswordHasError
-                  //     ? "border-red-600 bg-red-300"
-                  //     : "border-gray-400 bg-white"
-                  // }`}
+                    [ text-[#333]  focus:text-black ]
+                  `}
                   type="password"
                   placeholder="Confirm Password"
                 />
-                {/* {enteredPasswordHasError && (
+                {/* {enteredCPasswordHasError && (
                   <p className="text-red-500 text-xs italic">
                     *Please Enter a valid Password.
                   </p>
@@ -252,8 +266,7 @@ export const SignUp = () => {
                   to="/login"
                   className="appearance-none flex items-center justify-center w-full bg-black text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-white hover:border-black hover:text-black cursor-pointer"
                 >
-                  Back
-                  <FaArrowRight className="w-6 l-4 " />
+                  Login
                 </NavLink>
               </div>
             </div>
@@ -263,6 +276,5 @@ export const SignUp = () => {
     </div>
   );
 };
-
 
 export default SignUp;
