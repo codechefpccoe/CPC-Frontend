@@ -5,15 +5,16 @@ const loginSlice = createSlice({
   initialState: {
     name: -1,
     username: -1,
-    darkTheme: false,
     coins: -1,
+    email : -1
+
   },
   reducers: {
     addLogin(state, action) {
       state.name = action.payload.name;
       state.username = action.payload.username;
       state.coins = action.payload.coins;
-      state.darkTheme = action.payload.darkTheme;
+      state.email = action.payload.email;
     },
   },
 });

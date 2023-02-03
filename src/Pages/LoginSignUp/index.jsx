@@ -3,7 +3,7 @@ import LoginVdo from "../../Assets/1.mp4";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 
-const Index = () => {
+const LoginSignUp = () => {
   return (
     <div className="relative min-w-[300px] w-screen h-screen ">
       <video
@@ -20,4 +20,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default LoginSignUp;

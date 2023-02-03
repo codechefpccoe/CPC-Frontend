@@ -7,7 +7,7 @@ import "./Home.css";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col h-screen relative">
+    <div className="flex flex-col h-screen relative overflow-hidden ">
       <Navbar />
       <HomeContainer />
       <Footer />
