@@ -3,7 +3,7 @@ import Logo from "../../Images/logo.png";
 import useInput from "../../Hooks/use-input";
 import { MdAlternateEmail } from "react-icons/md";
 import { forgetPasswordWithEmail } from "../../Config/Firebase";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { message } from "antd";
 
 export const ForgetPassword = () => {
@@ -83,17 +83,25 @@ export const ForgetPassword = () => {
                 </p>
               )}
             </div>
-            <button
-              className={` appearance-none block w-48 mt-4 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition  ]  ${
-                enteredEmailIsValid
-                  ? "bg-black cursor-pointer hover:-translate-y-1 hover:bg-white hover:border-black hover:text-black"
-                  : "bg-gray-800"
-              }`}
-              disabled={!enteredEmailIsValid}
-              onClick={recoverPassword}
-            >
-              Reset Password
-            </button>
+            <div className="flex flex-row gap-x-1">
+              <NavLink
+                className={` appearance-none block w-32 mt-4 text-gray-100 font-bold border text-center border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition  ] bg-black cursor-pointer hover:-translate-y-1 hover:bg-white hover:border-black hover:text-black`}
+                to={"/login"}
+              >
+                Login
+              </NavLink>
+              <button
+                className={` appearance-none block w-40 mt-4 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition  ]  ${
+                  enteredEmailIsValid
+                    ? "bg-black cursor-pointer hover:-translate-y-1 hover:bg-white hover:border-black hover:text-black"
+                    : "bg-gray-800"
+                }`}
+                disabled={!enteredEmailIsValid}
+                onClick={recoverPassword}
+              >
+                Reset Password
+              </button>
+            </div>
           </div>
         </div>
       </div>

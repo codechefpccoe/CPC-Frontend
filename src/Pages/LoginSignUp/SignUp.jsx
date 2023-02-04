@@ -5,7 +5,10 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { createUserWithUsernamePassword } from "../../Config/Firebase";
+import {
+  createUserWithUsernamePassword,
+  sendVerificationEmail,
+} from "../../Config/Firebase";
 import { useNavigate } from "react-router-dom";
 import useInput from "../../Hooks/use-input";
 import firebase from "firebase";
@@ -13,6 +16,7 @@ import Logo from "../../Images/logo.png";
 import { message } from "antd";
 
 export const SignUp = () => {
+  let emailverified = true;
   const navigate = useNavigate();
   const {
     value: enteredEmail,
@@ -22,7 +26,10 @@ export const SignUp = () => {
     inputBlurHandler: enteredEmailBlurHandler,
   } = useInput(
     (value) =>
-      value.trim().length > 6 && value.includes("@") && value.includes(".")
+      value.trim().length > 6 &&
+      value.includes("@") &&
+      value.includes(".") &&
+      emailverified
   );
 
   const {
@@ -70,16 +77,27 @@ export const SignUp = () => {
   }
 
   const userSignUp = async () => {
+    let userCred = false;
     await createUserWithUsernamePassword(enteredEmail, enteredPassword)
-      .then(() => {
+      .then((e) => {
+        userCred = e;
         firebase.auth().currentUser.updateProfile({
-          displayName: enteredFirstName + " " + enteredLastName,
+          displayName: enteredFirstName.trim() + " " + enteredLastName.trim(),
         });
-        navigate("/login");
       })
       .catch((err) => {
         message.error(err.message);
       });
+    if (userCred) {
+      await sendVerificationEmail()
+        .then((e) => {
+          message.success("Email Verification mail send successfully");
+          navigate("/login");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   return (

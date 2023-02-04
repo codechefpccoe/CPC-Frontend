@@ -10,7 +10,10 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUserWithUsernamePassword } from "../../Config/Firebase";
+import {
+  loginUserWithUsernamePassword,
+  emailVerificationEmailStatus,
+} from "../../Config/Firebase";
 import { useDispatch } from "react-redux";
 import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
 import { loginAction } from "../../Store/login-slice";
@@ -90,30 +93,43 @@ export const Login = () => {
   };
 
   const userLoginwithEmailPassword = async () => {
-    await loginUserWithUsernamePassword(enteredEmail, enteredPassword)
-      .then((user) => {
-        db.collection("user")
-          .doc(user.email)
-          .get()
-          .then((snap) => {
-            if (!snap.exists) {
-              setShowPopUp(true);
-              setemail(user.email);
-              setname(user.displayName);
-            } else {
-              db.collection("user")
-                .doc(user.email)
-                .get()
-                .then((resp) => {
-                  message.success("Login Successfull");
-                  navigate("/user/" + resp.data().username);
-                });
-            }
-          });
-      })
-      .catch((err) => {
-        message.error(err.message);
-      });
+    let user = await loginUserWithUsernamePassword(
+      enteredEmail,
+      enteredPassword
+    );
+
+    emailVerificationEmailStatus().then((e) => {
+      console.log(e);
+      if (e.emailVerified === false) {
+        console.log("I am here");
+        message.error("Email not verified, Please check Email");
+        user = {};
+        return;
+      } else {
+        try {
+          db.collection("user")
+            .doc(user.email)
+            .get()
+            .then((snap) => {
+              if (!snap.exists) {
+                setShowPopUp(true);
+                setemail(user.email);
+                setname(user.displayName);
+              } else {
+                db.collection("user")
+                  .doc(user.email)
+                  .get()
+                  .then((resp) => {
+                    message.success("Login Successfull");
+                    navigate("/user/" + resp.data().username);
+                  });
+              }
+            });
+        } catch (err) {
+          message.error(err.message);
+        }
+      }
+    });
   };
 
   const setInitailValue = async () => {
@@ -186,7 +202,7 @@ export const Login = () => {
       <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">
-            <img src={Logo} alt="Logo" className="h-20 w-20" />
+            <img src={Logo} alt="Logo" className="h-[80px] w-auto" />
           </div>
           <h2 className="font-bold text-3xl tracking-tight ">Login to CPC</h2>
         </div>

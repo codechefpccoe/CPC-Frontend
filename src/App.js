@@ -12,6 +12,7 @@ import { db } from "./Config/Firebase";
 import { Loader } from "./Components/Loader";
 import Enliven from "./Pages/Enliven";
 import LoginSignUp from "./Pages/LoginSignUp";
+import { EventDetails } from "./Pages/Admin/EventDetails";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
         <Route path="/enliven" element={<Enliven />} />
+        <Route exact path="/edit/:id" element={<EventDetails />} />
       </Routes>
       <Loader />
     </>
