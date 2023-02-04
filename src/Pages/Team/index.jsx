@@ -20,13 +20,12 @@ const TeamPage = () => {
                 <Profile_card
                   image={data.image}
                   Name={data.Name}
-                  Team={data.Team}
-                  Role={data.Role}
+
                   email={data.email}
                   Instagram={data.Instagram}
                   Website={data.Website}
-                  github={data.Github}
-                  linkedin={data.Linkedin}
+                  github={data.GitHub}
+                  linkedin={data.LinkedIn}
                 />
               );
           })}
@@ -43,13 +42,12 @@ const TeamPage = () => {
                 <Profile_card
                   image={data.image}
                   Name={data.Name}
-                  Team={data.Team}
-                  Role={data.Role}
+                  
                   email={data.email}
                   Instagram={data.Instagram}
                   facebook={data.Facebook}
-                  github={data.Github}
-                  linkedin={data.Linkedin}
+                  github={data.GitHub}
+                  linkedin={data.LinkedIn}
                 />
               );
           })}
