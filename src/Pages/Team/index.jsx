@@ -7,9 +7,9 @@ import TeamData from "../../data/team_data.json";
 
 const TeamPage = () => {
   return (
-    <div className="flex flex-col overflow-y-auto">
+    <div className="flex flex-col overflow-y-auto dark:bg-secondary">
       <Navbar />
-      <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem]">
+      <div className="p-[2rem_1rem_0.5rem] lg:p-[1rem_2rem]">
         <h1 className="w-full text-center font-cairo text-3xl text-white p-3 rounded-md bg-[#301e6793] backdrop-blur-md">
           Core Team
         </h1>
@@ -21,7 +21,7 @@ const TeamPage = () => {
                   image={data.image}
                   Name={data.Name}
                   Team={data.Team}
-                  Description={data.Description}
+                  Role={data.Role}
                   email={data.email}
                   Instagram={data.Instagram}
                   Website={data.Website}
@@ -32,11 +32,11 @@ const TeamPage = () => {
           })}
         </div>
       </div>
-      <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem]">
+      <div className="p-[2rem_1rem_0.5rem] lg:p-[1rem_2rem]">
         <h1 className="w-full text-center font-cairo text-3xl text-white p-3 rounded-md bg-[#301e6793] backdrop-blur-md">
           Executive
         </h1>
-        <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_5rem] flex justify-evenly flex-wrap">
+        <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap">
           {TeamData.map((data) => {
             if (data.Team === "Executive")
               return (
@@ -44,7 +44,7 @@ const TeamPage = () => {
                   image={data.image}
                   Name={data.Name}
                   Team={data.Team}
-                  Description={data.Description}
+                  Role={data.Role}
                   email={data.email}
                   Instagram={data.Instagram}
                   facebook={data.Facebook}

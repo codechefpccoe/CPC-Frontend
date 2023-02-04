@@ -1,17 +1,28 @@
+//? React
 import React, { useEffect } from "react";
+
+//? React Router Dom
 import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "./Pages/Home";
-import Team from "./Pages/Team";
-import { Event } from "./Pages/Event";
+
+//? Firebase
 import firebase from "firebase";
-import { Admin } from "./Pages/Admin/Admin";
-import { Dashboard } from "./Pages/Dashboard";
+import { db } from "./Config/Firebase";
+
+//? Redux
 import { useDispatch } from "react-redux";
 import { loginAction } from "./Store/login-slice";
-import { db } from "./Config/Firebase";
-import { Loader } from "./Components/Loader";
-import Enliven from "./Pages/Enliven";
+
+//? Pages
 import LoginSignUp from "./Pages/LoginSignUp";
+import About from "./Pages/About/About";
+import Home from "./Pages/Home";
+import Team from "./Pages/Team";
+import Enliven from "./Pages/Enliven";
+import { Admin } from "./Pages/Admin/Admin";
+import { Dashboard } from "./Pages/Dashboard";
+import { Event } from "./Pages/Event";
+import { Loader } from "./Components/Loader";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +59,8 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
         <Route path="/enliven" element={<Enliven />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Loader />
     </>
