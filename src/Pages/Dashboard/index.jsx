@@ -51,7 +51,6 @@ export const Dashboard = () => {
                       })
                     );
                     message.success("Logged out successfully");
-
                     navigate("/");
                   })
                 }
@@ -66,3 +65,4 @@ export const Dashboard = () => {
     </div>
   );
 };
+  
