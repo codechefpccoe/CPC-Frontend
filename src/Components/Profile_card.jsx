@@ -1,12 +1,7 @@
 import logo from "../Images/Luffy.jpg";
 
 // React-icons
-import {
-  FaGlobe,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaGlobe, FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Profile_card = ({
   image,
@@ -28,9 +23,7 @@ const Profile_card = ({
       />
       <div className="flex flex-col">
         <h1 className="text-center text-2xl font-bold ">{Name}</h1>
-        <h2 className="text-center text-sm font-bold text-[#301E67]">
-          {Role}
-        </h2>
+        <h2 className="text-center text-xl font-bold text-[#301E67]">{Role}</h2>
       </div>
       <a
         href={`mailto:${email}`}
@@ -39,18 +32,28 @@ const Profile_card = ({
         {email}
       </a>
       <div className="flex space-x-7">
-        <a href={Website}>
-          <FaGlobe className="text-[#301E67] text-2xl hover:animate-bounce" />
-        </a>
-        <a href={github}>
-          <FaGithub className="text-[#301E67] text-2xl hover:animate-bounce" />
-        </a>
-        <a href={Instagram}>
-          <FaInstagram className="text-[#301E67] text-2xl hover:animate-bounce" />
-        </a>
-        <a href={linkedin}>
-          <FaLinkedinIn className="text-[#301E67] text-2xl hover:animate-bounce" />
-        </a>
+        {Website && (
+          <a href={Website} target="_blank">
+            <FaGlobe className="text-[#301E67] text-2xl hover:animate-bounce" />
+          </a>
+        )}
+        {github && (
+          <a href={github} target="_blank">
+            <FaGithub className="text-[#301E67] text-2xl hover:animate-bounce" />
+          </a>
+        )}
+
+        {Instagram && (
+          <a href={Instagram} target="_blank">
+            <FaInstagram className="text-[#301E67] text-2xl hover:animate-bounce" />
+          </a>
+        )}
+
+        {linkedin && (
+          <a href={linkedin} target="_blank">
+            <FaLinkedinIn className="text-[#301E67] text-2xl hover:animate-bounce" />
+          </a>
+        )}
       </div>
     </div>
   );

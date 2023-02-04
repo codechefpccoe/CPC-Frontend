@@ -12,11 +12,14 @@ import { db } from "./Config/Firebase";
 import { Loader } from "./Components/Loader";
 import Enliven from "./Pages/Enliven";
 import LoginSignUp from "./Pages/LoginSignUp";
+import { loaderAction } from "./Store/loader-slice";
+
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // dispatch(loaderAction.changeLoaderState({ loader: "Loading a Wonderful Experience !!!" }))
     firebase.auth().onAuthStateChanged((user) => {
       if (user)
         db.collection("user")
