@@ -24,7 +24,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setemail] = useState();
-  let regex = /^[*|\":<>[\]{}`\\()';@&$%#!]+$/;
+  let regex = /[-’/`~!#*$@%+=.,^&(){}[\]|;:”<>?\\]/g;
   const [name, setname] = useState();
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
@@ -61,7 +61,8 @@ export const Login = () => {
       value.trim().length <= 15 &&
       value.trim().length >= 3 &&
       !value.includes(" ") &&
-      !value.includes(".")
+      !value.includes(".") &&
+      !regex.test(value)
   );
 
   let formIsValid = false;
