@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import logo from "../Images/logo.png";
+import logo from "../Images/logo.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "../Store/theme-slice";
 import { useState } from "react";
@@ -11,6 +11,9 @@ import { FiSun } from "react-icons/fi";
 import { MdDarkMode, MdEventNote } from "react-icons/md";
 import { FaSitemap } from "react-icons/fa";
 import "./Navbar.css";
+import { TbLogin } from "react-icons/tb";
+import { BsCaretRight } from "react-icons/bs";
+import { IoPersonCircleOutline, IoPersonCircleSharp } from "react-icons/io5";
 
 const Navbar = (props) => {
   const dispatch = useDispatch();
@@ -50,11 +53,19 @@ const Navbar = (props) => {
     }
   };
 
+  const signupHandler = () => {
+    navigate("/signup");
+  };
+
+  const loginHandler = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <div className={themeClasses}></div>
       <nav
-        className={`w-full h-auto bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[45] dark:bg-black max-lg:px-6 navbar ${activeClass}`}
+        className={`w-full h-auto relative bg-white shadow-lg flex flex-row px-12 py-2 justify-between font-cairo z-[45] dark:bg-black max-lg:px-6 navbar ${activeClass} text-lg`}
       >
         <Link to="/home">
           <div className={`flex flex-row items-center brand ${activeClass}`}>
@@ -62,7 +73,7 @@ const Navbar = (props) => {
               <img src={logo} alt="CPC Logo" className="w-full" />
             </div>
             <div className="flex flex-col justify-center">
-              <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl max-sm:leading-3">
+              <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl max-sm:leading-5">
                 CPC
               </div>
               <div className="text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
@@ -74,7 +85,7 @@ const Navbar = (props) => {
             className={`flex justify-center items-center dark:text-white parentNavigator ${activeClass}`}
           >
             <ul
-              className={`flex flex-row gap-12 font-medium max-lg:gap-6 max-md:hidden navigator ${activeClass}`}
+              className={`flex flex-row gap-12 font-medium text-lg max-lg:gap-6 max-md:hidden navigator ${activeClass}`}
             >
               <li>
                 <NavLink
@@ -130,44 +141,56 @@ const Navbar = (props) => {
               </li>
             </ul>
           </div>
-          <div
-            className={`flex flex-row justify-center items-center gap-10 font-normal dark:text-white max-lg:gap-5 max-md:gap-8 max-vs:gap-4 parentFormNavigator ${activeClass}`}
-          >
+          <div className="togglerParent h-auto dark:text-white">
             <div
               onClick={themeToggleHandler}
-              className={`cursor-pointer themeToggler ${activeClass}`}
+              className={`cursor-pointer themeToggler text-lg pr-10 ${activeClass}`}
             >
               {!darkTheme && <MdDarkMode className="inline" />}
               {darkTheme && <FiSun className="inline" />}
             </div>
+          </div>
+          <div
+            className={`flex flex-row justify-center items-center gap-10 font-normal dark:text-white max-lg:gap-5 max-md:gap-8 max-vs:gap-4 parentFormNavigator ${activeClass}`}
+          >
             <p className="max-md:hidden">|</p>
 
             {!userData.isLogin && (
-              <ul className="flex flex-row gap-12 font-medium">
-                <li>
-                  <NavLink to="/signup">Sign Up</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/login">Log In</NavLink>
-                </li>
-              </ul>
+              <button
+                onClick={signupHandler}
+                className={`max-md:hidden formNavigator ${activeClass}`}
+              >
+                <BsCaretRight className="md:hidden" />
+                Sign up
+              </button>
+            )}
+            {!userData.isLogin && (
+              <button
+                onClick={loginHandler}
+                className={`max-md:hidden formNavigator ${activeClass}`}
+              >
+                <TbLogin className="md:hidden" />
+                Login
+              </button>
             )}
             {userData.isLogin && (
-              <div
-                className="cursor-pointer"
-                onClick={() => navigate("/user/" + userData.username)}
+              <button
+                onClick={() => {navigate(`/user/${userData.username}`)}}
+                className={`max-md:hidden formNavigator flex items-center gap-2 ${activeClass}`}
               >
-                Hi {userData.name}
-              </div>
+                <IoPersonCircleOutline className="text-xl" /> Hi {userData.name}
+              </button>
             )}
           </div>
         </div>
-        <div
-          className={`dark:text-white items-center justify-center hidden max-md:flex toggle ${activeClass}`}
-          onClick={navbarActiveHandler}
-        >
-          {activeClass === "" && <RxHamburgerMenu />}
-          {activeClass === "active" && <RxCross2 />}
+        <div className="toggleParent">
+          <div
+            className={`dark:text-white items-center justify-center hidden max-md:flex toggle ${activeClass}`}
+            onClick={navbarActiveHandler}
+          >
+            {activeClass === "" && <RxHamburgerMenu />}
+            {activeClass === "active" && <RxCross2 />}
+          </div>
         </div>
       </nav>
     </>

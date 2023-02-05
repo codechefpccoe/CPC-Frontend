@@ -11,7 +11,7 @@ import { createUserWithUsernamePassword} from "../../Config/Firebase";
 import { useNavigate } from "react-router-dom";
 import firebase from "firebase";
 import { errornotify } from "../../Components/Notify";
-import Logo from "../../Images/logo.png";
+import Logo from "../../Images/logo.webp";
 
 export const SignUp = () => {
   const password = useRef();

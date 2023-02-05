@@ -1,5 +1,5 @@
 
-import Logo from "../../Images/logo.png";
+import Logo from "../../Images/logo.webp";
 import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
 import { NavLink } from "react-router-dom";
