@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../Images/logo.png";
+import logo from "../../Images/logo.webp";
 import codechefLogo from "../../Images/codechef.png";
 import { CgInfinity } from "react-icons/cg";
 
