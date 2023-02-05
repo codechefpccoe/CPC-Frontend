@@ -22,6 +22,7 @@ import { Admin } from "./Pages/Admin/Admin";
 import { Dashboard } from "./Pages/Dashboard";
 import { Event } from "./Pages/Event";
 import { Loader } from "./Components/Loader";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 
 
 const App = () => {

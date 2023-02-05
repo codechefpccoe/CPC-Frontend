@@ -7,7 +7,6 @@ const Profile_card = ({
   image,
   Name,
   Role,
-  Description,
   email,
   Instagram,
   Website,
@@ -36,24 +35,24 @@ const Profile_card = ({
       <div className="flex space-x-7">
         {Website && (
           <a href={Website} target="_blank">
-            <FaGlobe className="text-[#301E67] text-2xl hover:animate-bounce" />
+            <FaGlobe className="text-[#301E67] text-2xl dark:text-white hover:animate-bounce" />
           </a>
         )}
         {github && (
           <a href={github} target="_blank">
-            <FaGithub className="text-[#301E67] text-2xl hover:animate-bounce" />
+            <FaGithub className="text-[#301E67] text-2xl dark:text-white hover:animate-bounce" />
           </a>
         )}
 
         {Instagram && (
           <a href={Instagram} target="_blank">
-            <FaInstagram className="text-[#301E67] text-2xl hover:animate-bounce" />
+            <FaInstagram className="text-[#301E67] text-2xl dark:text-white hover:animate-bounce" />
           </a>
         )}
 
         {linkedin && (
           <a href={linkedin} target="_blank">
-            <FaLinkedinIn className="text-[#301E67] text-2xl hover:animate-bounce" />
+            <FaLinkedinIn className="text-[#301E67] text-2xl dark:text-white hover:animate-bounce" />
           </a>
         )}
       </div>

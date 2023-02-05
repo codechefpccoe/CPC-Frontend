@@ -3,67 +3,59 @@
     "image": "../Images/Luffy.jpg",
     "Name": "Ajinkya Patil",
     "Role": "Developer",
-    "Description": "He want to be the pirate king",
     "email": "ajinkyap331@gmail.com",
-    "Instagram": "luffy",
-    "Facebook": "luffy",
-    "LinkedIn": "luffy",
-    "GitHub": "luffy"
+    "Instagram": "",
+    "Website": "https://ajinkyapatil.web.app/",
+    "LinkedIn": "https://www.linkedin.com/in/ajinkya-patil-144709208/",
+    "GitHub": "https://github.com/Ajinkyap331"
   },
   {
     "image": "../Images/Luffy.jpg",
-    "Name": "Hrutvik M",
+    "Name": "Hrutvik Malshikare",
     "Role": "Developer",
-    "Description": "He want to be the best swordsman",
     "email": "hrutvikmalshikare66@gmail.com",
-    "Instagram": "zoro",
-    "Facebook": "zoro",
-    "LinkedIn": "zoro",
-    "GitHub": "zoro"
+    "Website": "https://hrutvikmalshikare.vercel.app/",
+    "Instagram": "https://www.instagram.com/hrutvik.malshikare/",
+    "LinkedIn": "https://www.linkedin.com/in/hrutvik-malshikare-356b0a203/",
+    "GitHub": "https://github.com/Hrutvik66"
   },
   {
     "image": "../Images/Luffy.jpg",
     "Name": "Vynakatesh Nyati",
     "Role": "Developer",
-    "Description": "He want to be the best swordsman",
-    "email": "zoro@gmail.com",
-    "Instagram": "zoro",
-    "Facebook": "zoro",
-    "LinkedIn": "zoro",
-    "GitHub": "zoro"
+    "email": "vyankatesh.nyati20@pccoepune.org",
+    "Website": "",
+    "Instagram": "https://www.instagram.com/vyankatesh_nyati/",
+    "LinkedIn": "https://www.linkedin.com/in/vyankatesh-nyati-a1aba0202",
+    "GitHub": "https://github.com/vyankatesh-nyati"
   },
   {
     "image": "../Images/Luffy.jpg",
     "Name": "Deokumar Manwar",
     "Role": "Developer",
-    "Description": "He want to be the best cook",
-    "email": "sanji@gmail.com",
-    "Instagram": "sanji",
-    "Facebook": "sanji",
-    "LinkedIn": "sanji",
-    "GitHub": "sanji"
+    "email": "devmanwar305@gmail.com",
+    "Instagram": "",
+    "LinkedIn": "https://www.linkedin.com/in/deokumar-manwar-619601219",
+    "GitHub": "https://github.com/DeokumarManwar"
   },
   {
     "image": "../Images/Luffy.jpg",
     "Name": "Kalpesh Somwanshi",
     "Role": "Developer",
-    "Description": "He want to be the best cook",
     "email": "kalpeshksomwanshi910@gmail.com",
-    "Instagram": "sanji",
-    "Facebook": "sanji",
-    "LinkedIn": "sanji",
-    "GitHub": "sanji"
+    "Instagram": "https://instagram.com/kalpesh_910",
+    "Website": "https://kalpeshsomwanshi.netlify.app/",
+    "LinkedIn": "https://linkedin.com/in/kalpesh-somwanshi-b24a1a217",
+    "GitHub": "https://github.com/Kalpesh910"
   },
   {
     "image": "../Images/Luffy.jpg",
     "Name": "Kanishka Salunke",
     "Role": "Designer",
-    "Description": "She want to find the treasure",
-    "email": "some",
-    "Instagram": "nami",
-    "Facebook": "nami",
-    "LinkedIn": "nami",
-    "GitHub": "nami"
+    "email": "salunkekanishka13@gmail.com",
+    "Instagram": "https://instagram.com/kani_salunke",
+    "Website": "",
+    "LinkedIn": "https://www.linkedin.com/in/kanishka-salunke-4ab395221/",
+    "GitHub": "https://github.com/Kanishka3148"
   }
 ]
-
