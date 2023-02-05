@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../Images/logo.png";
+import Logo from "../../Images/logo.webp";
 import useInput from "../../Hooks/use-input";
 import { MdAlternateEmail } from "react-icons/md";
 import { forgetPasswordWithEmail } from "../../Config/Firebase";

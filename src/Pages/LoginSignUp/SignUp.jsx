@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import useInput from "../../Hooks/use-input";
 import firebase from "firebase";
-import Logo from "../../Images/logo.png";
+import Logo from "../../Images/logo.webp";
 import { message } from "antd";
 
 export const SignUp = () => {
