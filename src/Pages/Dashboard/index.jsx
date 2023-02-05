@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import { loginAction } from "../../Store/login-slice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { successnotify } from "../../Components/Notify";
 import Navbar from "../../Components/Navbar";
+import { message } from "antd";
 
 export const Dashboard = () => {
   const { id } = useParams();
@@ -42,8 +42,15 @@ export const Dashboard = () => {
               <button
                 onClick={async () =>
                   await LogoutFromAccount().then(() => {
-                    dispatch(loginAction.logout());
-                    successnotify("Logout Success");
+                    dispatch(
+                      loginAction.addLogin({
+                        name: -1,
+                        email: -1,
+                        username: -1,
+                        coins: -1,
+                      })
+                    );
+                    message.success("Logged out successfully");
                     navigate("/");
                   })
                 }

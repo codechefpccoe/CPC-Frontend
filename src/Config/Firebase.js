@@ -25,8 +25,9 @@ export const googleLoginUsingPopup = async () => {
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
-      return result.user;
-    });
+      return result?.user;
+    })
+    .catch((e) => console.log(e));
 };
 
 export const createUserWithUsernamePassword = async (email, password) => {
@@ -39,18 +40,22 @@ export const createUserWithUsernamePassword = async (email, password) => {
 };
 
 export const loginUserWithUsernamePassword = async (email, password) => {
-  return firebase.auth().signInWithEmailAndPassword(email, password)
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       var user = userCredential.user;
-      return user
-    })
-}
+      return user;
+    });
+};
 
 export const LogoutFromAccount = async () => {
-  await firebase.auth().signOut().then(d => {
-    console.log(d)
-  })
-}
+  await firebase
+    .auth()
+    .signOut()
+    .then((d) => {
+      console.log(d);
+    });
+};
 
 export const db = firebase.firestore();
-
