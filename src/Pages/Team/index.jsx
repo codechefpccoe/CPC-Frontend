@@ -20,7 +20,6 @@ const TeamPage = () => {
                 <Profile_card
                   image={data.image}
                   Name={data.Name}
-
                   email={data.email}
                   Instagram={data.Instagram}
                   Website={data.Website}
@@ -28,6 +27,7 @@ const TeamPage = () => {
                   linkedin={data.LinkedIn}
                 />
               );
+            else return <></>;
           })}
         </div>
       </div>
@@ -42,7 +42,6 @@ const TeamPage = () => {
                 <Profile_card
                   image={data.image}
                   Name={data.Name}
-                  
                   email={data.email}
                   Instagram={data.Instagram}
                   facebook={data.Facebook}
@@ -50,6 +49,7 @@ const TeamPage = () => {
                   linkedin={data.LinkedIn}
                 />
               );
+            else return <></>;
           })}
         </div>
       </div>
