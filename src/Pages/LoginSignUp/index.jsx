@@ -1,5 +1,6 @@
 import React from "react";
 import LoginVdo from "../../Assets/1.mp4";
+import { ForgetPassword } from "./ForgetPassword";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 
@@ -16,6 +17,7 @@ const LoginSignUp = () => {
       ></video>
       {window.location.pathname === "/login" && <Login />}
       {window.location.pathname === "/signup" && <SignUp />}
+      {window.location.pathname === "/forgetpassword" && <ForgetPassword />}
     </div>
   );
 };
