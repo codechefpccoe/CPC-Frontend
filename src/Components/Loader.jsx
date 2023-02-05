@@ -10,12 +10,8 @@ export const Loader = () => {
       {loader && (
         <div className="absolute top-0 z-50 bg-white w-screen h-screen flex items-center justify-center">
           <div className="flex flex-col justify-center items-center">
-            <img
-              className="animate-bounce h-[100px]"
-              src={masscot}
-              alt="LoaderImg"
-            ></img>
-            <p className="font-bold ">Loading...</p>
+            <img className="animate-bounce h-[100px]" src={masscot}></img>
+            <p className="font-bold ">{loader}</p>
           </div>
         </div>
       )}
