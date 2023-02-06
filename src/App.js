@@ -22,7 +22,8 @@ import { Admin } from "./Pages/Admin/Admin";
 import { Dashboard } from "./Pages/Dashboard";
 import { Event } from "./Pages/Event";
 import { Loader } from "./Components/Loader";
-
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import { EventDetails } from "./Pages/Admin/EventDetails";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,12 +55,14 @@ const App = () => {
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/login" element={<LoginSignUp />} />
         <Route path="/signup" element={<LoginSignUp />} />
+        <Route path="/forgetpassword" element={<LoginSignUp />} />
         <Route path="/events" element={<Event />} />
         <Route path="/home" element={<Home />} />
         <Route path="/team" element={<Team />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
         <Route path="/enliven" element={<Enliven />} />
+        <Route exact path="/edit/:id" element={<EventDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
