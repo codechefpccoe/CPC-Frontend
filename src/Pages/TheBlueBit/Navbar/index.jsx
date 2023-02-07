@@ -39,7 +39,9 @@ export const Navbar = () => {
     return (
         <Layout>
             <Header className="header">
-                <div className="logo"></div>
+                <div className="logo">
+                    <img src="thebluebitlogo.png"></img>
+                </div>
                 
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
             </Header>
