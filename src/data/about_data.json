@@ -1,6 +1,6 @@
 [
   {
-    "image": "../Images/Luffy.jpg",
+    "image": "Ajinkya.jpg",
     "Name": "Ajinkya Patil",
     "Role": "Developer",
     "email": "ajinkyap331@gmail.com",
@@ -10,7 +10,7 @@
     "GitHub": "https://github.com/Ajinkyap331"
   },
   {
-    "image": "../Images/Luffy.jpg",
+    "image": "Hrutvik.jpg",
     "Name": "Hrutvik Malshikare",
     "Role": "Developer",
     "email": "hrutvikmalshikare66@gmail.com",
@@ -20,8 +20,8 @@
     "GitHub": "https://github.com/Hrutvik66"
   },
   {
-    "image": "../Images/Luffy.jpg",
-    "Name": "Vynakatesh Nyati",
+    "image": "Vyankatesh.jpg",
+    "Name": "Vyankatesh Nyati",
     "Role": "Developer",
     "email": "vyankatesh.nyati20@pccoepune.org",
     "Website": "",
@@ -30,7 +30,7 @@
     "GitHub": "https://github.com/vyankatesh-nyati"
   },
   {
-    "image": "../Images/Luffy.jpg",
+    "image": "Deokumar.jpg",
     "Name": "Deokumar Manwar",
     "Role": "Developer",
     "email": "devmanwar305@gmail.com",
@@ -39,7 +39,7 @@
     "GitHub": "https://github.com/DeokumarManwar"
   },
   {
-    "image": "../Images/Luffy.jpg",
+    "image": "Kalpesh_Somwanshi.jpg",
     "Name": "Kalpesh Somwanshi",
     "Role": "Developer",
     "email": "kalpeshksomwanshi910@gmail.com",
@@ -49,7 +49,7 @@
     "GitHub": "https://github.com/Kalpesh910"
   },
   {
-    "image": "../Images/Luffy.jpg",
+    "image": "Kanishka.jpg",
     "Name": "Kanishka Salunke",
     "Role": "Designer",
     "email": "salunkekanishka13@gmail.com",

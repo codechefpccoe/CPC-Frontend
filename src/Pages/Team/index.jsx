@@ -34,7 +34,7 @@ const TeamPage = () => {
       </div>
       <div className="p-[2rem_1rem_0.5rem] lg:p-[1rem_2rem]">
         <h1 className="w-full text-center font-cairo text-3xl text-white p-3 rounded-md bg-[#301e6793] backdrop-blur-md">
-          Executive
+          Executive Team
         </h1>
         <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap">
           {TeamData.map((data) => {
