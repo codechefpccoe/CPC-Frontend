@@ -38,32 +38,22 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
 
 export const CityView = () => {
     return(
-        <div className="absolute">
-            <Header>
+        <div className="absolute w-screen">
+            {/* <Header>
+
                 <div className="logo">
                     <img src="bluebitlogo.png"></img>
                 </div>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
-            </Header>
-            <Content style={{ padding: '0 50px' }} className="h-[1000px] overflow-auto w-screen">
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                </Breadcrumb>
-                <Layout style={{ padding: '0px 0', background: 'rgb(0, 0, 0, 0.4)' }} className="rounded-lg">
-                    <Sider style={{ background: "rgb(0,0,0,0.4)" }} width={200}>
-                        <Menu
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{ height: '100%', background: 'rgb(0, 0, 0, 0.4)' }}
-                            items={items2}
-                        />
-                    </Sider>
-                    <Content className='min-h-[80vh]' style={{ padding: '0 24px', minHeight: 280 }}>
+            </Header> */}
+            <Content style={{}}>
+                <Layout style={{ padding: '0px 0', background: 'rgb(0, 0, 0, 0)' }} className="rounded-lg h-screen">
+                    <Content className='overflow-auto' style={{ padding: '0 24px'}}>
                         <Home />
-                        <About />
-                        <Rules />
                         <Price />
-                        <FAQs />
+                        {/* <About /> */}
+                        <Rules />
+                        {/* <FAQs /> */}
                     </Content>
                 </Layout>
             </Content>
@@ -285,9 +275,9 @@ var generateCar = function () {
 }
 //----------------------------------------------------------------- LINES world
 
-var createCars = function (cScale = 2, cPos = 20, cColor = 0xFFFF00) {
+var createCars = function (cScale = 2, cPos = 20, cColor = 0x7CFC00) {
     var cMat = new THREE.MeshToonMaterial({ color: cColor, side: THREE.DoubleSide });
-    var cGeo = new THREE.BoxGeometry(1, cScale / 40, cScale / 40);
+    var cGeo = new THREE.BoxGeometry(1, cScale / 10, cScale / 10);
     var cElem = new THREE.Mesh(cGeo, cMat);
     var cAmp = 3;
 
@@ -313,7 +303,7 @@ var createCars = function (cScale = 2, cPos = 20, cColor = 0xFFFF00) {
 
 var generateLines = function () {
     for (var i = 0; i < 60; i++) {
-        createCars(0.1, 20);
+        createCars(0.1, 30);
     };
 };
 

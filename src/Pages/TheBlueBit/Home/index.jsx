@@ -5,11 +5,11 @@ export const Home = () => {
     return (
         <>
             <div className="flex flex-col justify-center items-center">
-                <img src="thebluebitlogo.png"></img>
-                <div>Think Twice Code Once</div>
+                <img src="thebluebitlogo.png" color="rgb(0,0,0)"></img>
+                <div className="text-4xl font-thin">Think Twice Code Once</div>
             </div>
-            <TableRound1 />
-            <TableRound2 />
+            {/* <TableRound1 />
+            <TableRound2 /> */}
         </> 
     )
 }
