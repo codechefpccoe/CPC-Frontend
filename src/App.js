@@ -25,6 +25,7 @@ import { Loader } from "./Components/Loader";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import { EventDetails } from "./Pages/Admin/EventDetails";
 
+
 const App = () => {
   const dispatch = useDispatch();
 
