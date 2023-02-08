@@ -3,7 +3,7 @@ import EventCard from "./EventCard";
 import PastEventData from "./PastEventData";
 import { Carousel } from "antd";
 
-const PastEvent = ({ EventData }) => {
+const PastEvent = ({ EventData, detailsHideChnageHandler }) => {
   const getCurrentDate = () => {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
@@ -19,7 +19,14 @@ const PastEvent = ({ EventData }) => {
       <Carousel autoplay autoplaySpeed={3000}>
         {EventData.map((val, ind) => {
           if (val.date < getCurrentDate())
-            return <EventCard key={ind} Name={val.name} Date={val.date} />;
+            return (
+              <EventCard
+                key={ind}
+                Name={val.name}
+                Date={val.date}
+                detailsHideChnageHandler={detailsHideChnageHandler}
+              />
+            );
         })}
       </Carousel>
     </>
