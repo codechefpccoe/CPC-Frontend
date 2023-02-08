@@ -36,13 +36,16 @@
 
 .toggle {
   right: 5%;
-  top: 4.5%;
+  top: 0%;
   position: absolute;
   z-index: 10;
+  height: 100%;
+  font-size: 1.2rem;
 }
 
 .toggle.active {
   color: black;
+  top: 100%;
 }
 
 @media (max-width: 768px) {
@@ -51,10 +54,17 @@
     align-items: flex-start;
   }
 
+  .togglerParent {
+    position: absolute;    
+    top: 24px;
+    right: 10%;
+  }
+
   .themeToggler {
-    position: absolute;
-    top: 3.8%;
-    right: 15%;
+    /* position: absolute;
+    top: 0; */
+    transform: translateY(-28%);
+    /* right: 15%; */
   }
 
   .mobileNav {
@@ -84,5 +94,11 @@
 
   .formNavigator {
     color: black;
+  }
+}
+
+@media (max-width : 345px) {
+  .togglerParent {
+    right: 5%;
   }
 }

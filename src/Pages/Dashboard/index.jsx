@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Navbar from "../../Components/Navbar";
 import { message } from "antd";
+import { Empty } from "antd";
 
 export const Dashboard = () => {
   const { id } = useParams();
@@ -22,6 +23,9 @@ export const Dashboard = () => {
       .where("username", "==", id)
       .get()
       .then((data) => {
+        if (data.empty) {
+          setuserData("empty");
+        }
         data.forEach((e) => {
           setuserData(e.data());
         });
@@ -30,8 +34,14 @@ export const Dashboard = () => {
 
   return (
     <div>
+      {console.log(userData)}
       <Navbar />
-      {userData && (
+      {userData === "empty" && (
+        <div className="flex flex-col h-screen w-screen absolute top-0 justify-center items-center">
+          <Empty />
+        </div>
+      )}
+      {userData !== "empty" && userData !== false && (
         <>
           <div>
             <div>Coins : {userData.coins}</div>
@@ -65,3 +75,4 @@ export const Dashboard = () => {
     </div>
   );
 };
+  

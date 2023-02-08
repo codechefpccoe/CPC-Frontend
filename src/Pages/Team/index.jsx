@@ -30,6 +30,7 @@ const TeamPage = () => {
                   linkedin={data.LinkedIn}
                 />
               );
+            else return <></>;
           })}
         </div>
       </div>
@@ -45,8 +46,7 @@ const TeamPage = () => {
                   key={data.Name}
                   image={data.image}
                   Name={data.Name}
-                  Team={data.Team}
-                  Role={data.Role}
+                  
                   email={data.email}
                   Instagram={data.Instagram}
                   facebook={data.Facebook}
@@ -54,6 +54,7 @@ const TeamPage = () => {
                   linkedin={data.LinkedIn}
                 />
               );
+            else return <></>;
           })}
         </div>
       </div>
