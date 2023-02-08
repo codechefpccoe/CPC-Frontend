@@ -3,7 +3,7 @@ import Navbar from "../../Components/Navbar";
 import Profile_card from "../../Components/Profile_card";
 
 // Role data
-import TeamData from "../../data/about_data.json";
+import Developer_Team from "../../data/about_data.js";
 
 const About = () => {
   return (
@@ -14,10 +14,11 @@ const About = () => {
           Developers
         </h1>
         <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap ">
-          {TeamData.map((data) => {
+          {Developer_Team.map((data) => {
             if (data.Role === "Developer")
               return (
                 <Profile_card
+                  key={data.Name}
                   image={data.image}
                   Name={data.Name}
                   Role={data.Role}
@@ -36,10 +37,11 @@ const About = () => {
           Designer
         </h1>
         <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap">
-          {TeamData.map((data) => {
+          {Developer_Team.map((data) => {
             if (data.Role === "Designer")
               return (
                 <Profile_card
+                  key={data.Name}
                   image={data.image}
                   Name={data.Name}
                   Role={data.Role}

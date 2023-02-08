@@ -1,6 +1,25 @@
-[
+import Ajinkya from "../Images/Core Team/Ajinkya.webp";
+import Ashish from "../Images/Core Team/Ashish_Dhane.webp";
+import Kalpesh from "../Images/Core Team/Kalpesh_Somwanshi.webp";
+import Kanishka from "../Images/Core Team/Kanishka.webp";
+import Aditya from "../Images/Executive Team/Aditya_Agre.webp";
+import Shreyas from "../Images/Executive Team/Shreyas_Mali.webp";
+import Divyank from "../Images/Executive Team/Divyank_Panwar.webp";
+import Harsh from "../Images/Executive Team/Harsh_Warkari.webp";
+import Taj from "../Images/Executive Team/Taj_malnas.webp";
+import Varad from "../Images/Executive Team/Varad_Patil.webp";
+import Vishakha from "../Images/Executive Team/Vishakha_Deshpande.webp";
+import Kavya from "../Images/Executive Team/kavya_veer.webp";
+import Mahima from "../Images/Executive Team/Mahima_Nair.webp";
+import Rohit from "../Images/Executive Team/Rohit_Sarje.webp";
+import Pratham from "../Images/Executive Team/Pratham_Pingale.webp";
+import Rohan from "../Images/Executive Team/Rohan_Darandale.webp";
+import Pranjali from "../Images/Executive Team/Pranjali_Deshpande.webp";
+import Sana from "../Images/Executive Team/Sana_Sampson.webp";
+
+const Core_Executive_Team = [
     {
-        "image": "Ajinkya.jpg",
+        "image": Ajinkya,
         "Name": "Ajinkya Patil",
         "Team": "Core",
         "Role": "President",
@@ -11,7 +30,7 @@
         "GitHub": "https://github.com/Ajinkyap331"
     },
     {
-        "image": "Ashish_Dhane.jpeg",
+        "image": Ashish,
         "Name": "Ashish Dhane",
         "Team": "Core",
         "Role": "CP Lead",
@@ -22,7 +41,7 @@
         "GitHub": "https://github.com/ashishbdhane"
     },
     {
-        "image": "Kalpesh_Somwanshi.jpg",
+        "image": Kalpesh,
         "Name": "Kalpesh Somwanshi",
         "Team": "Core",
         "Role": "Event Lead",
@@ -33,7 +52,7 @@
         "GitHub": "https://github.com/Kalpesh910"
     },
     {
-        "image": "Kanishka.jpg",
+        "image": Kanishka,
         "Name": "Kanishka Salunke",
         "Team": "Core",
         "Role": "Design & Social Media Lead",
@@ -44,7 +63,7 @@
         "GitHub": "https://github.com/Kanishka3148"
     },
     {
-        "image": "Shreyas_Mali.png",
+        "image": Shreyas,
         "Name": "Shreyas Mali",
         "Team": "Executive",
         "Role": "CP Team",
@@ -55,7 +74,7 @@
         "GitHub": "https://github.com/toastsandwich"
     },
     {
-        "image": "Rohit_Sarje.jpg",
+        "image": Rohit,
         "Name": "Rohit Sarje",
         "Team": "Executive",
         "Role": "CP Team",
@@ -67,7 +86,7 @@
     },
     
     {
-        "image": "Aditya_Agre.png",
+        "image": Aditya,
         "Name": "Aditya Agre",
         "Team": "Executive",
         "Role": "CP Team",
@@ -78,7 +97,7 @@
         "GitHub": "https://github.com/adityaagre"
     },
     {
-        "image": "Divyank_Panwar.jpg",
+        "image": Divyank,
         "Name": "Divyank Panwar",
         "Team": "Executive",
         "Role": "CP Team",
@@ -89,7 +108,7 @@
         "GitHub": "https://github.com/Divyank7436"
     },
     {
-        "image": "Taj_malnas.jpeg",
+        "image": Taj,
         "Name": "Taj Malnas",
         "Team": "Executive",
         "Role": "CP Team",
@@ -100,7 +119,7 @@
         "GitHub": "https://github.com/tajmalnas"
     },
     {
-        "image": "Mahima_Nair.jpg",
+        "image": Mahima,
         "Name": "Mahima Nair",
         "Team": "Executive",
         "Role": "Event Team",
@@ -111,7 +130,7 @@
         "GitHub": "https://github.com/mahima-nair"
     },
     {
-        "image": "Varad_Patil.jpg",
+        "image": Varad,
         "Name": "Varad Patil",
         "Team": "Executive",
         "Role": "Event Team",
@@ -122,7 +141,7 @@
         "GitHub": "https://github.com/Varadpatil21"
     },
     {
-        "image": "Vishakha_Deshpande.png",
+        "image": Vishakha,
         "Name": "Vishakha Deshpande",
         "Team": "Executive",
         "Role": "Event Team",
@@ -133,7 +152,7 @@
         "GitHub": "https://github.com/VishhAAkha"
     },
     {
-        "image": "Rohan_Darandale.jpg",
+        "image": Rohan,
         "Name": "Rohan Darandale",
         "Team": "Executive",
         "Role": "Event Team",
@@ -144,7 +163,7 @@
         "GitHub": "https://github.com/rohandarandale1"
     },
     {
-        "image": "Sana_Sampson.jpg",
+        "image": Sana,
         "Name": "Sana Sampson",
         "Team": "Executive",
         "Role": "Design Team",
@@ -156,7 +175,7 @@
     },
     
     {
-        "image": "Pranjali_Deshpande.jpg",
+        "image": Pranjali,
         "Name": "Pranjali Deshpande",
         "Team": "Executive",
         "Role": "Design Team",
@@ -167,7 +186,7 @@
         "GitHub": "https://github.com/pranjali1312"
     },
     {
-        "image": "Pratham_Pingale.png",
+        "image": Pratham,
         "Name": "Pratham Pingale",
         "Team": "Executive",
         "Role": "Social Media Team",
@@ -178,7 +197,7 @@
         "GitHub": "https://github.com/PrathamPingale"
     },
     {
-        "image": "Harsh_Warkari.jpg",
+        "image": Harsh,
         "Name": "Harsh Warkari",
         "Team": "Executive",
         "Role": "Design Team",
@@ -189,7 +208,7 @@
         "GitHub": ""
     },
     {
-        "image": "kavya_veer.jpeg",
+        "image": Kavya,
         "Name": "kavya veer",
         "Team": "Executive",
         "Role": "CP Team",
@@ -200,3 +219,5 @@
         "GitHub": ""
     }
 ]
+
+export default Core_Executive_Team;

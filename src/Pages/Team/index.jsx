@@ -3,7 +3,7 @@ import Navbar from "../../Components/Navbar";
 import Profile_card from "../../Components/Profile_card";
 
 // Team data
-import TeamData from "../../data/team_data.json";
+import Core_Executive_Team from "../../data/team_data";
 
 const TeamPage = () => {
   return (
@@ -14,10 +14,11 @@ const TeamPage = () => {
           Core Team
         </h1>
         <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap ">
-          {TeamData.map((data) => {
+          {Core_Executive_Team.map((data) => {
             if (data.Team === "Core")
               return (
                 <Profile_card
+                  key={data.Name}
                   image={data.image}
                   Name={data.Name}
                   Team={data.Team}
@@ -37,10 +38,11 @@ const TeamPage = () => {
           Executive Team
         </h1>
         <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap">
-          {TeamData.map((data) => {
+          {Core_Executive_Team.map((data) => {
             if (data.Team === "Executive")
               return (
                 <Profile_card
+                  key={data.Name}
                   image={data.image}
                   Name={data.Name}
                   Team={data.Team}

@@ -1,6 +1,15 @@
-[
+import Ajinkya from "../Images/Core Team/Ajinkya.webp";
+import Kanishka from "../Images/Core Team/Kanishka.webp";
+import Kalpesh from "../Images/Core Team/Kalpesh_Somwanshi.webp";
+import Hrutvik from "../Images/Developer Team/Hrutvik.webp";
+import Vyankatesh from "../Images/Developer Team/Vyankatesh.webp";
+import Deokumar from "../Images/Developer Team/Deokumar.webp";
+
+
+
+const Developer_Team = [
   {
-    "image": "Ajinkya.jpg",
+    "image": Ajinkya,
     "Name": "Ajinkya Patil",
     "Role": "Developer",
     "email": "ajinkyap331@gmail.com",
@@ -10,7 +19,7 @@
     "GitHub": "https://github.com/Ajinkyap331"
   },
   {
-    "image": "Hrutvik.jpg",
+    "image": Hrutvik,
     "Name": "Hrutvik Malshikare",
     "Role": "Developer",
     "email": "hrutvikmalshikare66@gmail.com",
@@ -20,7 +29,7 @@
     "GitHub": "https://github.com/Hrutvik66"
   },
   {
-    "image": "Vyankatesh.jpg",
+    "image": Vyankatesh,
     "Name": "Vyankatesh Nyati",
     "Role": "Developer",
     "email": "vyankatesh.nyati20@pccoepune.org",
@@ -30,7 +39,7 @@
     "GitHub": "https://github.com/vyankatesh-nyati"
   },
   {
-    "image": "Deokumar.jpg",
+    "image": Deokumar,
     "Name": "Deokumar Manwar",
     "Role": "Developer",
     "email": "devmanwar305@gmail.com",
@@ -39,7 +48,7 @@
     "GitHub": "https://github.com/DeokumarManwar"
   },
   {
-    "image": "Kalpesh_Somwanshi.jpg",
+    "image": Kalpesh,
     "Name": "Kalpesh Somwanshi",
     "Role": "Developer",
     "email": "kalpeshksomwanshi910@gmail.com",
@@ -49,7 +58,7 @@
     "GitHub": "https://github.com/Kalpesh910"
   },
   {
-    "image": "Kanishka.jpg",
+    "image": Kanishka,
     "Name": "Kanishka Salunke",
     "Role": "Designer",
     "email": "salunkekanishka13@gmail.com",
@@ -59,3 +68,5 @@
     "GitHub": "https://github.com/Kanishka3148"
   }
 ]
+
+export default Developer_Team;
