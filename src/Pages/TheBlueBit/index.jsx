@@ -1,3 +1,4 @@
+import Footer from "../../Components/Footer";
 import Cursor from "./Components/Cursor/Cursor";
 import { Navbar } from "./Navbar";
 

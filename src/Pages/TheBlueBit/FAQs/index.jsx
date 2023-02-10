@@ -1,56 +1,39 @@
+import { Collapse } from 'antd';
+import { HomeButton } from '../Components/HomeButton';
+const { Panel } = Collapse;
+
 export const FAQs = () => {
+
+    const onChange = (key) => {
+        console.log(key);
+    };
+
     return (
         <>
-            <div className="flex flex-col justify-center items-center">
-                <div>FAQs</div>
+            <div className="m-16 rounded-xl bg-white shadow-2xl">
+                <Collapse defaultActiveKey={['1']} onChange={onChange}>
+                    <Panel style={{ fontSize: "20px" }} header="Q: Will the organizers provide transportation cost for the second round ?" key="1">
+                        <p>A: No, the organizers will not provide transportation cost for the second round of the hackathon. Participants must arrange their own transportation.</p>
+                    </Panel>
+                    <Panel style={{ fontSize: "20px" }} header="Q: Will internet access be provided during the second round?" key="2">
+                        <p>A: Yes, internet access will be provided during the second round. However, it is preferred to bring your own laptop for the contest.</p>
+                    </Panel>
+                    <Panel style={{ fontSize: "20px" }} header="Q: What is the team size for the Blue-BIT hackathon?" key="3">
+                        <p>A: The team size for the Blue-BIT hackathon should be 3-4 members.</p>
+                    </Panel>
+                    <Panel style={{ fontSize: "20px" }} header="Q: Am I eligible for the price if I participate only in round 1?" key="4">
+                        <p>A: No, you can only get a prize after participating in the second round of the Blue-BIT hackathon and the winners of the Blue-BIT hackathon will be decided based on the evaluation of both rounds.</p>
+                    </Panel>
+                    <Panel style={{ fontSize: "20px" }} header="Q: Who will be the point of contact for any issues?" key="5">
+                        <p>A: Panel members will be available to answer any questions and resolve any doubts during the entire 36 hours of the first round of the Blue-BIT hackathon.</p>
+                    </Panel>
+                    <Panel style={{ fontSize: "20px" }} header="Q: What if I am unable to commit the code in the allotted time?" key="6">
+                        <p>A: You can contact the panel members, they will surely help you out with it.</p>
+                    </Panel>
+                </Collapse>
             </div>
-            <div>
-                <div className="flex">
-                   <div>1. </div>
-                   <div>
-                        <div>Q: Will the organizers provide transportation cost for the second round?</div>
-                        <div>A: No, the organizers will not provide transportation cost for the second round of the hackathon. Participants must arrange their own transportation.</div>
-                   </div>
-                </div>
-                <div className="flex">
-                    <div>2. </div>
-                    <div>
-                        <div>Q: Will internet access be provided during the second round?</div>
-                        <div>A: Yes, internet access will be provided during the second round. However, it is preferred to bring your own laptop for the contest.</div>
-                    </div>
-                </div>
-                <div className="flex">
-                    <div>3. </div>
-                    <div>
-                        <div>Q: What is the team size for the Blue-BIT hackathon?</div>
-                        <div>A: The team size for the Blue-BIT hackathon should be 3-4 members.</div>
-                    </div>
-                </div>
-                <div className="flex">
-                    <div>4. </div>
-                    <div>
-                        <div>Q: Am I eligible for the price if I participate only in round 1?</div>
-                        <div>A: No, you can only get a prize after participating in the second round of the Blue-BIT hackathon and the winners of the Blue-BIT hackathon will be decided based on the evaluation of both rounds.</div>
-                    </div>
-                </div>
-                <div className="flex">
-                    <div>5. </div>
-                    <div>
-                        <div>Q: Who will be the point of contact for any issues?</div>
-                        <div>A: Panel members will be available to answer any questions and resolve any doubts during the entire 36 hours of the first round of the Blue-BIT hackathon.</div>
-                    </div>
-                </div>
-                <div className="flex">
-                    <div>6. </div>
-                    <div>
-                        <div>Q: What if I am unable to commit the code in the allotted time?</div>
-                        <div>A: You can contact the panel members, they will surely help you out with it.</div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                If you have an more question mail us on : codechef@pccoepune.org
-            </div>
+            <HomeButton/>
         </>
+        
     )
 }

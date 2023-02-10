@@ -6,7 +6,7 @@ export const Home = () => {
         <>
             <div className="flex flex-col justify-center items-center">
                 <img src="thebluebitlogo.png" color="rgb(0,0,0)"></img>
-                <div className="text-4xl font-thin">Think Twice Code Once</div>
+                <div className="text-4xl font-thin font-cairo text-amber-500">#ThinkTwiceCodeOnce</div>
             </div>
             {/* <TableRound1 />
             <TableRound2 /> */}

@@ -14,6 +14,9 @@ import Enliven from "./Pages/Enliven";
 import LoginSignUp from "./Pages/LoginSignUp";
 import { loaderAction } from "./Store/loader-slice";
 import { TheBlueBit } from "./Pages/TheBlueBit";
+import { About } from "./Pages/TheBlueBit/About";
+import { Rules } from "./Pages/TheBlueBit/Rules";
+import { FAQs } from "./Pages/TheBlueBit/FAQs";
 
 
 const App = () => {
