@@ -6,7 +6,8 @@ export const Price = () => {
                     <div className="mb-6 text-7xl ">PRIZES</div>
                 </div>
                 <div className="flex justify-center items-center text-4xl">
-                    <div className="m-4 mx-8 flex flex-col justify-center items-center shadow-2xl shadow-gray-300 rounded-2xl p-4 bg-white bg-opacity-50">
+                    <div className="m-4 mx-8 flex flex-col justify-center items-center shadow-2xl shadow-gray-300 rounded-2xl p-4 bg-white bg-opacity-20
+                    backdrop-blur-sm">
                         <div className="text-5xl">
                             🥈
                         </div>
@@ -17,7 +18,8 @@ export const Price = () => {
                             <div>+ Goodies</div>
                         </div>
                     </div>
-                    <div className="m-4 mx-8 flex flex-col justify-center items-center shadow-2xl shadow-amber-400 rounded-2xl p-4 bg-white bg-opacity-50">
+                    <div className="m-4 mx-8 flex flex-col justify-center items-center shadow-2xl shadow-amber-400 rounded-2xl p-4 bg-white bg-opacity-20
+                    backdrop-blur-sm">
                         <div className="text-7xl">
                             🥇
                         </div>
@@ -28,7 +30,8 @@ export const Price = () => {
                             <div>+ Goodies</div>
                         </div>
                     </div>
-                    <div className="m-4 mx-8 flex flex-col justify-center items-center shadow-2xl shadow-orange-700 rounded-2xl p-4 bg-white bg-opacity-50">
+                    <div className="m-4 mx-8 flex flex-col justify-center items-center shadow-2xl shadow-orange-700 rounded-2xl p-4 bg-white bg-opacity-20
+                    backdrop-blur-sm">
                         <div className="text-3xl">
                             🥉
                         </div>

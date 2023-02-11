@@ -1,5 +1,4 @@
 import { Collapse } from 'antd';
-import { HomeButton } from '../Components/HomeButton';
 const { Panel } = Collapse;
 
 export const FAQs = () => {
@@ -32,8 +31,6 @@ export const FAQs = () => {
                     </Panel>
                 </Collapse>
             </div>
-            <HomeButton/>
         </>
-        
     )
 }

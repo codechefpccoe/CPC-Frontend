@@ -3,12 +3,12 @@ import { HomeButton } from "../Components/HomeButton"
 export const Rules = () => {
     return (
         <>
-            <div className="m-8 font-cairo flex flex-col justify-center items-center">      
-                <div className="m-6 text-4xl ">
+            <div className="m-8 font-iceberg flex flex-col justify-center items-center">      
+                <div className="m-6">
                     <div className="flex flex-col justify-center items-center">
                         <div className="m-12 text-5xl ">General Rules</div>
                     </div>
-                    <div>
+                    <div className="text-3xl">
                         <div className="m-3">
                             1. The organizers reserve the right to make changes to the rules and regulations of the hackathon at any time.
                         </div>
@@ -21,9 +21,6 @@ export const Rules = () => {
                         <div className="m-3">
                             4. Participants must inform the organizers of their selected topic before the start of the first round.
                         </div>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <HomeButton/>
                     </div>
                 </div>
             </div>

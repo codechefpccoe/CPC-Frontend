@@ -1,6 +1,6 @@
 import { TweenMax, Power1, Elastic, Expo } from "gsap";
 import * as THREE from 'three';
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from "react";
 import {  Layout } from 'antd';
 import { Home } from '../Home';
@@ -40,7 +40,7 @@ export const CityView = () => {
 
         var camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 1, 500);
 
-        camera.position.set(0, 10, 14);
+        camera.position.set(0, 7, 14);
 
         var scene = new THREE.Scene();
         var city = new THREE.Object3D();
@@ -54,11 +54,15 @@ export const CityView = () => {
 
         // var setcolor = 0xF02050;
         // var setcolor = 0xF2F111;
-        //var setcolor = 0xFF6347;
-        var setcolor = 0x0096FF;
+        // var setcolor = 0xFF6347;
+        // var setcolor = 0x0096FF;
+        // var setcolor = 0x7600bc
+        // var setcolor = 0x00FFFF;
+        var setcolor = 0x0006b1;
+        // var setcolor = 0xFFD700;
 
-        scene.background = new THREE.Color(setcolor);
-        scene.fog = new THREE.Fog(setcolor, 10, 16);
+        // scene.background = new THREE.Color(setcolor);
+        // scene.fog = new THREE.Fog(setcolor, 5, 20);
         // scene.fog = new THREE.FogExp2(setcolor, 0.05);
         //----------------------------------------------------------------- RANDOM Function
         function mathRandom(num = 8) {
@@ -68,14 +72,7 @@ export const CityView = () => {
         //----------------------------------------------------------------- CHANGE bluilding colors
         var setTintNum = true;
         function setTintColor() {
-            if (setTintNum) {
-                setTintNum = false;
-                var setColor = 0x000000;
-            } else {
-                setTintNum = true;
-                var setColor = 0x000000;
-            };
-            //setColor = 0x222222;
+            var setColor = 0x252432;
             return setColor;
         };
 
@@ -98,7 +95,7 @@ export const CityView = () => {
                 });
                 var wmaterial = new THREE.MeshLambertMaterial({
                     color: 0xFFFFFF,
-                    wireframe: true,
+                    wireframe: false,
                     transparent: true,
                     opacity: 0.03,
                     side: THREE.DoubleSide/*,
@@ -306,17 +303,45 @@ export const CityView = () => {
         animate();
     },[])
 
+    const [tab, setTab] = useState(0);
+
     return(
         <div className="absolute w-screen h-screen">
             <Content>
                 <Layout style={{ padding: '0px 0', background: 'rgb(0, 0, 0, 0)' }} className="rounded-lg">
                     <Content className='text-white cursor-none items-center flex flex-col justify-center' style={{ padding: '0 24px'}}>
                         <Home />
-                        <Price />
-                        <MenuBlueBit />
+                        {(tab == 0) &&
+                            <>
+                                <Price />
+                                <>
+                                    <div className="flex justify-center font-cairo text-3xl">
+                                        <button className="button" onClick={() => { }}>
+                                            ABOUT
+                                        </button>
+                                        <button className="button mx-10" onClick={() => { }}>
+                                            RULES
+                                        </button>
+                                        <button className="button" onClick={() => { }}>
+                                            FAQs
+                                        </button>
+                                    </div>
+                                </>
+                            </>
+                        }
                         {/* <About /> */}
                         {/* <Rules /> */}
                         {/* <FAQs /> */}
+                        {/* {(tab != 0) &&
+                            <>
+                                <div className="flex justify-center font-cairo text-3xl">
+                                    <button className="button mt-12" onClick={() => { }}>
+                                        HOME
+                                    </button>
+                                </div>
+                            </>
+                        } */}
+                        
                     </Content>
                 </Layout>
             </Content>

@@ -1,4 +1,3 @@
-import { HomeButton } from "../Components/HomeButton"
 import { Round1 } from "./Round1"
 import { Round2 } from "./Round2"
 
@@ -16,9 +15,6 @@ export const About = () => {
                         </div>
                         <Round1 />
                         <Round2 />
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <HomeButton />
                     </div>
                 </div>
             </div>
