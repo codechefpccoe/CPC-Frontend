@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { db } from "../../Config/Firebase";
 import { CardMain } from "./CardMain";
-import { Loader } from "../../Components/Loader";
+import { loaderAction } from "../../Store/loader-slice";
+import { useDispatch, useSelector } from "react-redux";
 import { message } from "antd";
 
 export const Admin = () => {
@@ -10,16 +11,22 @@ export const Admin = () => {
   const date = useRef();
   const url = useRef();
 
-  const [loader, setLoader] = useState(true);
   const [adminPage, setAdminPage] = useState("Main");
+  const [first, setFirst] = useState(true);
   const [events, setEvents] = useState([]);
   const [access, setAccess] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("user") !== "XuO#hyN#SeF#TDd$EmU8cW!PK0BxcUBh") {
+      dispatch(loaderAction.changeLoaderStateFalse());
       setAccess(false);
       return;
     }
+    if (first === true) {
+      dispatch(loaderAction.changeLoaderStateTrue());
+    }
+    setFirst(false);
 
     let data = [];
     db.collection("events")
@@ -32,7 +39,7 @@ export const Admin = () => {
       .then(() => {
         console.log(data);
         setEvents(data);
-        setLoader(false);
+        dispatch(loaderAction.changeLoaderStateFalse());
       });
   }, [events]);
 
@@ -168,7 +175,7 @@ export const Admin = () => {
     <>
       {access ? (
         <div className="flex items-center flex-col justify-center py-2">
-          {loader ? <Loader /> : adminPage === "Main" && MainPage}
+          {adminPage === "Main" && MainPage}
           {adminPage === "AddEvent" && AddEvent}
         </div>
       ) : (

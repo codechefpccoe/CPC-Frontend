@@ -35,8 +35,10 @@ export const createUserWithUsernamePassword = async (email, password) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userCred) => {
+      console.log(userCred);
       return userCred.user;
-    });
+    })
+    .catch((e) => console.log(e));
 };
 
 export const sendVerificationEmail = async () => {

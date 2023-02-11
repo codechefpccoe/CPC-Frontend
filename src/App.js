@@ -24,9 +24,6 @@ import { Event } from "./Pages/Event";
 import { Loader } from "./Components/Loader";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import { EventDetails } from "./Pages/Admin/EventDetails";
-import { Feedback } from "./Pages/Feedback";
-import { Register } from "./Pages/Register";
-
 
 
 const App = () => {
@@ -67,8 +64,6 @@ const App = () => {
         <Route path="/user/:id" element={<Dashboard />} />
         <Route path="/enliven" element={<Enliven />} />
         <Route exact path="/edit/:id" element={<EventDetails />} />
-        <Route exact path="/feedback/:id" element={<Feedback />} />
-        <Route exact path="/register/:id" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

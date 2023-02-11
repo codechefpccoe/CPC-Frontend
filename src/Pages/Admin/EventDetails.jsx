@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { db } from "../../Config/Firebase";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "../../Components/Loader";
+import { loaderAction } from "../../Store/loader-slice";
+import { useDispatch } from "react-redux";
 import { Table, Button, message } from "antd";
 
 export const EventDetails = () => {
   let navigate = useNavigate();
   const { id } = useParams();
+
   const [registered, setRegistered] = useState(false);
-  const [loader, setloader] = useState(true);
+  const dispatch = useDispatch();
   const [editEvent, setEditEventB] = useState(true);
   const [count, setCount] = useState(false);
   const [feedback, setFeedbackB] = useState(false);
@@ -29,6 +31,8 @@ export const EventDetails = () => {
       setAccess(false);
       return;
     }
+
+    dispatch(loaderAction.changeLoaderStateTrue());
 
     db.collection("events")
       .doc(id)
@@ -65,7 +69,7 @@ export const EventDetails = () => {
         });
       })
       .then(() => {
-        setloader(false);
+        dispatch(loaderAction.changeLoaderStateFalse());
       });
   }, [id]);
 
@@ -265,7 +269,6 @@ export const EventDetails = () => {
     <>
       {access ? (
         <>
-          {loader && <Loader />}
           <div>
             <div
               className="flex flex-row items-center justify-center

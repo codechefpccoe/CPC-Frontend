@@ -10,12 +10,6 @@
   /* left: ; */
 }
 
-@media (min-width: 768px) {
-  .overflowClass {
-    overflow: hidden;
-  }
-}
-
 @media (max-width: 768px) {
   .rotate {
     transform: none;
@@ -38,7 +32,7 @@
 
 .rotate_animation {
   animation: rotate 50s linear infinite;
-
+  
   animation-play-state: paused;
 }
 
@@ -54,7 +48,7 @@
 
 .roatate_circle_animation1 {
   animation: rotate_circle1 50s linear infinite;
-
+  
   animation-play-state: paused;
 }
 
@@ -70,7 +64,7 @@
 
 .roatate_circle_animation2 {
   animation: rotate_circle2 50s linear infinite;
-
+  
   animation-play-state: paused;
 }
 
@@ -184,6 +178,8 @@
     }
   }
 }
+
+
 
 .content_animation::after {
   content: "|";
