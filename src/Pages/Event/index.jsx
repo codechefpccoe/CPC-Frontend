@@ -18,9 +18,9 @@ export const Event = () => {
       });
   }, []);
 
-  const detailsHideChnageHandler = () => {
+  const detailsHideChnageHandler = (det) => {
     if (detailsHide === "hidden") {
-      setDetailsHide("");
+      setDetailsHide(det);
     } else {
       setDetailsHide("hidden");
     }
@@ -36,13 +36,19 @@ export const Event = () => {
         </div>
         <h1 className="mt-2 font-cairo font-bold">Past Event</h1>
         <div className="">
-          <PastEvent EventData={EventData} detailsHideChnageHandler={detailsHideChnageHandler} />
+          <PastEvent
+            EventData={EventData}
+            detailsHideChnageHandler={detailsHideChnageHandler}
+          />
         </div>
       </div>
       <div
         className={`absolute bottom-0 right-0 w-[30%] bg-white h-[86%] shadow-2xl drop-shadow-lg ${detailsHide}`}
       >
-        <EventDetails detailsHideChnageHandler={detailsHideChnageHandler} />
+        <EventDetails
+          detailsHideChnageHandler={detailsHideChnageHandler}
+          detailsHide = {detailsHide}
+        />
       </div>
     </div>
   );

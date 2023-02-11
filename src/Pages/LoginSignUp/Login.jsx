@@ -164,7 +164,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
+    <div className="absolute z-20 inset-0 flex items-center justify-center p-4 form-wrapper ">
       <Popup open={showPopUp} closeOnDocumentClick>
         <div className="p-4 ">
           <p className="text-center font-bold p-4 font-['sans-serif']">
@@ -200,7 +200,7 @@ export const Login = () => {
           </div>
         </div>
       </Popup>
-      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md">
+      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-90 backdrop-filter backdrop-blur-md">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">
             <img src={Logo} alt="Logo" className="h-[80px] w-auto" />

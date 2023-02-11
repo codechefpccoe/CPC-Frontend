@@ -24,6 +24,8 @@ const PastEvent = ({ EventData, detailsHideChnageHandler }) => {
                 key={ind}
                 Name={val.name}
                 Date={val.date}
+                details = {val.desc}
+                id = {val.id}
                 detailsHideChnageHandler={detailsHideChnageHandler}
               />
             );

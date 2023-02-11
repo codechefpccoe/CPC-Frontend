@@ -15,6 +15,7 @@ const LoginSignUp = () => {
         muted
         className="w-full h-full object-fill "
       ></video>
+      <div className="z-10 w-screen h-screen bg-black absolute top-0 opacity-70"></div>
       {window.location.pathname === "/login" && <Login />}
       {window.location.pathname === "/signup" && <SignUp />}
       {window.location.pathname === "/forgetpassword" && <ForgetPassword />}
