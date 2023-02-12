@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import * as THREE from "three";
-import image from "./Assests/code.png";
+import React from "react";
+import { useEffect } from "react";
 import { Roll, Bounce } from "react-reveal";
 
 export const MainContent = () => {
@@ -21,7 +20,7 @@ export const MainContent = () => {
   }, []);
 
   return (
-    <div className="h-full flex justify-between px-10">
+    <div className="h-full flex justify-between">
       <div className="w-3/6 mt-16 ml-10 flex flex-col gap-7">
         <Roll right>
           <div className="text-5xl font-iceberg">
@@ -46,6 +45,7 @@ export const MainContent = () => {
           </div>
         </Bounce>
       </div>
+      
       {/* <img className="" style={{ width: "40vw" }} src={image}></img> */}
     </div>
   );
