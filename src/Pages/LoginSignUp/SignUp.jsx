@@ -86,9 +86,10 @@ export const SignUp = () => {
       await createUserWithUsernamePassword(enteredEmail, enteredPassword)
         .then((e) => {
           userCred = e;
-          console.log(enteredFirstName, enteredLastName);
           firebase.auth().currentUser.updateProfile({
             displayName: enteredFirstName.trim() + " " + enteredLastName.trim(),
+          }).catch(err => {
+            console.log(err)
           });
         })
         .catch((err) => {

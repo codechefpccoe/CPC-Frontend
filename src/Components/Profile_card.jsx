@@ -12,6 +12,7 @@ const Profile_card = ({
   linkedin,
 }) => {
   return (
+    
     <div className="flex flex-col items-center justify-center p-[1rem] min-w-[20rem] h-[26rem] font-cairo shadow-[0px_0px_20px_0px_rgba(0,0,0,0.3)] dark:shadow-[#301E67] rounded-xl space-y-4 mb-[1.5rem] bg-white dark:bg-[#130c29]">
       <img
         src={image}

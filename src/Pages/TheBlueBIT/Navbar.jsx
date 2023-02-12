@@ -5,7 +5,7 @@ export const Navbar = () => {
   document.title = "The BlueBIT | Home";
 
   return (
-    <div className="sticky top-0 z-10 py-5 flex justify-between items-center px-10 pl-20 w-full border-b border-gray-100 ">
+    <div className="sticky top-0 z-10 py-5 flex justify-center items-center px-10 pl-20 w-full border-b border-gray-100 ">
       <div className={`flex flex-row items-center brand rounded-xl p-5 bg-white bg-opacity-10 shadow-xl backdrop-blur-lg`}>
             <div className="w-12">
               <img src={Logo} alt="CPC Logo" className="w-full" />
@@ -14,7 +14,7 @@ export const Navbar = () => {
               <div className="font-bold text-3xl text-black dark:text-white max-sm:text-2xl max-sm:leading-5">
                 CPC
               </div>
-              <div className="text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
+              <div className="font-bolder text-primary text-xs max-sm:text-[0.6rem]">{`Codechef <PCCOE> Chapter`}</div>
             </div>
           </div>
       {/* <div className="flex gap-10 ">

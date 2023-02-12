@@ -24,7 +24,7 @@ const Core_Executive_Team = [
         "Team": "Core",
         "Role": "President",
         "email": "ajinkyap331@gmail.com",
-        "Instagram": "",
+        "Instagram": "https://www.instagram.com/yr_shri/",
         "Website": "https://ajinkyapatil.web.app/",
         "LinkedIn": "https://www.linkedin.com/in/ajinkya-patil-144709208/",
         "GitHub": "https://github.com/Ajinkyap331"
@@ -84,7 +84,7 @@ const Core_Executive_Team = [
         "LinkedIn": "https://www.linkedin.com/in/rohit-sarje-13583622b",
         "GitHub": "https://github.com/rohitsarje17"
     },
-    
+
     {
         "image": Aditya,
         "Name": "Aditya Agre",
@@ -173,7 +173,7 @@ const Core_Executive_Team = [
         "LinkedIn": "https://www.linkedin.com/in/sampsonsana/",
         "GitHub": "https://github.com/sans0408"
     },
-    
+
     {
         "image": Pranjali,
         "Name": "Pranjali Deshpande",

@@ -58,7 +58,7 @@ export const MainContent = () => {
       <div className="h-5/6 flex items-center">
         <img
           className="p-20 rounded-xl  bg-white bg-opacity-10 shadow-xl backdrop-blur-lg"
-          style={{ width: "25vw", height: "25vw" }}
+          style={{ width: "26vw", height: "25vw" }}
           src={image} alt = "logo"
         ></img>
       </div>
