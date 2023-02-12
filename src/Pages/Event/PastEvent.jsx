@@ -1,6 +1,5 @@
 import React from "react";
 import EventCard from "./EventCard";
-import PastEventData from "./PastEventData";
 import { Carousel } from "antd";
 
 const PastEvent = ({ EventData, detailsHideChnageHandler }) => {

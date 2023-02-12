@@ -15,7 +15,7 @@ export default function UpComingCard(props) {
   };
 
   return (
-    <div className="flex flex-col justify-center bg-white w-[22rem] p-6 space-y-4 rounded-lg">
+    <div className="flex flex-col justify-center bg-white w-[22rem] p-6 space-y-4 rounded-lg dark:bg-black dark:text-white">
       <h1 className="font-cairo font-bold">Upcoming Event</h1>
       <h2 className="font-cairo text-lg font-bold">{props.Name}</h2>
       <div className="flex justify-evenly items-center">
