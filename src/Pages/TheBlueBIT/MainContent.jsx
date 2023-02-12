@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Roll, Bounce } from "react-reveal";
 import { Process } from "./Process";
+import image from "./Assests/Frame 1.png";
 
 export const MainContent = () => {
   const [ani2, sani2] = useState(false);
@@ -21,8 +22,8 @@ export const MainContent = () => {
   }, []);
 
   return (
-    <div className="h-full flex justify-between">
-      <div className="w-3/6 mt-16 ml-24 flex flex-col gap-7">
+    <div className="h-full flex justify-between mx-20">
+      <div className="w-3/6 mt-16 flex flex-col gap-7">
         <Roll right>
           <div className="text-5xl font-iceberg">
             The{" "}
@@ -54,7 +55,13 @@ export const MainContent = () => {
         </Bounce>
       </div>
 
-      {/* <img className="" style={{ width: "40vw" }} src={image}></img> */}
+      <div className="h-5/6 flex items-center">
+        <img
+          className="p-20 rounded-xl  bg-white bg-opacity-10 shadow-xl backdrop-blur-lg"
+          style={{ width: "25vw", height: "25vw" }}
+          src={image}
+        ></img>
+      </div>
     </div>
   );
 };

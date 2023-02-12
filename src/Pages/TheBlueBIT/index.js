@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from "react";
 import * as THREE from 'three';
 import { TweenMax, Power1, Elastic, Expo } from "gsap";
@@ -9,9 +9,16 @@ import { TimeLine } from "./TimeLine"
 import Cursor from "./Cursor/Cursor.jsx"
 import { Rounds } from './Rounds'
 import { Details } from './Details'
+import { FAQs } from "./FAQ";
 import "./thebluebit.css"
+import image from "./Assests/Frame 1.png";
 
 export const TheBlueBIT = () => {
+
+  const [iwidth , siw] = useState(window.innerWidth)
+  window.onresize = function (event) {
+    siw(event.target.innerWidth)
+  };
 
   useEffect(() => {
     if (window.innerWidth >= 1024) {
@@ -183,7 +190,7 @@ export const TheBlueBIT = () => {
   return (
     <div id="thebluebit">
       {
-        (window.innerWidth >= 1024) &&
+        (iwidth >= 1024) &&
         <>
           <div className='relative text-white flex justify-center items-center w-screen h-screen' style={{ background: "#24242B" }} >
             <div className="absolute left-0 w-3/12 h-full bg-sky-600 opacity-100"></div>
@@ -200,6 +207,7 @@ export const TheBlueBIT = () => {
                   <Details />
                   <TimeLine />
                   <Price />
+                  <FAQs />
                   <div style={{ height: "10vh" }}></div>
                 </div>
               </div>
@@ -207,12 +215,19 @@ export const TheBlueBIT = () => {
           </div>
         </>
       }{
-        (window.innerWidth < 1024) &&
-        <>
-          <div style={{ background: "#201f24" }} className=" text-white flex justify-center items-center font-iceberg text-2xl font-black text-center h-screen">
+        (iwidth < 1024) &&
+        <div className='flex flex-col w-screen h-screen justify-center items-center gap-5' style={{ background: "#201f24" }} >
+          <div className="flex items-center">
+            <img
+              className="rounded-xl p-5 bg-white bg-opacity-10 shadow-xl backdrop-blur-lg"
+              style={{ width: "70vw", height: "70vw" }}
+              src={image}
+            ></img>
+          </div>
+          <div className=" text-white flex justify-center items-center font-iceberg text-2xl font-black text-center">
             Why settle for a tiny phone screen when you can bask in the glorious pixels of your desktop? Open this Website in Desktop!
           </div>
-        </>
+        </div>
       }
 
     </div>
