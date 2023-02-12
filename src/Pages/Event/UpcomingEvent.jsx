@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import UpComingCard from "./UpComingCard";
-// import UpComingEventData from "./UpComingEventData";
 
 export const UpcomingEvent = ({ EventData }) => {
   const getCurrentDate = () => {
@@ -15,7 +13,7 @@ export const UpcomingEvent = ({ EventData }) => {
 
   return (
     <>
-      <div className="">
+      <div className="flex space-x-4">
         {EventData.map((val, ind) => {
           if (val.date > getCurrentDate())
             return <UpComingCard key={ind} Name={val.name} Date={val.date} />;
