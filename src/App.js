@@ -22,7 +22,6 @@ import { Admin } from "./Pages/Admin/Admin";
 import { Dashboard } from "./Pages/Dashboard";
 import { Event } from "./Pages/Event";
 import { Loader } from "./Components/Loader";
-import { loaderAction } from "./Store/loader-slice";
 import { TheBlueBIT } from "./Pages/TheBlueBIT";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import { EventDetails } from "./Pages/Admin/EventDetails";

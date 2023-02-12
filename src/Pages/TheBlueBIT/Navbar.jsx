@@ -4,13 +4,6 @@ import Logo from "../../Images/logo.webp"
 export const Navbar = () => {
   document.title = "The BlueBIT | Home";
 
-  const handleClickScroll = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="sticky top-0 z-10 py-5 flex justify-between items-center px-10 pl-20 w-full border-b border-gray-100 ">
       <div className={`flex flex-row items-center brand rounded-xl p-5 bg-white bg-opacity-10 shadow-xl backdrop-blur-lg`}>

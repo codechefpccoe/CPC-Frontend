@@ -10,7 +10,7 @@ export const Details = () => {
           <img
             style={{ width: "40vw" }}
             className="relative -top-20"
-            src={image}
+            src={image} alt = "Group"
           ></img>
         </div>
         <div className="flex items-center">

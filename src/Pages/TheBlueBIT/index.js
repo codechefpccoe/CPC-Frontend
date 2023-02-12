@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useEffect } from "react";
 import * as THREE from 'three';
-import { TweenMax, Power1, Elastic, Expo } from "gsap";
 import { Navbar } from './Navbar'
 import { MainContent } from './MainContent'
 import { Price } from './Price'
@@ -124,20 +123,6 @@ export const TheBlueBIT = () => {
           mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
           mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
         }
-        function onDocumentTouchStart(event) {
-          if (event.touches.length == 1) {
-            event.preventDefault();
-            mouse.x = event.touches[0].pageX - window.innerWidth / 2;
-            mouse.y = event.touches[0].pageY - window.innerHeight / 2;
-          }
-        }
-        function onDocumentTouchMove(event) {
-          if (event.touches.length == 1) {
-            event.preventDefault();
-            mouse.x = event.touches[0].pageX - window.innerWidth / 2;
-            mouse.y = event.touches[0].pageY - window.innerHeight / 2;
-          }
-        }
         window.addEventListener("mousemove", onMouseMove, false);
       }
 
@@ -221,7 +206,7 @@ export const TheBlueBIT = () => {
             <img
               className="rounded-xl p-5 bg-white bg-opacity-10 shadow-xl backdrop-blur-lg"
               style={{ width: "70vw", height: "70vw" }}
-              src={image}
+              src={image} alt = "logo"
             ></img>
           </div>
           <div className=" text-white flex justify-center items-center font-iceberg text-2xl font-black text-center">
