@@ -24,7 +24,7 @@ const Core_Executive_Team = [
         "Team": "Core",
         "Role": "President",
         "email": "ajinkyap331@gmail.com",
-        "Instagram": "https://Instagram.com/yr_shri",
+        "Instagram": "",
         "Website": "https://ajinkyapatil.web.app/",
         "LinkedIn": "https://www.linkedin.com/in/ajinkya-patil-144709208/",
         "GitHub": "https://github.com/Ajinkyap331"

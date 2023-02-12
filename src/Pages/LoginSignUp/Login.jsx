@@ -14,6 +14,7 @@ import {
   loginUserWithUsernamePassword,
   emailVerificationEmailStatus,
 } from "../../Config/Firebase";
+import { loaderAction } from "../../Store/loader-slice";
 import { useDispatch } from "react-redux";
 import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
 import { loginAction } from "../../Store/login-slice";
@@ -26,10 +27,6 @@ export const Login = () => {
   const [email, setemail] = useState();
   let regex = /[-’/`~!#*$@%+=.,^&(){}[\]|;:”<>?\\]/g;
   const [name, setname] = useState();
-  // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
-
-  // const [cookies, setCookie] = useCookies();
-  // const enteredUsernameHasError = true;
 
   const {
     value: enteredEmail,
@@ -71,6 +68,7 @@ export const Login = () => {
     formIsValid = true;
   }
 
+  // Logging in with google
   const userLoginWithGoogle = async () => {
     const response = await googleLoginUsingPopup();
     if (response) {
@@ -79,40 +77,47 @@ export const Login = () => {
         .get()
         .then((snap) => {
           if (!snap.exists) {
+            dispatch(loaderAction.changeLoaderStateFalse());
             setShowPopUp(true);
           } else {
             db.collection("user")
               .doc(response.email)
               .get()
               .then((resp) => {
-                message.success("Login Successful");
+                dispatch(loaderAction.changeLoaderStateFalse());
+                message.success(" Login Successful ");
                 navigate("/user/" + resp.data().username);
               });
           }
+        })
+        .catch((e) => {
+          dispatch(loaderAction.changeLoaderStateFalse());
+          message.error(e);
         });
     }
   };
 
+  // setting the email and password
   const userLoginwithEmailPassword = async () => {
-    let user = await loginUserWithUsernamePassword(
-      enteredEmail,
-      enteredPassword
-    );
+    try {
+      let user = await loginUserWithUsernamePassword(
+        enteredEmail,
+        enteredPassword
+      );
 
-    emailVerificationEmailStatus().then((e) => {
-      console.log(e);
-      if (e.emailVerified === false) {
-        console.log("I am here");
-        message.error("Email not verified, Please check Email");
-        user = {};
-        return;
-      } else {
-        try {
+      emailVerificationEmailStatus().then((e) => {
+        if (e.emailVerified === false) {
+          dispatch(loaderAction.changeLoaderStateFalse());
+          message.error("Email not verified, Please check Email");
+          user = {};
+          return;
+        } else {
           db.collection("user")
             .doc(user.email)
             .get()
             .then((snap) => {
               if (!snap.exists) {
+                dispatch(loaderAction.changeLoaderStateFalse());
                 setShowPopUp(true);
                 setemail(user.email);
                 setname(user.displayName);
@@ -121,21 +126,25 @@ export const Login = () => {
                   .doc(user.email)
                   .get()
                   .then((resp) => {
-                    message.success("Login Successfull");
+                    dispatch(loaderAction.changeLoaderStateFalse());
+                    message.success(" Login Successful ");
                     navigate("/user/" + resp.data().username);
                   });
               }
             });
-        } catch (err) {
-          message.error(err.message);
         }
-      }
-    });
+      });
+    } catch (e) {
+      dispatch(loaderAction.changeLoaderStateFalse());
+      message.error(e.message);
+    }
   };
 
+  // Setting the username
   const setInitailValue = async () => {
     if (await IfUsernameAlreadyPresent(enteredUsername)) {
-      alert("Username Already Present");
+      dispatch(loaderAction.changeLoaderStateFalse());
+      message.error(" Username Already Present ");
     } else {
       db.collection("user")
         .doc(email)
@@ -146,6 +155,7 @@ export const Login = () => {
           name: name,
         })
         .then(() => {
+          dispatch(loaderAction.changeLoaderStateFalse());
           setShowPopUp(false);
           dispatch(
             loginAction.addLogin({
@@ -158,13 +168,15 @@ export const Login = () => {
           navigate("/user/" + enteredUsername);
         })
         .catch((error) => {
+          dispatch(loaderAction.changeLoaderStateFalse());
           console.error("Error writing document: ", error);
         });
     }
+    dispatch(loaderAction.changeLoaderStateFalse());
   };
 
   return (
-    <div className="absolute z-20 inset-0 flex items-center justify-center p-4 form-wrapper ">
+    <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
       <Popup open={showPopUp} closeOnDocumentClick>
         <div className="p-4 ">
           <p className="text-center font-bold p-4 font-['sans-serif']">
@@ -184,12 +196,15 @@ export const Login = () => {
                   : "[ bg-black/20 focus:bg-black/25 ]"
               }
               [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-4 ] `}
-              placeholder="[No spaces allowed]"
+              placeholder="Only alphanumerical and following characters '_' are allowed"
             />
             <button
-              onClick={() => setInitailValue()}
+              onClick={() => {
+                dispatch(loaderAction.changeLoaderStateTrue());
+                setInitailValue();
+              }}
               className={` appearance-none block w-48 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight [ transform transition  ]  ${
-                !enteredUsernameHasError
+                enteredUsernameIsValid
                   ? "bg-black cursor-pointer hover:-translate-y-1 hover:bg-white hover:border-black hover:text-black"
                   : "bg-gray-800"
               }`}
@@ -200,7 +215,7 @@ export const Login = () => {
           </div>
         </div>
       </Popup>
-      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-90 backdrop-filter backdrop-blur-md">
+      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md shadow-2xl shadow-black ">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">
             <img src={Logo} alt="Logo" className="h-[80px] w-auto" />
@@ -286,9 +301,9 @@ export const Login = () => {
 
             <div className="w-full flex items-center justify-between px-3 mb-3 ">
               <label className="flex items-center w-1/2"></label>
-              <div className="w-1/2 text-right">
+              <div className="w-60 text-right">
                 <NavLink
-                  className="text-blue-500 font-bold text-sm tracking-tight hover:text-blue-300 cursor-pointer"
+                  className="text-blue-500  font-bold text-sm tracking-tight hover:text-blue-300 cursor-pointer"
                   to="/forgetpassword"
                 >
                   Forget your password?
@@ -309,7 +324,10 @@ export const Login = () => {
                     : "bg-gray-800"
                 }`}
                 disabled={!formIsValid}
-                onClick={() => userLoginwithEmailPassword()}
+                onClick={() => {
+                  dispatch(loaderAction.changeLoaderStateTrue());
+                  userLoginwithEmailPassword();
+                }}
               >
                 Login
               </button>
@@ -324,7 +342,10 @@ export const Login = () => {
 
             <div className="w-full md:w-full px-3 mb-6 mt-6  [ flex flex-row justify-center items-center ]">
               <button
-                onClick={() => userLoginWithGoogle()}
+                onClick={() => {
+                  dispatch(loaderAction.changeLoaderStateTrue());
+                  userLoginWithGoogle();
+                }}
                 className="absolute appearance-none w-auto text-base flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-white cursor-pointer hover:bg-blue-400 hover:border-white hover:text-white hover:shadow-md duration-500 ease-in-out transition-all border border-black group-hover:text-gray-100 [ transform transition hover:-translate-y-1 ]"
               >
                 <FcGoogle className="h-6 w-6" /> Sign in with Google

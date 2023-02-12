@@ -9,6 +9,8 @@ import {
   createUserWithUsernamePassword,
   sendVerificationEmail,
 } from "../../Config/Firebase";
+import { loaderAction } from "../../Store/loader-slice";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useInput from "../../Hooks/use-input";
 import firebase from "firebase";
@@ -18,6 +20,7 @@ import { message } from "antd";
 export const SignUp = () => {
   let emailverified = true;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -76,27 +79,36 @@ export const SignUp = () => {
     formIsValid = true;
   }
 
+  // sign up creating new user and sending verification email
   const userSignUp = async () => {
-    let userCred = false;
-    await createUserWithUsernamePassword(enteredEmail, enteredPassword)
-      .then((e) => {
-        userCred = e;
-        firebase.auth().currentUser.updateProfile({
-          displayName: enteredFirstName.trim() + " " + enteredLastName.trim(),
-        });
-      })
-      .catch((err) => {
-        message.error(err.message);
-      });
-    if (userCred) {
-      await sendVerificationEmail()
+    try {
+      let userCred = false;
+      await createUserWithUsernamePassword(enteredEmail, enteredPassword)
         .then((e) => {
-          message.success("Email Verification mail send successfully");
-          navigate("/login");
+          userCred = e;
+          console.log(enteredFirstName, enteredLastName);
+          firebase.auth().currentUser.updateProfile({
+            displayName: enteredFirstName.trim() + " " + enteredLastName.trim(),
+          });
         })
-        .catch((e) => {
-          console.log(e);
+        .catch((err) => {
+          dispatch(loaderAction.changeLoaderStateFalse());
+          message.error(err.message);
         });
+      if (userCred) {
+        await sendVerificationEmail()
+          .then((e) => {
+            dispatch(loaderAction.changeLoaderStateFalse());
+            message.success("Email Verification Mail send successfully");
+            navigate("/login");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    } catch (e) {
+      dispatch(loaderAction.changeLoaderStateFalse());
+      console.log(e);
     }
   };
 
@@ -145,7 +157,7 @@ export const SignUp = () => {
                   </label>
                   {enteredFirstNameHasError && (
                     <p className="text-red-500 text-xs italic ">
-                      *Please Enter a valid Username.
+                      *Please Enter a valid Firstname.
                     </p>
                   )}
                 </div>
@@ -180,7 +192,7 @@ export const SignUp = () => {
                   </label>
                   {enteredLastNameHasError && (
                     <p className="text-red-500 text-xs italic">
-                      *Please Enter a valid Username.
+                      *Please Enter a valid Lastname.
                     </p>
                   )}
                 </div>
@@ -256,7 +268,7 @@ export const SignUp = () => {
                 </label>
                 {enteredPasswordHasError && (
                   <p className="text-red-500 text-xs italic">
-                    *Please Enter a valid Password.
+                    *Please Enter a 6 characters Password.
                   </p>
                 )}
               </div>
@@ -309,7 +321,10 @@ export const SignUp = () => {
                       : "bg-gray-800"
                   }`}
                   disabled={!formIsValid}
-                  onClick={() => userSignUp()}
+                  onClick={() => {
+                    userSignUp();
+                    dispatch(loaderAction.changeLoaderStateTrue());
+                  }}
                 >
                   Sign Up
                 </button>
