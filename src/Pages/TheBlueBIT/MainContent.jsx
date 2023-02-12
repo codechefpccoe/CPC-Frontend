@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Roll, Bounce } from "react-reveal";
 
 export const MainContent = () => {
@@ -24,7 +24,7 @@ export const MainContent = () => {
       <div className="w-3/6 mt-16 ml-10 flex flex-col gap-7">
         <Roll right>
           <div className="text-5xl font-iceberg">
-            The <span className="text-sky-600">Blue</span> BIT
+            The <span className="text-sky-600 bg-white p-1 border rounded-lg">Blue</span> BIT
           </div>
         </Roll>
 

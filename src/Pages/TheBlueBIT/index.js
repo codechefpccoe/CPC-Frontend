@@ -198,14 +198,16 @@ export const TheBlueBIT = () => {
         <div className="z-50">
           <Cursor />
         </div>
-        <div id="main" className="w-10/12 h-5/6 rounded-2xl drop-shadow-2xl overflow-y-auto overflow-x-hidden" style={{ background: "#201f24" }}>
+        <div id="main" className="w-10/12 h-5/6 rounded-2xl drop-shadow-2xl overflow-hidden" style={{ background: "#201f24" }}>
           <Navbar />
-          <div id="City" className="sticky top-0 -z-50 bg-black bg-opacity-50"></div>
-          <MainContent />
-          <Rounds />
-          <Details />
-          <TimeLine />
-          <Price />
+          <div id="City" className="fixed -z-50 bg-black bg-opacity-50"></div>
+          <div className='w-full h-full overflow-y-auto overflow-x-hidden'>
+            <MainContent />
+            <Rounds />
+            <Details />
+            <TimeLine />
+            <Price />
+          </div>
         </div>
       </div>
     </div>
