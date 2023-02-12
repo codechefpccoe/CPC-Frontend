@@ -17,4 +17,4 @@ root.render(
       </Provider>
     </CookiesProvider>
   </BrowserRouter>
-)
+);

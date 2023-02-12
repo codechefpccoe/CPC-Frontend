@@ -4,10 +4,13 @@ import useInput from "../../Hooks/use-input";
 import { MdAlternateEmail } from "react-icons/md";
 import { forgetPasswordWithEmail } from "../../Config/Firebase";
 import { NavLink, useNavigate } from "react-router-dom";
+import { loaderAction } from "../../Store/loader-slice";
+import { useDispatch } from "react-redux";
 import { message } from "antd";
 
 export const ForgetPassword = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,
@@ -22,9 +25,11 @@ export const ForgetPassword = () => {
   const recoverPassword = async () => {
     const response = await forgetPasswordWithEmail(enteredEmail);
     if (response) {
+      dispatch(loaderAction.changeLoaderStateFalse());
       message.success("Email Sent Successfully");
       navigate("/login");
     } else {
+      dispatch(loaderAction.changeLoaderStateFalse());
       message.error("Email not send");
     }
   };
@@ -97,7 +102,10 @@ export const ForgetPassword = () => {
                     : "bg-gray-800"
                 }`}
                 disabled={!enteredEmailIsValid}
-                onClick={recoverPassword}
+                onClick={() => {
+                  recoverPassword();
+                  dispatch(loaderAction.changeLoaderStateTrue());
+                }}
               >
                 Reset Password
               </button>

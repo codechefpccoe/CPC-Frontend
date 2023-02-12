@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import Navbar from "../../Components/Navbar";
 import { message } from "antd";
 import { Empty } from "antd";
-import { loaderAction } from "../../Store/loader-slice";
 
 export const Dashboard = () => {
   const { id } = useParams();
@@ -20,14 +19,10 @@ export const Dashboard = () => {
   const reduxData = useSelector((state) => state.login);
 
   useEffect(() => {
-    dispatch(
-      loaderAction.changeLoaderState({ loader: "Getting the user Data!!!" })
-    );
     db.collection("user")
       .where("username", "==", id)
       .get()
       .then((data) => {
-        dispatch(loaderAction.changeLoaderState({ loader: false }));
         if (data.empty) {
           setuserData("empty");
         }

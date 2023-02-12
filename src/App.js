@@ -26,9 +26,6 @@ import { loaderAction } from "./Store/loader-slice";
 import { TheBlueBIT } from "./Pages/TheBlueBIT";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import { EventDetails } from "./Pages/Admin/EventDetails";
-import { Feedback } from "./Pages/Feedback";
-import { Register } from "./Pages/Register";
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -69,8 +66,6 @@ const App = () => {
         <Route path="/enliven" element={<Enliven />} />
         <Route path="/the-blue-bit" element={<TheBlueBIT />} />
         <Route exact path="/edit/:id" element={<EventDetails />} />
-        <Route exact path="/feedback/:id" element={<Feedback />} />
-        <Route exact path="/register/:id" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

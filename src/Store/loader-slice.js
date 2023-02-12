@@ -6,8 +6,11 @@ const loaderSlice = createSlice({
     loader: false,
   },
   reducers: {
-    changeLoaderState(state, action) {
-      state.loader = action.payload.loader;
+    changeLoaderStateTrue(state, action) {
+      state.loader = true;
+    },
+    changeLoaderStateFalse(state, action) {
+      state.loader = false;
     },
   },
 });
