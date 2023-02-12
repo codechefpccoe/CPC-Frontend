@@ -77,8 +77,11 @@ export const Login = () => {
         .get()
         .then((snap) => {
           if (!snap.exists) {
-            dispatch(loaderAction.changeLoaderStateFalse());
             setShowPopUp(true);
+            console.log(response);
+            setemail(response.email);
+            setname(response.displayName);
+            dispatch(loaderAction.changeLoaderStateFalse());
           } else {
             db.collection("user")
               .doc(response.email)
@@ -117,10 +120,10 @@ export const Login = () => {
             .get()
             .then((snap) => {
               if (!snap.exists) {
-                dispatch(loaderAction.changeLoaderStateFalse());
                 setShowPopUp(true);
                 setemail(user.email);
                 setname(user.displayName);
+                dispatch(loaderAction.changeLoaderStateFalse());
               } else {
                 db.collection("user")
                   .doc(user.email)
@@ -155,7 +158,6 @@ export const Login = () => {
           name: name,
         })
         .then(() => {
-          dispatch(loaderAction.changeLoaderStateFalse());
           setShowPopUp(false);
           dispatch(
             loginAction.addLogin({
@@ -165,6 +167,7 @@ export const Login = () => {
               coins: 10,
             })
           );
+          dispatch(loaderAction.changeLoaderStateFalse());
           navigate("/user/" + enteredUsername);
         })
         .catch((error) => {
@@ -196,7 +199,7 @@ export const Login = () => {
                   : "[ bg-black/20 focus:bg-black/25 ]"
               }
               [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-4 ] `}
-              placeholder="Only alphanumerical and following characters '_' are allowed"
+              placeholder="alphanumerical and '_' are allowed"
             />
             <button
               onClick={() => {
@@ -208,7 +211,6 @@ export const Login = () => {
                   ? "bg-black cursor-pointer hover:-translate-y-1 hover:bg-white hover:border-black hover:text-black"
                   : "bg-gray-800"
               }`}
-              disabled={!enteredUsernameIsValid}
             >
               SET
             </button>
