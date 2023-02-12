@@ -1,6 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Roll, Bounce } from "react-reveal";
+import { Process } from "./Process";
 
 export const MainContent = () => {
   const [ani2, sani2] = useState(false);
@@ -21,10 +22,14 @@ export const MainContent = () => {
 
   return (
     <div className="h-full flex justify-between">
-      <div className="w-3/6 mt-16 ml-10 flex flex-col gap-7">
+      <div className="w-3/6 mt-16 ml-24 flex flex-col gap-7">
         <Roll right>
           <div className="text-5xl font-iceberg">
-            The <span className="text-sky-600">Blue</span> BIT
+            The{" "}
+            <span className="text-sky-600 bg-white px-5 border rounded-lg">
+              Blue
+            </span>{" "}
+            BIT
           </div>
         </Roll>
 
@@ -40,12 +45,15 @@ export const MainContent = () => {
           </div>
         </Bounce>
         <Bounce bottom when={ani4}>
-          <div className="bg-sky-600 px-10 py-3 w-fit cursor-pointer shadow-2xl shadow-slate-600">
-            Register For FREE
+          <div className="flex gap-10">
+            <div className="rounded-lg bg-sky-600 px-10 py-3 w-fit cursor-pointer shadow-2xl shadow-slate-600">
+              Register For FREE
+            </div>
+            <Process />
           </div>
         </Bounce>
       </div>
-      
+
       {/* <img className="" style={{ width: "40vw" }} src={image}></img> */}
     </div>
   );

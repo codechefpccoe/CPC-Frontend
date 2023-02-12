@@ -13,8 +13,8 @@ export const Details = () => {
             src={image}
           ></img>
         </div>
-        <div className="flex items-center h-90vh">
-          <div className="text-2xl flex gap-5">
+        <div className="flex items-center">
+          <div className="text-2xl flex gap-5 p-5  bg-white-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 border border-gray-600">
             <div className="text-sky-400">
               <li>Registration Fee:</li>
               <li>Registration Link:</li>
