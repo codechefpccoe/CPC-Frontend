@@ -13,6 +13,7 @@ import { Loader } from "./Components/Loader";
 import Enliven from "./Pages/Enliven";
 import LoginSignUp from "./Pages/LoginSignUp";
 import { loaderAction } from "./Store/loader-slice";
+import { TheBlueBIT } from "./Pages/TheBlueBIT";
 
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/user/:id" element={<Dashboard />} />
         <Route path="/enliven" element={<Enliven />} />
+        <Route path="/the-blue-bit" element={<TheBlueBIT />} />
       </Routes>
       <Loader />
     </>
