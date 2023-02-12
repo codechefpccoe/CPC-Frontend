@@ -27,18 +27,25 @@ export const Event = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col gap-10 relative">
+    <div className="h-screen dark:bg-black">
       <Navbar />
-      <div className="pt-5 text-center">
-        <h1 className="font-cairo font-bold">Upcoming Event</h1>
-        <div className="flex justify-center">
+      <div className="flex flex-col text-center">
+        {/* //? Upcoming Events */}
+        <div className="flex justify-center py-4 back_image">
           <UpcomingEvent EventData={EventData} />
         </div>
-        <h1 className="mt-2 font-cairo font-bold">Past Event</h1>
-        <div className="">
-          <PastEvent EventData={EventData} detailsHideChnageHandler={detailsHideChnageHandler} />
+        {/* //? Past Events */}
+        <div className="p-4 space-y-4">
+          <h1 className="font-cairo font-bold dark:text-white">Past Events</h1>
+          <div className="">
+            <PastEvent
+              EventData={EventData}
+              detailsHideChnageHandler={detailsHideChnageHandler}
+            />
+          </div>
         </div>
       </div>
+      {/* //? Popup of Event Details */}
       <div
         className={`absolute bottom-0 right-0 w-[30%] bg-white h-[86%] shadow-2xl drop-shadow-lg ${detailsHide}`}
       >

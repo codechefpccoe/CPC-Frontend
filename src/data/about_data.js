@@ -4,6 +4,7 @@ import Kalpesh from "../Images/Core Team/Kalpesh_Somwanshi.webp";
 import Hrutvik from "../Images/Developer Team/Hrutvik.webp";
 import Vyankatesh from "../Images/Developer Team/Vyankatesh.webp";
 import Deokumar from "../Images/Developer Team/Deokumar.webp";
+import Tejas from "../Images/Developer Team/Tejas.jpeg"
 
 
 
@@ -13,7 +14,7 @@ const Developer_Team = [
     "Name": "Ajinkya Patil",
     "Role": "Developer",
     "email": "ajinkyap331@gmail.com",
-    "Instagram": "",
+    "Instagram": "https://www.instagram.com/yr_shri/",
     "Website": "https://ajinkyapatil.web.app/",
     "LinkedIn": "https://www.linkedin.com/in/ajinkya-patil-144709208/",
     "GitHub": "https://github.com/Ajinkyap331"
@@ -56,6 +57,16 @@ const Developer_Team = [
     "Website": "https://kalpeshsomwanshi.netlify.app/",
     "LinkedIn": "https://linkedin.com/in/kalpesh-somwanshi-b24a1a217",
     "GitHub": "https://github.com/Kalpesh910"
+  },
+  {
+    "image": Tejas,
+    "Name": "Tejas Vaij",
+    "Role": "Developer",
+    "email": "techmanejas@gmail.com",
+    "Instagram": "https://www.instagram.com/tejas_vaij23/",
+    "Website": "https://tejasvaijportfolio.netlify.app/",
+    "LinkedIn": "https://in.linkedin.com/in/tejas-vaij-39a728186",
+    "GitHub": "https://github.com/TechManTejas"
   },
   {
     "image": Kanishka,
