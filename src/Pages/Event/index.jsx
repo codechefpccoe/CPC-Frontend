@@ -27,7 +27,7 @@ export const Event = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen dark:bg-black">
       <Navbar />
       <div className="flex flex-col text-center">
         {/* //? Upcoming Events */}
@@ -36,7 +36,7 @@ export const Event = () => {
         </div>
         {/* //? Past Events */}
         <div className="p-4 space-y-4">
-          <h1 className="font-cairo font-bold">Past Events</h1>
+          <h1 className="font-cairo font-bold dark:text-white">Past Events</h1>
           <div className="">
             <PastEvent
               EventData={EventData}
