@@ -1,18 +1,25 @@
-import React from "react";
+import useCountdown from "../../Hooks/useCountDown";
+import DateTimeDisplay from "../../Components/DateTimeDisplay";
 
 export default function UpComingCard(props) {
+  const [days, hours, minutes, seconds] = useCountdown(props.Date);
+  const ShowCounter = ({ days, hours, minutes, seconds }) => {
+    return (
+      <div className="flex space-x-3 items-center ">
+          <DateTimeDisplay value={days} type={'Days'}/>
+          <DateTimeDisplay value={hours} type={'Hours'}/>
+          <DateTimeDisplay value={minutes} type={'Mins'}/>
+          <DateTimeDisplay value={seconds} type={'Secs'}/>
+      </div>
+    );
+  };
+
   return (
-    <div className="flex justify-center">
-      <div className="p-3 mb-3 w-4/5 flex justify-between items-center h-full text-center bg-gradient-to-r from-white via-gray-100 to-white ... hover:shadow-lg transform hover:scale-x-110 hover:scale-y-110 ease-in-out duration-300">
-        <div className="w-1/3  font-cairo text-lg h-full font-bold">
-          {props.Name}
-        </div>
-        <div className="w-1/3 font-cairo text-lg h-full">{props.Date}</div>
-        <div className="w-1/3 font-cairo text-lg h-full ">
-          <button className="bg-gradient-to-r from-[#00fff2] to-[#00B2FF] ... h-7 w-24 rounded-full drop-shadow-lg">
-            Details
-          </button>
-        </div>
+    <div className="flex flex-col justify-center bg-white w-[22rem] p-6 space-y-4 rounded-lg">
+      <h1 className="font-cairo font-bold">Upcoming Event</h1>
+      <h2 className="font-cairo text-lg font-bold">{props.Name}</h2>
+      <div className="flex justify-evenly items-center">
+        <ShowCounter days={days} hours={hours} minutes={minutes} seconds={seconds} />
       </div>
     </div>
   );
