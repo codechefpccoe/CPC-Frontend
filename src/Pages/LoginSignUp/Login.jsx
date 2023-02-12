@@ -1,4 +1,4 @@
-import Logo from "../../Images/logo.png";
+import Logo from "../../Images/logo.webp";
 import { FcGoogle } from "react-icons/fc";
 import useInput from "../../Hooks/use-input";
 import { NavLink } from "react-router-dom";
@@ -8,21 +8,23 @@ import { googleLoginUsingPopup } from "../../Config/Firebase";
 import { db } from "../../Config/Firebase";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUserWithUsernamePassword } from "../../Config/Firebase";
+import {
+  loginUserWithUsernamePassword,
+  emailVerificationEmailStatus,
+} from "../../Config/Firebase";
 import { useDispatch } from "react-redux";
 import { IfUsernameAlreadyPresent } from "../../Config/DBFunc";
 import { loginAction } from "../../Store/login-slice";
 import { message } from "antd";
-
 
 export const Login = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setemail] = useState();
-  let regex = /^[*|\":<>[\]{}`\\()';@&$%#!]+$/;
+  let regex = /[-’/`~!#*$@%+=.,^&(){}[\]|;:”<>?\\]/g;
   const [name, setname] = useState();
   // func -> axios -> backend -> axios -> func -> redux -> cookie -> redirect
 
@@ -35,8 +37,10 @@ export const Login = () => {
     hasError: enteredEmailHasError,
     valueChangeHandler: enteredEmailChangeHandler,
     inputBlurHandler: enteredEmailBlurHandler,
-  } = useInput((value) => value.trim().length > 6 && value.includes("@") &&
-  value.includes(".") );
+  } = useInput(
+    (value) =>
+      value.trim().length > 6 && value.includes("@") && value.includes(".")
+  );
 
   const {
     value: enteredPassword,
@@ -44,7 +48,7 @@ export const Login = () => {
     hasError: enteredPasswordHasError,
     valueChangeHandler: enteredPasswordChangeHandler,
     inputBlurHandler: enteredPasswordBlurHandler,
-  } = useInput((value) => value.trim().length > 1);
+  } = useInput((value) => value.trim().length > 6);
 
   const {
     value: enteredUsername,
@@ -54,11 +58,11 @@ export const Login = () => {
     inputBlurHandler: enteredUsernameBlurHandler,
   } = useInput(
     (value) =>
-    value.trim().length <= 15 &&
+      value.trim().length <= 15 &&
       value.trim().length >= 3 &&
       !value.includes(" ") &&
       !value.includes(".") &&
-      regex.test(value)
+      !regex.test(value)
   );
 
   let formIsValid = false;
@@ -81,7 +85,7 @@ export const Login = () => {
               .doc(response.email)
               .get()
               .then((resp) => {
-                message.success("Login Successfull");
+                message.success("Login Successful");
                 navigate("/user/" + resp.data().username);
               });
           }
@@ -90,30 +94,43 @@ export const Login = () => {
   };
 
   const userLoginwithEmailPassword = async () => {
-    await loginUserWithUsernamePassword(enteredEmail, enteredPassword)
-      .then((user) => {
-        db.collection("user")
-          .doc(user.email)
-          .get()
-          .then((snap) => {
-            if (!snap.exists) {
-              setShowPopUp(true);
-              setemail(user.email);
-              setname(user.displayName);
-            } else {
-              db.collection("user")
-                .doc(user.email)
-                .get()
-                .then((resp) => {
-                  message.success("Login Successfull");
-                  navigate("/user/" + resp.data().username);
-                });
-            }
-          });
-      })
-      .catch((err) => {
-        message.error(err.message);
-      });
+    let user = await loginUserWithUsernamePassword(
+      enteredEmail,
+      enteredPassword
+    );
+
+    emailVerificationEmailStatus().then((e) => {
+      console.log(e);
+      if (e.emailVerified === false) {
+        console.log("I am here");
+        message.error("Email not verified, Please check Email");
+        user = {};
+        return;
+      } else {
+        try {
+          db.collection("user")
+            .doc(user.email)
+            .get()
+            .then((snap) => {
+              if (!snap.exists) {
+                setShowPopUp(true);
+                setemail(user.email);
+                setname(user.displayName);
+              } else {
+                db.collection("user")
+                  .doc(user.email)
+                  .get()
+                  .then((resp) => {
+                    message.success("Login Successfull");
+                    navigate("/user/" + resp.data().username);
+                  });
+              }
+            });
+        } catch (err) {
+          message.error(err.message);
+        }
+      }
+    });
   };
 
   const setInitailValue = async () => {
@@ -147,7 +164,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center p-4 form-wrapper ">
+    <div className="absolute z-20 inset-0 flex items-center justify-center p-4 form-wrapper ">
       <Popup open={showPopUp} closeOnDocumentClick>
         <div className="p-4 ">
           <p className="text-center font-bold p-4 font-['sans-serif']">
@@ -183,10 +200,10 @@ export const Login = () => {
           </div>
         </div>
       </Popup>
-      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-50 backdrop-filter backdrop-blur-md">
+      <div className=" md:w-[400px] flex flex-col rounded-2xl bg-white bg-opacity-90 backdrop-filter backdrop-blur-md">
         <div className="text-center mt-4 p-2 ">
           <div className="flex items-center justify-center ">
-            <img src={Logo} alt="Logo" className="h-20 w-20" />
+            <img src={Logo} alt="Logo" className="h-[80px] w-auto" />
           </div>
           <h2 className="font-bold text-3xl tracking-tight ">Login to CPC</h2>
         </div>
@@ -194,21 +211,22 @@ export const Login = () => {
         <div className="w-full max-w-xl p-2 ">
           <div className="flex flex-wrap mx-3 mb-4">
             <div className="w-full md:w-full px-3 mb-3">
-              <label className="form-label relative block mb-4 text-black/50 focus-within:text-[#333]">
-                <BiUserCircle
-                  className="label-icon 
+              <div className="flex flex-col">
+                <label className="form-label relative block mb-1 text-black/50 focus-within:text-[#333]">
+                  <BiUserCircle
+                    className="label-icon 
                   transition pointer-events-none
                   [ w-6 h-6 ] 
                   [ absolute top-1/2 left-3 ] 
                   [ transform -translate-y-1/2 ]"
-                />
+                  />
 
-                <input
-                  id="email"
-                  onChange={enteredEmailChangeHandler}
-                  onBlur={enteredEmailBlurHandler}
-                  value={enteredEmail}
-                  className={`form-input 
+                  <input
+                    id="email"
+                    onChange={enteredEmailChangeHandler}
+                    onBlur={enteredEmailBlurHandler}
+                    value={enteredEmail}
+                    className={`form-input 
                     block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
                     [ transition-colors duration-200 ] 
                     [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
@@ -218,26 +236,33 @@ export const Login = () => {
                         : "[ bg-black/20 focus:bg-black/25 ]"
                     }
                     [ text-[#333] focus:text-black ]`}
-                  type="text"
-                  placeholder="Email"
-                ></input>
-              </label>
+                    type="text"
+                    placeholder="Email"
+                  ></input>
+                </label>
+                {enteredEmailHasError && (
+                  <p className="text-red-500 text-xs italic">
+                    *Please Enter a valid Email.
+                  </p>
+                )}
+              </div>
             </div>
             <div className="w-full md:w-full px-3 mb-3">
-              <label className="form-label relative block mb-4 text-black/50 focus-within:text-[#333]">
-                <RiLockPasswordLine
-                  className="label-icon 
+              <div className="flex flex-col">
+                <label className="form-label relative block mb-1 text-black/50 focus-within:text-[#333]">
+                  <RiLockPasswordLine
+                    className="label-icon 
                   transition pointer-events-none
                   [ w-6 h-6 ] 
                   [ absolute top-1/2 left-3 ] 
                   [ transform -translate-y-1/2 ]"
-                />
-                <input
-                  id="password"
-                  onChange={enteredPasswordChangeHandler}
-                  onBlur={enteredPasswordBlurHandler}
-                  value={enteredPassword}
-                  className={`form-input 
+                  />
+                  <input
+                    id="password"
+                    onChange={enteredPasswordChangeHandler}
+                    onBlur={enteredPasswordBlurHandler}
+                    value={enteredPassword}
+                    className={`form-input 
                     block w-full rounded-lg leading-none focus:outline-none placeholder-black/50 
                     [ transition-colors duration-200 ] 
                     [ py-3 pr-3 md:py-4 md:pr-4 lg:py-4 lg:pr-4 pl-12 ] 
@@ -247,21 +272,27 @@ export const Login = () => {
                         : "[ bg-black/20 focus:bg-black/25 ]"
                     }
                     [ text-[#333] focus:text-black ]`}
-                  type="password"
-                  placeholder="Password"
-                />
-              </label>
+                    type="password"
+                    placeholder="Password"
+                  />
+                </label>
+                {enteredPasswordHasError && (
+                  <p className="text-red-500 text-xs italic">
+                    *Please Enter a valid Password.
+                  </p>
+                )}
+              </div>
             </div>
 
             <div className="w-full flex items-center justify-between px-3 mb-3 ">
-              <label for="remember" className="flex items-center w-1/2">
-                <input type="checkbox" className="mr-1 bg-white shadow" />
-                <span className="text-sm text-gray-700 ">Remember Me</span>
-              </label>
+              <label className="flex items-center w-1/2"></label>
               <div className="w-1/2 text-right">
-                <p className="text-blue-500 font-bold text-sm tracking-tight hover:text-blue-300 cursor-pointer">
+                <NavLink
+                  className="text-blue-500 font-bold text-sm tracking-tight hover:text-blue-300 cursor-pointer"
+                  to="/forgetpassword"
+                >
                   Forget your password?
-                </p>
+                </NavLink>
               </div>
             </div>
             <div className="w-full md:w-full px-3 mb-2 flex flex-row gap-1">
@@ -284,9 +315,9 @@ export const Login = () => {
               </button>
             </div>
 
-            <div class="inline-flex items-center justify-center w-full">
-              <hr class="w-64 h-1 my-8 bg-gray-200 border-1 " />
-              <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-gray-200 rounded-2xl left-1/2  ">
+            <div className="inline-flex items-center justify-center w-full">
+              <hr className="w-64 h-1 my-8 bg-gray-200 border-1 " />
+              <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-gray-200 rounded-2xl left-1/2  ">
                 or
               </span>
             </div>

@@ -39,6 +39,34 @@ export const createUserWithUsernamePassword = async (email, password) => {
     });
 };
 
+export const sendVerificationEmail = async () => {
+  const user = firebase.auth().currentUser;
+  console.log(user);
+  return await user
+    .sendEmailVerification()
+    .then(() => {
+      return true;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export const emailVerificationEmailStatus = async () => {
+  const e = firebase.auth().currentUser;
+  return e;
+};
+
+export const forgetPasswordWithEmail = async (email) => {
+  return firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      return true;
+    })
+    .catch((e) => console.log(e));
+};
+
 export const loginUserWithUsernamePassword = async (email, password) => {
   return firebase
     .auth()
@@ -50,12 +78,7 @@ export const loginUserWithUsernamePassword = async (email, password) => {
 };
 
 export const LogoutFromAccount = async () => {
-  await firebase
-    .auth()
-    .signOut()
-    .then((d) => {
-      console.log(d);
-    });
+  await firebase.auth().signOut();
 };
 
 export const db = firebase.firestore();

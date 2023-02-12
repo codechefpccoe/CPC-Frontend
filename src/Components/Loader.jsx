@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 export const Loader = () => {
   const loader = useSelector((state) => state.loader.loader);
-  console.log(loader);
+
   return (
     <>
       {loader && (

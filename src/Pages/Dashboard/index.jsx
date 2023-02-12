@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Navbar from "../../Components/Navbar";
 import { message } from "antd";
+import { Empty } from "antd";
+import { loaderAction } from "../../Store/loader-slice";
 
 export const Dashboard = () => {
   const { id } = useParams();
@@ -18,10 +20,17 @@ export const Dashboard = () => {
   const reduxData = useSelector((state) => state.login);
 
   useEffect(() => {
+    dispatch(
+      loaderAction.changeLoaderState({ loader: "Getting the user Data!!!" })
+    );
     db.collection("user")
       .where("username", "==", id)
       .get()
       .then((data) => {
+        dispatch(loaderAction.changeLoaderState({ loader: false }));
+        if (data.empty) {
+          setuserData("empty");
+        }
         data.forEach((e) => {
           setuserData(e.data());
         });
@@ -30,8 +39,14 @@ export const Dashboard = () => {
 
   return (
     <div>
+      {console.log(userData)}
       <Navbar />
-      {userData && (
+      {userData === "empty" && (
+        <div className="flex flex-col h-screen w-screen absolute top-0 justify-center items-center">
+          <Empty />
+        </div>
+      )}
+      {userData !== "empty" && userData !== false && (
         <>
           <div>
             <div>Coins : {userData.coins}</div>
@@ -42,14 +57,7 @@ export const Dashboard = () => {
               <button
                 onClick={async () =>
                   await LogoutFromAccount().then(() => {
-                    dispatch(
-                      loginAction.addLogin({
-                        name: -1,
-                        email: -1,
-                        username: -1,
-                        coins: -1,
-                      })
-                    );
+                    dispatch(loginAction.logout());
                     message.success("Logged out successfully");
                     navigate("/");
                   })

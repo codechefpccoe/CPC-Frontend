@@ -1,5 +1,6 @@
 import React from "react";
 import LoginVdo from "../../Assets/1.mp4";
+import { ForgetPassword } from "./ForgetPassword";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";
 
@@ -14,8 +15,10 @@ const LoginSignUp = () => {
         muted
         className="w-full h-full object-fill "
       ></video>
+      <div className="z-10 w-screen h-screen bg-black absolute top-0 opacity-70"></div>
       {window.location.pathname === "/login" && <Login />}
       {window.location.pathname === "/signup" && <SignUp />}
+      {window.location.pathname === "/forgetpassword" && <ForgetPassword />}
     </div>
   );
 };
