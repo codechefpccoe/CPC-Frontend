@@ -1,9 +1,12 @@
 import React from "react";
+import * as THREE from "three";
 import image from "./Assests/code.png";
 
+
 export const MainContent = () => {
+
   return (
-    <div className="flex justify-between px-10">
+    <div className="h-full flex justify-between px-10">
       <div className="w-3/6 mt-16 ml-10 flex flex-col gap-7">
         <div className="text-5xl font-iceberg">
           The <span className="text-sky-600">Blue</span> BIT
@@ -19,7 +22,7 @@ export const MainContent = () => {
           Register
         </div>
       </div>
-      <img className="" style={{ width: "40vw" }} src={image}></img>
+      {/* <img className="" style={{ width: "40vw" }} src={image}></img> */}
     </div>
   );
 };
