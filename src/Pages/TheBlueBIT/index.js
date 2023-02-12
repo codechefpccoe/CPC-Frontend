@@ -340,7 +340,7 @@ export const TheBlueBIT = () => {
 
   return (
     <div id="thebluebit" className="absolute">
-      <div className='relative text-white flex justify-center items-center w-screen h-screen' style={{ background: "#201f30" }} >
+      <div className='relative text-white flex justify-center items-center w-screen h-screen' style={{ background: "#24242B" }} >
         <div className="absolute left-0 w-3/12 h-full bg-sky-600 opacity-100"></div>
         <div className="z-50">
           <Cursor />
