@@ -8,6 +8,7 @@ import { Price } from './Price'
 import { TimeLine } from "./TimeLine"
 import Cursor from "./Cursor/Cursor.jsx"
 import { Rounds } from './Rounds'
+import {Details} from './Details'
 import "./thebluebit.css"
 
 export const TheBlueBIT = () => {
@@ -349,6 +350,7 @@ export const TheBlueBIT = () => {
           <Navbar />
           <MainContent />
           <Rounds />
+          <Details />
           <TimeLine />
           <Price />
         </div>
