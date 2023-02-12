@@ -22,7 +22,12 @@ body {
     background-color: aqua;
   }
 } */
-
+.back_image{
+  background-image: url("./Images/logoContainer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 * {
   margin: 0;
   padding: 0;
@@ -41,3 +46,5 @@ body {
   /* position: relative; */
   transition: all 0.5s linear;
 }
+
+

@@ -15,7 +15,7 @@ export const UpcomingEvent = ({ EventData }) => {
 
   return (
     <>
-      <div className="mt-5 w-full">
+      <div className="">
         {EventData.map((val, ind) => {
           if (val.date > getCurrentDate())
             return <UpComingCard key={ind} Name={val.name} Date={val.date} />;
