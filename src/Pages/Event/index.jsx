@@ -47,7 +47,7 @@ export const Event = () => {
       </div>
       {/* //? Popup of Event Details */}
       <div
-        className={`absolute bottom-0 right-0 w-[30%] bg-white h-[86%] shadow-2xl drop-shadow-lg ${detailsHide}`}
+        className={`z-[100] absolute bottom-0 right-0 w-[30%] bg-white h-[86%] dark:bg-secondary dark:text-white shadow-2xl drop-shadow-lg ${detailsHide} max-lg:w-[40%] max-md:w-[50%] max-sm:w-[100%] max-sm:h-[100%]`}
       >
         <EventDetails detailsHideChnageHandler={detailsHideChnageHandler} />
       </div>
