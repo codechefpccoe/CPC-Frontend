@@ -5,7 +5,7 @@ export const FAQs = () => {
 
   return (
     <>
-      <div className="m-16 rounded-xl bg-white shadow-2xl">
+      <div className="m-[0_0.7rem_5rem] lg:m-20 rounded-xl bg-white shadow-2xl">
         <Collapse defaultActiveKey={["1"]}>
           <Panel
             style={{ fontSize: "20px" }}

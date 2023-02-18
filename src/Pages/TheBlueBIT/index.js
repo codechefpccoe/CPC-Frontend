@@ -1,22 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { useEffect } from "react";
-import * as THREE from 'three';
-import { Navbar } from './Navbar'
-import { MainContent } from './MainContent'
-import { Price } from './Price'
-import { TimeLine } from "./TimeLine"
-import Cursor from "./Cursor/Cursor.jsx"
-import { Rounds } from './Rounds'
-import { Details } from './Details'
+import * as THREE from "three";
+import { Navbar } from "./Navbar";
+import { MainContent } from "./MainContent";
+import { Price } from "./Price";
+import { TimeLine } from "./TimeLine";
+import Cursor from "./Cursor/Cursor.jsx";
+import { Rounds } from "./Rounds";
+import { Details } from "./Details";
 import { FAQs } from "./FAQ";
-import "./thebluebit.css"
+import "./thebluebit.css";
 import image from "./Assests/Frame 1.png";
 
 export const TheBlueBIT = () => {
-
-  const [iwidth , siw] = useState(window.innerWidth)
+  const [iwidth, siw] = useState(window.innerWidth);
   window.onresize = function (event) {
-    siw(event.target.innerWidth)
+    siw(event.target.innerWidth);
   };
 
   useEffect(() => {
@@ -24,7 +23,10 @@ export const TheBlueBIT = () => {
       // Three JS Template
       //----------------------------------------------------------------- BASIC parameters
       var renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth * (10 / 12), window.innerHeight * (5 / 6));
+      renderer.setSize(
+        window.innerWidth * (10 / 12),
+        window.innerHeight * (5 / 6)
+      );
 
       if (window.innerWidth > 800) {
         renderer.shadowMap.enabled = true;
@@ -34,7 +36,7 @@ export const TheBlueBIT = () => {
       }
       //-----------------------------------------------------------------
 
-      var SPACE = document.getElementById("City")
+      var SPACE = document.getElementById("City");
       SPACE.appendChild(renderer.domElement);
 
       window.addEventListener("resize", onWindowResize, false);
@@ -64,7 +66,7 @@ export const TheBlueBIT = () => {
       // var setcolor = 0xF02050;
       // var setcolor = 0xF2F111;
       // var setcolor = 0xFF6347;
-      var setcolor = 0x0096FF;
+      var setcolor = 0x0096ff;
       // var setcolor = 0x7600bc
       // var setcolor = 0x00FFFF;
       // var setcolor = 0x0006b1;
@@ -84,7 +86,14 @@ export const TheBlueBIT = () => {
       function init() {
         var segments = 2;
         for (var i = 1; i < 30; i++) {
-          var geometry = new THREE.BoxGeometry(1, 1, 1, segments, segments, segments);
+          var geometry = new THREE.BoxGeometry(
+            1,
+            1,
+            1,
+            segments,
+            segments,
+            segments
+          );
           var material = new THREE.MeshStandardMaterial({
             color: "#000000",
             wireframe: false,
@@ -116,7 +125,7 @@ export const TheBlueBIT = () => {
       }
 
       //----------------------------------------------------------------- MOUSE function
-      var mouse = new THREE.Vector2()
+      var mouse = new THREE.Vector2();
       if (window.innerWidth >= 1024) {
         function onMouseMove(event) {
           event.preventDefault();
@@ -174,47 +183,33 @@ export const TheBlueBIT = () => {
 
   return (
     <div id="thebluebit">
-      {
-        (iwidth >= 1024) &&
-        <>
-          <div className='relative text-white flex justify-center items-center w-screen h-screen' style={{ background: "#24242B" }} >
-            <div className="absolute left-0 w-3/12 h-full bg-sky-600 opacity-100"></div>
-            <div className="z-50">
-              <Cursor />
+      <div
+        className="relative text-white flex justify-center items-center w-screen h-screen"
+        style={{ background: "#24242B" }}
+      >
+        <div className="absolute left-0 w-3/12 h-full bg-sky-600 opacity-100"></div>
+        <div className="z-50">
+          <Cursor />
+        </div>
+        <div
+          id="main"
+          className="w-[95%] md:w-10/12 h-[90%] md:h-5/6 rounded-2xl drop-shadow-2xl overflow-hidden"
+        >
+          <div id="City" className="fixed -z-50 bg-black bg-opacity-50"></div>
+          <div className=" bg-black bg-opacity-60 w-full h-full ">
+            <Navbar />
+            <div className="overflow-auto h-full">
+              <MainContent />
+              <Rounds />
+              <Details />
+              <TimeLine />
+              <Price />
+              <FAQs />
+              <div style={{ height: "10vh" }}></div>
             </div>
-            <div id="main" className="w-10/12 h-5/6 rounded-2xl drop-shadow-2xl overflow-hidden">
-              <div id="City" className="fixed -z-50 bg-black bg-opacity-50"></div>
-              <div className=' bg-black bg-opacity-60 w-full h-full '>
-                <Navbar />
-                <div className="overflow-auto h-full">
-                  <MainContent />
-                  <Rounds />
-                  <Details />
-                  <TimeLine />
-                  <Price />
-                  <FAQs />
-                  <div style={{ height: "10vh" }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      }{
-        (iwidth < 1024) &&
-        <div className='flex flex-col w-screen h-screen justify-center items-center gap-5' style={{ background: "#201f24" }} >
-          <div className="flex items-center">
-            <img
-              className="rounded-xl p-5 bg-white bg-opacity-10 shadow-xl backdrop-blur-lg"
-              style={{ width: "70vw", height: "70vw" }}
-              src={image} alt = "logo"
-            ></img>
-          </div>
-          <div className=" text-white flex justify-center items-center font-iceberg text-2xl font-black text-center">
-            Why settle for a tiny phone screen when you can bask in the glorious pixels of your desktop? Open this Website in Desktop!
           </div>
         </div>
-      }
-
+      </div>
     </div>
-  )
-}
+  );
+};

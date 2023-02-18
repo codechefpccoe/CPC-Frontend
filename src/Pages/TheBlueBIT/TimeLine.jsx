@@ -17,7 +17,7 @@ import Fade from "react-reveal/Fade";
 
 export const TimeLine = () => {
   return (
-    <div>
+    <div className="px-4 md:px-0">
       <div className=" flex justify-center items-center" id="timeline">
         <div className=" border border-gray-100 w-[600px] backdrop-blur-lg rounded-lg">
           <div className="mb-6 mt-24 text-3xl text-center">TIMELINE</div>
