@@ -11,6 +11,7 @@ import { Details } from "./Details";
 import { FAQs } from "./FAQ";
 import "./thebluebit.css";
 import image from "./Assests/Frame 1.png";
+import Sponsers from "./Sponsers";
 
 export const TheBlueBIT = () => {
   const [iwidth, siw] = useState(window.innerWidth);
@@ -204,6 +205,7 @@ export const TheBlueBIT = () => {
               <Details />
               <TimeLine />
               <Price />
+              <Sponsers />
               <FAQs />
               <div style={{ height: "10vh" }}></div>
             </div>
