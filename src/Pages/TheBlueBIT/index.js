@@ -19,13 +19,13 @@ export const TheBlueBIT = () => {
   };
 
   useEffect(() => {
-    if (window.innerWidth >= 1024) {
+    {
       // Three JS Template
       //----------------------------------------------------------------- BASIC parameters
       var renderer = new THREE.WebGLRenderer();
       renderer.setSize(
-        window.innerWidth * (10 / 12),
-        window.innerHeight * (5 / 6)
+        window.innerWidth ,
+        window.innerHeight
       );
 
       if (window.innerWidth > 800) {
@@ -162,10 +162,19 @@ export const TheBlueBIT = () => {
         // var time = Date.now() * 0.00005;
         requestAnimationFrame(animate);
 
-        city.rotation.y -= (mouse.x * 8 - camera.rotation.y) * uSpeed;
-        city.rotation.x -= (-(mouse.y * 2) - camera.rotation.x) * uSpeed;
-        if (city.rotation.x < -0.05) city.rotation.x = -0.05;
-        else if (city.rotation.x > 1) city.rotation.x = 1;
+        if(window.innerWidth >= 1024){
+          city.rotation.y -= (mouse.x * 8 - camera.rotation.y) * uSpeed;
+          city.rotation.x -= (-(mouse.y * 2) - camera.rotation.x) * uSpeed;
+          if (city.rotation.x < -0.05) city.rotation.x = -0.05;
+          else if (city.rotation.x > 1) city.rotation.x = 1;
+        }else{
+          city.rotation.y -= (0.6 * 8 - camera.rotation.y) * uSpeed;
+          city.rotation.x -= (-(0 * 2) - camera.rotation.x) * uSpeed;
+          if (city.rotation.x < -0.05) city.rotation.x = -0.05;
+          else if (city.rotation.x > 1) city.rotation.x = 1;
+        }
+        
+
         // var cityRotation = Math.sin(Date.now() / 5000) * 13;
         // for (let i = 0, l = town.children.length; i < l; i++) {
         //   var object = town.children[i];
