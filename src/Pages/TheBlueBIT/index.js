@@ -25,7 +25,7 @@ export const TheBlueBIT = () => {
       //----------------------------------------------------------------- BASIC parameters
       var renderer = new THREE.WebGLRenderer();
       renderer.setSize(
-        window.innerWidth ,
+        window.innerWidth,
         window.innerHeight
       );
 
@@ -163,18 +163,18 @@ export const TheBlueBIT = () => {
         // var time = Date.now() * 0.00005;
         requestAnimationFrame(animate);
 
-        if(window.innerWidth >= 1024){
+        if (window.innerWidth >= 1024) {
           city.rotation.y -= (mouse.x * 8 - camera.rotation.y) * uSpeed;
           city.rotation.x -= (-(mouse.y * 2) - camera.rotation.x) * uSpeed;
           if (city.rotation.x < -0.05) city.rotation.x = -0.05;
           else if (city.rotation.x > 1) city.rotation.x = 1;
-        }else{
+        } else {
           city.rotation.y -= (0.6 * 8 - camera.rotation.y) * uSpeed;
           city.rotation.x -= (-(0 * 2) - camera.rotation.x) * uSpeed;
           if (city.rotation.x < -0.05) city.rotation.x = -0.05;
           else if (city.rotation.x > 1) city.rotation.x = 1;
         }
-        
+
 
         // var cityRotation = Math.sin(Date.now() / 5000) * 13;
         // for (let i = 0, l = town.children.length; i < l; i++) {
@@ -198,9 +198,12 @@ export const TheBlueBIT = () => {
         style={{ background: "#24242B" }}
       >
         <div className="absolute left-0 w-3/12 h-full bg-sky-600 opacity-100"></div>
-        <div className="z-50">
-          <Cursor />
-        </div>
+        {
+          (window.innerWidth >= 1024) &&
+            <div className="z-50">
+              <Cursor />
+            </div>
+        }
         <div
           id="main"
           className="w-[95%] md:w-10/12 h-[90%] md:h-5/6 rounded-2xl drop-shadow-2xl overflow-hidden"
