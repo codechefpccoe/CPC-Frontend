@@ -21,13 +21,25 @@ export const MainContent = () => {
     }, 3000);
   }, []);
 
+  React.useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://apply.devfolio.co/v2/sdk.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="lg:py-[3rem] flex flex-col mx-4 md:mx-20 lg:flex-row-reverse lg:justify-center lg:items-center space-y-4">
       <div className="flex-1 h-5/6  flex items-center self-center mt-4 lg:self-auto lg:mt-0">
         <img
           className="p-12 rounded-xl  bg-white bg-opacity-10 shadow-xl backdrop-blur-lg h-[20rem] min-w-[20rem]"
           // style={{ width: "26vw", height: "25vw" }}
-          src={image} alt = "logo"
+          src={image}
+          alt="logo"
         ></img>
       </div>
       <div className="flex-[1.7] flex flex-col gap-7">
@@ -42,7 +54,9 @@ export const MainContent = () => {
         </Roll>
 
         <Roll left when={ani2}>
-          <div className="text-2xl text-center lg:text-left">#ThinkTwiceCodeOnce</div>
+          <div className="text-2xl text-center lg:text-left">
+            #ThinkTwiceCodeOnce
+          </div>
         </Roll>
         <Bounce left when={ani3}>
           <div className="text-slate-100 font-thin">
@@ -54,9 +68,12 @@ export const MainContent = () => {
         </Bounce>
         <Bounce bottom when={ani4}>
           <div className="flex gap-10">
-            <div className="rounded-lg bg-sky-600 px-3 py-3 w-[10rem] cursor-pointer shadow-2xl shadow-slate-600">
-              Register For FREE
-            </div>
+            <div
+              class="apply-button"
+              data-hackathon-slug="the-blue-bit-round-1"
+              data-button-theme="light"
+              style={{ height: "44px", width: "312px" }}
+            ></div>
             <Process />
           </div>
         </Bounce>
