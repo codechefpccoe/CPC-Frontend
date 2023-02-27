@@ -12,24 +12,24 @@ const Sponsers = () => {
       <Bounce bottom>
         {/* <div className="text-3xl text-center">SPONSERS</div> */}
         <div className="flex flex-col w-[80%] justify-center items-center gap-8">
-          <h1 className="text-transparent bg-clip-text font-bold bg-gradient-to-r text-3xl to-orange-500 from-orange-300 p-4">
-            GOLDEN SPONSERS
-          </h1>
-          <div>
-            <div className="flex flex-row gap-8">
-              <div className="backdrop-filter backdrop-blur-xl bg-opacity-30 w-64 h-auto border border-gray-600 p-4 rounded-md shadow-xl shadow-sky-600">
-                <img src={devfolio} className="w-full h-full" />
-              </div>
-              <div className="backdrop-filter backdrop-blur-xl bg-opacity-30 w-64 h-auto border border-gray-600 p-4 rounded-md shadow-xl shadow-sky-600">
-                <img src={polygon} className="w-full h-full" />
-              </div>
+          <div className="text-transparent bg-clip-text font-bold bg-gradient-to-r text-3xl to-orange-500 from-orange-300 p-4 flex max-lg:flex-col">
+            <h1 className="text-center">GOLDEN</h1>
+            <h1 className="text-center lg:px-4">SPONSERS</h1>
+          </div>
+          <div className="flex flex-row max-lg:flex-wrap max-lg:flex-col gap-8">
+            <div className="backdrop-filter backdrop-blur-xl bg-opacity-30 w-64 h-auto border border-gray-600 p-4 rounded-md shadow-xl shadow-sky-600">
+              <img src={devfolio} className="w-full h-full" />
+            </div>
+            <div className="backdrop-filter backdrop-blur-xl bg-opacity-30 w-64 h-auto border border-gray-600 p-4 rounded-md shadow-xl shadow-sky-600">
+              <img src={polygon} className="w-full h-full" />
             </div>
           </div>
-          <h1 className="text-transparent bg-clip-text font-bold bg-gradient-to-r text-3xl to-slate-300 from-slate-50 p-4">
-            SILVER SPONSERS
-          </h1>
+          <div className="text-transparent bg-clip-text font-bold bg-gradient-to-r text-3xl to-slate-300 from-slate-50 p-4 flex max-lg:flex-col">
+            <h1 className="text-center">SILVER</h1>
+            <h1 className="text-center lg:px-4">SPONSERS</h1>
+          </div>
           <div>
-            <div className="flex flex-row gap-8">
+            <div className="flex flex-row max-lg:flex-wrap max-lg:flex-col gap-8">
               <div className="backdrop-filter backdrop-blur-xl bg-opacity-30 w-64 h-auto border border-gray-600 p-4 rounded-md shadow-xl shadow-sky-600">
                 <img src={solana} className="w-full h-full" />
               </div>
