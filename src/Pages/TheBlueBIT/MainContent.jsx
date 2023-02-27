@@ -21,7 +21,7 @@ export const MainContent = () => {
     }, 3000);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://apply.devfolio.co/v2/sdk.js";
     script.async = true;
@@ -33,10 +33,10 @@ export const MainContent = () => {
   }, []);
 
   return (
-    <div className="lg:py-[3rem] flex flex-col mx-4 md:mx-20 lg:flex-row-reverse lg:justify-center lg:items-center space-y-4">
-      <div className="flex-1 h-5/6  flex items-center self-center mt-4 lg:self-auto lg:mt-0">
+    <div className="xl:py-[3rem] flex flex-col mx-4 md:mx-20 xl:flex-row-reverse xl:justify-center xl:items-center space-y-4">
+      <div className="flex-1 h-5/6  flex items-center self-center mt-4 xl:self-auto xl:mt-0">
         <img
-          className="p-12 rounded-xl  bg-white bg-opacity-10 shadow-xl backdrop-blur-lg h-[20rem] min-w-[20rem]"
+          className="p-12 rounded-xl  bg-white bg-opacity-10 shadow-xl backdrop-blur-xl h-[20rem] min-w-[20rem]"
           // style={{ width: "26vw", height: "25vw" }}
           src={image}
           alt="logo"
@@ -44,9 +44,9 @@ export const MainContent = () => {
       </div>
       <div className="flex-[1.7] flex flex-col gap-7">
         <Roll right>
-          <div className="text-5xl font-iceberg text-center lg:text-left">
+          <div className="text-5xl font-iceberg text-center xl:text-left">
             The{" "}
-            <span className="text-sky-600 bg-white px-5 border rounded-lg">
+            <span className="text-sky-600 bg-white px-5 border rounded-xl">
               Blue
             </span>{" "}
             BIT
@@ -54,7 +54,7 @@ export const MainContent = () => {
         </Roll>
 
         <Roll left when={ani2}>
-          <div className="text-2xl text-center lg:text-left">
+          <div className="text-2xl text-center xl:text-left">
             #ThinkTwiceCodeOnce
           </div>
         </Roll>
@@ -67,12 +67,11 @@ export const MainContent = () => {
           </div>
         </Bounce>
         <Bounce bottom when={ani4}>
-          <div className="flex gap-10">
+          <div className="flex max-xl:flex-col max-xl:items-center gap-5 cursor-pointer">
             <div
               class="apply-button"
               data-hackathon-slug="the-blue-bit-round-1"
               data-button-theme="light"
-              style={{ height: "44px", width: "312px" }}
             ></div>
             <Process />
           </div>
