@@ -27,7 +27,7 @@ export const googleLoginUsingPopup = async () => {
     .then((result) => {
       return result?.user;
     })
-    .catch((e) => console.log(e));
+    .catch((e) => { return e });
 };
 
 export const createUserWithUsernamePassword = async (email, password) => {

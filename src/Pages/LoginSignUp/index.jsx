@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import imgbckgrd from "../../Images/loginImage.webp";
-import LoginVdo from "../../Assets/1.mp4";
+import LoginVdo from "../../Assets/1.webm";
 import { ForgetPassword } from "./ForgetPassword";
 import { Login } from "./Login";
 import { SignUp } from "./SignUp";

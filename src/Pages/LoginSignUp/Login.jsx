@@ -71,6 +71,12 @@ export const Login = () => {
   // Logging in with google
   const userLoginWithGoogle = async () => {
     const response = await googleLoginUsingPopup();
+    console.log(response)
+    if(response.code === "auth/popup-closed-by-user"){
+      dispatch(loaderAction.changeLoaderStateFalse());
+      message.error(response.message);
+      return;
+    }
     if (response) {
       db.collection("user")
         .doc(response.email)
@@ -78,7 +84,7 @@ export const Login = () => {
         .then((snap) => {
           if (!snap.exists) {
             setShowPopUp(true);
-            console.log(response);
+
             setemail(response.email);
             setname(response.displayName);
             dispatch(loaderAction.changeLoaderStateFalse());

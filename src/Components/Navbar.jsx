@@ -89,7 +89,7 @@ const Navbar = (props) => {
             >
               <li>
                 <NavLink
-                  to="/enliven"
+                  to="/the-blue-bit"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary flex gap-2 items-center"
@@ -97,7 +97,7 @@ const Navbar = (props) => {
                   }
                 >
                   <IoHome className="md:hidden" />
-                  Enliven
+                  The Blue BIT
                 </NavLink>
               </li>
               <li>

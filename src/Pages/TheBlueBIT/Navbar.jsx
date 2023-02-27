@@ -5,7 +5,7 @@ export const Navbar = () => {
   document.title = "The BlueBIT | Home";
 
   return (
-    <div className="sticky top-0 z-10 py-5 flex justify-center items-center px-10 pl-20 w-full border-b border-gray-100 ">
+    <div className="sticky top-0 z-10 py-5 flex items-center px-10 pl-20 w-full border-b border-gray-100 ">
       <div className={`flex flex-row items-center brand rounded-xl p-5 bg-white bg-opacity-10 shadow-xl backdrop-blur-lg`}>
             <div className="w-12">
               <img src={Logo} alt="CPC Logo" className="w-full" />

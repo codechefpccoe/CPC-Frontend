@@ -11,6 +11,56 @@ const TeamPage = () => {
       <Navbar />
       <div className="p-[2rem_1rem_0.5rem] lg:p-[1rem_2rem]">
         <h1 className="w-full text-center font-cairo text-3xl text-white p-3 rounded-md bg-[#301e6793] backdrop-blur-md">
+          Faculty
+        </h1>
+        <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap">
+          {Core_Executive_Team.map((data) => {
+            if (data.Team === "Faculty")
+              return (
+                <Profile_card
+                  key={data.Name}
+                  image={data.image}
+                  Name={data.Name}
+                  Role={data.Role}
+                  email={data.email}
+                  Instagram={data.Instagram}
+                  facebook={data.Facebook}
+                  github={data.GitHub}
+                  linkedin={data.LinkedIn}
+                  Website={data.Website}
+                />
+              );
+            else return <></>;
+          })}
+        </div>
+      </div>
+      <div className="p-[2rem_1rem_0.5rem] lg:p-[1rem_2rem]">
+        <h1 className="w-full text-center font-cairo text-3xl text-white p-3 rounded-md bg-[#301e6793] backdrop-blur-md">
+          Mentors
+        </h1>
+        <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap">
+          {Core_Executive_Team.map((data) => {
+            if (data.Team === "Mentor")
+              return (
+                <Profile_card
+                  key={data.Name}
+                  image={data.image}
+                  Name={data.Name}
+                  Role={data.Role}
+                  email={data.email}
+                  Instagram={data.Instagram}
+                  facebook={data.Facebook}
+                  github={data.GitHub}
+                  linkedin={data.LinkedIn}
+                  Website={data.Website}
+                />
+              );
+            else return <></>;
+          })}
+        </div>
+      </div>
+      <div className="p-[2rem_1rem_0.5rem] lg:p-[1rem_2rem]">
+        <h1 className="w-full text-center font-cairo text-3xl text-white p-3 rounded-md bg-[#301e6793] backdrop-blur-md">
           Core Team
         </h1>
         <div className="p-[2rem_1rem_0.5rem] lg:p-[2rem_5rem_1rem] flex justify-evenly flex-wrap ">
